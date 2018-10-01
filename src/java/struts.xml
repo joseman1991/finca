@@ -1,0 +1,43 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+     <include file="controladorUsuarios/usuario.xml"/>
+     
+    <package name="default" extends="struts-default" namespace="/">
+         <action name="inicio">
+            <result name="success">index.jsp</result>
+            <result name="error">error.jsp</result>
+        </action> 
+        
+        <action name="registro" class="controladorUsuarios.UsuarioAction">
+            <result name="success">usuarioView/registroUsuario.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>       
+                        
+        <action name="login" class="controladorUsuarios.UsuarioAction">
+            <result name="success">usuarioView/login.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+                               
+        <action name="logout" class="controladorUsuarios.UsuarioAction">
+            <result name="success">logout.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>  
+                             
+        <action name="actualizar" class="controladorUsuarios.UsuarioAction" method="obtenerUsuarios">
+            <result name="success">usuarioView/actualizar.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="actualiza" class="controladorUsuarios.UsuarioAction" method="obtenerUsuario">
+            <result name="success">usuarioView/datos.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+                               
+    </package>
+    
+   
+</struts>
