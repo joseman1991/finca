@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <s:set name="user" value="#session['usuario']"/>
+        <s:set name="user" value="#session['usuario']"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
         <s:url action="inicio" var="inicio"/>
@@ -30,10 +30,10 @@
         </s:else>
         <ul>  
             <li><s:a href="%{inicio}">Inicio</s:a></li>
-            <li> 
-                <a href="#">Usuarios</a>                    
-                <ul>                    
-                    <li><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
+                <li> 
+                    <a href="#">Usuarios</a>                    
+                    <ul>                    
+                        <li><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
                     <li><s:a href="%{actualizar}">Actualizar</s:a></li>
                     <li><s:a href="%{mydata}">Mis Datos</s:a></li>                     
                 </ul>
@@ -62,5 +62,6 @@
                 </ul>
             </li>
         </ul>
+        <h1>Sistema de Administración y Gestión de Colmenas</h1>
     </body>
 </html>
