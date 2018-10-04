@@ -28,11 +28,12 @@
                     <td><s:property value="idusuario"/></td>
                     <td><s:property value="email"/></td>
                     <td><s:property value="nombre"/></td>
-                    <td><s:property value="apellido"/></td>
-                    <s:url action="actualiza" var="actualiza">
-                         <s:param name="idusuario"><s:property value="idusuario"/></s:param>
-                    </s:url>
-                    <td><s:a href="%{actualiza}">Editar</s:a></td>
+                    <td><s:property value="apellido"/></td>                   
+                    <td>
+                        <form action="actualiza" method="post">
+                            <input type="hidden" value="<s:property value="idusuario"/>" name="idusuario"/>
+                            <button type="submit">Editar</button>
+                        </form>                        
                 </tr>
             </s:iterator>
         </tbody>

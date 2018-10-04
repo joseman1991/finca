@@ -32,6 +32,7 @@ public class ConexionMySQL {
 
     protected void cerrarConexion() throws SQLException {
         conexion.close();
+        conexion=null;
     }
 
     public Connection getConexion() throws SQLException {

@@ -4,10 +4,12 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-     <include file="controladorUsuarios/usuario.xml"/>
+    <include file="controladorUsuarios/usuario.xml"/>
+    <include file="controladorSectores/sectores.xml"/>
      
     <package name="default" extends="struts-default" namespace="/">
-         <action name="inicio">
+        <!-- Menú usuario --> 
+        <action name="inicio">
             <result name="success">index.jsp</result>
             <result name="error">error.jsp</result>
         </action> 
@@ -36,6 +38,14 @@
             <result name="success">usuarioView/datos.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+       
+        <!-- Menú sectores --> 
+             <action name="agregarsector" class="controladorSectores.SectoresAction" method="obtenerProvincias">
+            <result name="success">sectoresView/insertarSector.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+            
+        
                                
     </package>
     

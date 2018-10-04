@@ -19,6 +19,8 @@
         <s:url action="actualiza" var="mydata">
             <s:param name="idusuario"><s:property value="#user.idusuario"/></s:param>
         </s:url>
+        
+        <s:url action="agregarsector" var="agregarsector"/>
     </head>
     <body>
         <s:if test="#user!=null">
@@ -41,7 +43,7 @@
             <li>
                 <a href="#">Sectores</a>
                 <ul>
-                    <li><a href="#">Agregar nuevo sector</a></li>
+                    <li><s:a href="%{agregarsector}">Agregar nuevo sector</s:a></li>
                     <li><a href="#">Actualizar sector</a></li>
                     <li><a href="#">Listado de sectores</a></li>
                 </ul>
