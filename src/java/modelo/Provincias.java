@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author JOSE
  */
 public class Provincias  implements Serializable{
-    private String idprovincias;
+    private String idprovincia;
     private String nombreprovincia;
 
     public Provincias() {
@@ -21,12 +21,12 @@ public class Provincias  implements Serializable{
     
     
     
-    public String getIdprovincias() {
-        return idprovincias;
+    public String getIdprovincia() {
+        return idprovincia;
     }
 
-    public void setIdprovincias(String idprovincias) {
-        this.idprovincias = idprovincias;
+    public void setIdprovincia(String idprovincia) {
+        this.idprovincia = idprovincia;
     }
 
     public String getNombreprovincia() {

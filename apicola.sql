@@ -47,6 +47,7 @@ insert into provincias values('08','ESMERALDAS');
 insert into provincias values('09','GUAYAS');
 insert into provincias values('10','IMBABURA');
 insert into provincias values('11','LOJA');
+insert into provincias values('12','LOS RÍOS');
 insert into provincias values('13','MANABI');
 insert into provincias values('14','MORONA SANTIAGO');
 insert into provincias values('15','NAPO');

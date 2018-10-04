@@ -5,8 +5,8 @@
 <!-- Author: JOSE -->
  
 <struts>
-    <package name="dafault" namespace="/" extends="struts-default">
-        <action name="registrarSector" class="controladorSectores.SectoresAction"  method="insertarSector">
+    <package name="controladorSectores" namespace="/" extends="struts-default">        
+        <action name="registrarsector" class="controladorSectores.SectoresAction"  method="insertarSector">
             <result name="success">sectoresView/insertarSector.jsp</result>
             <result name="error">error.jsp</result>
         </action>        

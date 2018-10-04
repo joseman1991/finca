@@ -27,7 +27,7 @@ public class ProvinciasDAO extends ConexionMySQL {
         resultado = sentencia.executeQuery();
         while (resultado.next()) {
             Provincias pro = new Provincias();
-            pro.setIdprovincias(resultado.getString(1));
+            pro.setIdprovincia(resultado.getString(1));
             pro.setNombreprovincia(resultado.getString(2));
             listaProvincias.add(pro);
         }
@@ -42,7 +42,7 @@ public class ProvinciasDAO extends ConexionMySQL {
         resultado= sentencia.executeQuery();
         if(resultado.next()){
             p= new Provincias();
-            p.setIdprovincias(resultado.getString(1));
+            p.setIdprovincia(resultado.getString(1));
             p.setNombreprovincia(resultado.getString(2));
         }
         cerrarConexion();

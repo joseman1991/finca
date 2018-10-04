@@ -43,10 +43,7 @@
              <action name="agregarsector" class="controladorSectores.SectoresAction" method="obtenerProvincias">
             <result name="success">sectoresView/insertarSector.jsp</result>
             <result name="error">error.jsp</result>
-        </action>
-            
-        
-                               
+        </action>             
     </package>
     
    
