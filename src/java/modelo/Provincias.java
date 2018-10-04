@@ -16,6 +16,7 @@ public class Provincias  implements Serializable{
     private String nombreprovincia;
 
     public Provincias() {
+        
     }
 
     
