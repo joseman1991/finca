@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: JOSE -->
+ 
+<struts>
+    <package name="controladorColmenas" namespace="/" extends="struts-default">
+        <action name="colmenaregistrada" class="controladorColmenas.ColmenaAction" method="insertarColmena">
+            <result name="success">colemenasView/registrarColmena.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+    </package> 
+</struts>

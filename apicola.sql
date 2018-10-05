@@ -15,7 +15,7 @@ create table usuarios(
 
 -- ----------------------------------------------------------------
 create table provincias (
- idprovicia varchar(2) primary key,
+ idprovincia varchar(2) primary key,
  nombreprovincia varchar(45)
 );
 
@@ -30,10 +30,91 @@ CREATE TABLE IF NOT EXISTS sector (
   direccion VARCHAR(45) NOT NULL,
   email VARCHAR(50) NOT NULL,
   observacion LONGTEXT NOT NULL,
-  responsable VARCHAR(50) NOT NULL
+  responsable VARCHAR(50) NOT NULL,
+  constraint fk_provincia_sector foreign key (idprovincia) references provincias(idprovincia) on update cascade on delete restrict
   );
 
 
+-- ----------------------------------------------------------------
+
+create table origen(
+ idorigen int primary key,
+ descripcion varchar(10)
+);
+
+
+ insert into origen values(1,'COMPRA');
+ insert into origen values (2,'CAPTURA');
+ 
+ -- ----------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS colmena (
+  idcolmena INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  idarea INT NOT NULL,
+  nmarcos INT NOT NULL,
+  tipo VARCHAR(45) NOT NULL,
+  nalza INT NOT NULL,
+  idorigen int NOT NULL,
+  precio float not null,
+  fecha DATE NOT NULL,
+  idreina INT NOT NULL,
+  fechareina DATE NOT NULL, 
+  CONSTRAINT fk_colmena_sector
+    FOREIGN KEY (idarea)
+    REFERENCES sector (idsector)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+    constraint fk_colmena_origen 
+    foreign key (idorigen) 
+	 references origen(idorigen) on update cascade on delete restrict    
+   );
+
+-- ----------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS division (
+  iddivision INT NOT NULL AUTO_INCREMENT,
+  idcolmena INT NOT NULL,
+  fecha DATE NOT NULL,
+  PRIMARY KEY (iddivision),  
+  CONSTRAINT fk_division_colmena
+    FOREIGN KEY (idcolmena)
+    REFERENCES colmena (idcolmena)
+    ON DELETE restrict
+    ON UPDATE CASCADE
+);
+
+-- ----------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS mantenimiento (
+  idmantenimiento INT NOT NULL AUTO_INCREMENT,
+  tipo VARCHAR(45) NOT NULL,
+  fecha DATE NOT NULL,
+  idobrero INT NOT NULL,
+  idcolmena INT NOT NULL,
+  alimentacion TINYINT NOT NULL,
+  PRIMARY KEY (idmantenimiento),  
+  CONSTRAINT fk_mantenimiento_colmena
+    FOREIGN KEY (idcolmena)
+    REFERENCES colmena (idcolmena)
+    ON DELETE restrict
+    ON UPDATE cascade
+	);
+-- ----------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS cosecha (
+  idcosecha INT NOT NULL AUTO_INCREMENT,
+  idcolmena INT NOT NULL,
+  idobrero INT NOT NULL,
+  marcos INT NOT NULL,
+  pesovacio float NOT NULL,
+  pesolleno float NOT NULL,
+  fecha DATE NOT NULL,
+  tipoalza VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idcosecha),  
+  CONSTRAINT fk_cosecha_colmena
+    FOREIGN KEY (idcolmena)
+    REFERENCES colmena (idcolmena)
+    ON DELETE restrict
+    ON UPDATE cascade
+	 );
 -- ----------------------------------------------------------------
   
 insert into provincias values('01','AZUAY');

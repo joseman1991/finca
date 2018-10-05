@@ -31,9 +31,9 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     private Sectores sector;
 
+    private String mensaje;
     private Connection conexion;
     private final HttpSession session;
-    private String mensaje;
 
     public SectoresAction() {
         sector = new Sectores();
@@ -50,6 +50,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             int res = sdao.insertarSector(sector);
             if (res > 0) {
                 mensaje = "Sector registrado correctamente";
+                conexion=pdao.getConexion();
                 pdao.obtnerListas();
                 return SUCCESS;
             } else {
@@ -68,6 +69,19 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         try {
             conexion = pdao.getConexion();
             pdao.obtnerListas();
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cerrarConexion();
+        }
+    }
+    public String obtenerProvincias2() {
+        try {
+            conexion = pdao.getConexion();
+            pdao.obtnerListas();
+            mensaje= "Necesitas al menos un sector para registrar una colmena";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();

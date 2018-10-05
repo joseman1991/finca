@@ -21,6 +21,7 @@
         </s:url>
         
         <s:url action="agregarsector" var="agregarsector"/>
+        <s:url action="agregarcolmena" var="agregarcolmena"/>
     </head>
     <body>
         <s:if test="#user!=null">
@@ -51,7 +52,7 @@
             <li>
                 <a href="#">Colmenas</a>
                 <ul>
-                    <li><a href="#">Agregar nueva colmena</a></li>
+                    <li><s:a href="%{agregarcolmena}">Agregar nueva colmena</s:a></li>
                     <li><a href="#">Actualizar colmena</a></li>
                     <li><a href="#">Lista de colmenas</a></li>
                 </ul>

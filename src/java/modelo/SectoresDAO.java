@@ -59,7 +59,7 @@ public class SectoresDAO extends ConexionMySQL {
     public Sectores obtenerSector(int idsector) throws SQLException {
         abrirConexion();
         Sectores s = null;
-        sentencia = conexion.prepareStatement("select * from sectores where idsector = ?");
+        sentencia = conexion.prepareStatement("select * from sector where idsector = ?");
         sentencia.setInt(1, idsector);
         resultado = sentencia.executeQuery();
         if (resultado.next()) {
@@ -81,7 +81,7 @@ public class SectoresDAO extends ConexionMySQL {
     public void obtenerSectors() throws SQLException {
         abrirConexion();
 
-        sentencia = conexion.prepareStatement("select * from sectores where idsector = ?");
+        sentencia = conexion.prepareStatement("select * from sector");
 
         resultado = sentencia.executeQuery();
         while (resultado.next()) {
