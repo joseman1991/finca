@@ -9,7 +9,6 @@ import static com.opensymphony.xwork2.Action.ERROR;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +27,7 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
 
     private Colmenas colmena;
     private final List<Origen> listaOrigen;
-    private String mensaje;
-    private Connection conexion;
+    private String mensaje;  
     private final OrigenDAO odao;
     private final SectoresDAO sdao;
     private final List<Sectores> listaSectores;
@@ -45,14 +43,11 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
     }
 
     public String insertarColmena() {
-        try {
-            conexion = cdao.getConexion();
+        try {            
             int res = cdao.insertarColmena(colmena);
             if (res > 0) {
-                mensaje = "Colmena registrada correctamente";
-                conexion = odao.getConexion();
-                odao.obtnerListas();
-                conexion = sdao.getConexion();
+                mensaje = "Colmena registrada correctamente";                
+                odao.obtnerListas();               
                 sdao.obtenerSectors();
                 return SUCCESS;
             } else {
@@ -63,35 +58,27 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+            cdao.cerrarConexion();
+            odao.cerrarConexion();
+            sdao.cerrarConexion();
         }
     }
 
     public String obtenerOrigen() {
-        try {
-            conexion = odao.getConexion();
-            odao.obtnerListas();
-            conexion = sdao.getConexion();
+        try {            
+            odao.obtnerListas();            
             sdao.obtenerSectors();
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+            odao.cerrarConexion();
+            sdao.cerrarConexion();
         }
     }
 
-    private void cerrarConexion() {
-        try {
-            if (conexion != null) {
-                conexion.close();
-                conexion = null;
-            }
-        } catch (SQLException e) {
-            mensaje = e.getMessage();
-        }
-    }
+  
 
     public List<Origen> getListaOrigen() {
         return listaOrigen;

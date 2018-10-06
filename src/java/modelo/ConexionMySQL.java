@@ -14,6 +14,10 @@ public class ConexionMySQL {
     protected ResultSet resultado;
     protected CallableStatement procedimiento;
 
+    public ConexionMySQL() {
+        conexion = null;
+    }
+
     protected void abrirConexion() throws SQLException {
         String url;
         String usuario = ("root");
@@ -30,14 +34,15 @@ public class ConexionMySQL {
         }
     }
 
-    protected void cerrarConexion() throws SQLException {
-        conexion.close();
-        conexion=null;
-    }
+    public void cerrarConexion() {
+        if (conexion != null) {
+            try {
+                conexion.close();
+                conexion = null;
+            } catch (SQLException e) {
 
-    public Connection getConexion() throws SQLException {
-        abrirConexion();
-        return conexion;
+            }
+        }
     }
 
 }

@@ -45,6 +45,7 @@ create table origen(
 
  insert into origen values(1,'COMPRA');
  insert into origen values (2,'CAPTURA');
+ insert into origen values (3,'DIVISIÓN');
  
  -- ----------------------------------------------------------------
 
@@ -56,6 +57,7 @@ CREATE TABLE IF NOT EXISTS colmena (
   nalza INT NOT NULL,
   idorigen int NOT NULL,
   precio float not null,
+  npisos int not null,
   fecha DATE NOT NULL,
   idreina INT NOT NULL,
   fechareina DATE NOT NULL, 
@@ -71,17 +73,7 @@ CREATE TABLE IF NOT EXISTS colmena (
 
 -- ----------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS division (
-  iddivision INT NOT NULL AUTO_INCREMENT,
-  idcolmena INT NOT NULL,
-  fecha DATE NOT NULL,
-  PRIMARY KEY (iddivision),  
-  CONSTRAINT fk_division_colmena
-    FOREIGN KEY (idcolmena)
-    REFERENCES colmena (idcolmena)
-    ON DELETE restrict
-    ON UPDATE CASCADE
-);
+ 
 
 -- ----------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS mantenimiento (
@@ -97,7 +89,8 @@ CREATE TABLE IF NOT EXISTS mantenimiento (
     REFERENCES colmena (idcolmena)
     ON DELETE restrict
     ON UPDATE cascade
-	);
+);
+
 -- ----------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS cosecha (
   idcosecha INT NOT NULL AUTO_INCREMENT,
@@ -114,7 +107,7 @@ CREATE TABLE IF NOT EXISTS cosecha (
     REFERENCES colmena (idcolmena)
     ON DELETE restrict
     ON UPDATE cascade
-	 );
+);
 -- ----------------------------------------------------------------
   
 insert into provincias values('01','AZUAY');

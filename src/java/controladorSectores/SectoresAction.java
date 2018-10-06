@@ -7,7 +7,6 @@ package controladorSectores;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
     private Sectores sector;
 
     private String mensaje;
-    private Connection conexion;
+ 
     private final HttpSession session;
 
     public SectoresAction() {
@@ -46,11 +45,11 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public String insertarSector() {
         try {
-            conexion = sdao.getConexion();
+             
             int res = sdao.insertarSector(sector);
             if (res > 0) {
                 mensaje = "Sector registrado correctamente";
-                conexion=pdao.getConexion();
+          
                 pdao.obtnerListas();
                 return SUCCESS;
             } else {
@@ -61,25 +60,26 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+          sdao.  cerrarConexion();
+          pdao.  cerrarConexion();
         }
     }
 
     public String obtenerProvincias() {
         try {
-            conexion = pdao.getConexion();
+        
             pdao.obtnerListas();
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+           pdao. cerrarConexion();
         }
     }
     public String obtenerProvincias2() {
         try {
-            conexion = pdao.getConexion();
+           
             pdao.obtnerListas();
             mensaje= "Necesitas al menos un sector para registrar una colmena";
             return SUCCESS;
@@ -87,7 +87,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+          pdao.  cerrarConexion();
         }
     }
 
@@ -104,16 +104,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         this.sector = sector;
     }
 
-    private void cerrarConexion() {
-        try {
-            if (conexion != null) {
-                conexion.close();
-                conexion = null;
-            }
-        } catch (SQLException e) {
-            mensaje = e.getMessage();
-        }
-    }
+   
 
     public String getMensaje() {
         return mensaje;

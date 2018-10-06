@@ -19,6 +19,7 @@ public class Colmenas {
     private String tipo;
     private int nalza;
     private int idorigen;
+    private int npisos;
     private float precio;
     private Date fecha;
     private int idreina;
@@ -84,9 +85,9 @@ public class Colmenas {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+//    public void setFecha(Date fecha) {
+//        this.fecha = fecha;
+//    }
     public void setFecha(String fecha) {
         this.fecha = Date.valueOf(fecha);
     }
@@ -100,14 +101,23 @@ public class Colmenas {
     }
 
     public Date getFechareina() {
-        return fechareina;
+        return fechareina; 
     }
 
-    public void setFechareina(Date fechareina) {
-        this.fechareina = fechareina;
-    }
+//    public void setFechareina(Date fechareina) {
+//        this.fechareina = fechareina;
+//    }
     public void setFechareina(String fechareina) {
         this.fechareina = Date.valueOf(fechareina);
     }
+
+    public int getNpisos() {
+        return npisos;
+    }
+
+    public void setNpisos(int npisos) {
+        this.npisos = npisos;
+    }
+    
 
 }

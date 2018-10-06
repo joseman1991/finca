@@ -7,7 +7,6 @@ package controladorUsuarios;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +23,11 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     private Usuarios usuario;
     private final UsuarioDAO uDAO;
-    private String mensaje;
-    private Connection conexion;
+    private String mensaje;    
     private final HttpSession session;
     private final List<Usuarios> listaUsuarios;
 
-    public UsuarioAction() {
-        this.conexion = null;
+    public UsuarioAction() {        
         usuario = new Usuarios();
         session = ServletActionContext.getRequest().getSession();
         listaUsuarios = new ArrayList<>();
@@ -44,7 +41,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public String insertarUsuario() {
         try {
-            conexion = uDAO.getConexion();
+             
             int result = uDAO.insertarUsuario(usuario);
             if (result > 0) {
                 mensaje = "Usuario registrado";
@@ -57,13 +54,13 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+          uDAO.  cerrarConexion();
         }
     }
     
     public String actualizarUsuario() {
         try {
-            conexion = uDAO.getConexion();
+            
             int result = uDAO.actualizarUsuario(usuario);
             if (result > 0) {
                 mensaje = "Usuario actualizado";
@@ -76,13 +73,13 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+           uDAO. cerrarConexion();
         }
     }
 
     public String login() {
         try {
-            conexion = uDAO.getConexion();
+            
             usuario = uDAO.obtenerUsusario(usuario);
             if (usuario != null) {
                 session.setAttribute("usuario", usuario);
@@ -95,14 +92,14 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+           uDAO. cerrarConexion();
         }
     }
 
     public String obtenerUsuarios() {
         try {
             usuario = (Usuarios) session.getAttribute("usuario");
-            conexion = uDAO.getConexion();
+          
             if (usuario != null) {
                 uDAO.obtenerLista(usuario);
                 return SUCCESS;
@@ -114,32 +111,24 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+            uDAO.cerrarConexion();
         }
     }
 
     public String obtenerUsuario() {
         try {
-            conexion = uDAO.getConexion();
+             
             usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cerrarConexion();
+           uDAO. cerrarConexion();
         }
     }
 
-    private void cerrarConexion() {
-        try {
-            if (conexion != null) {
-                conexion.close();
-            }
-        } catch (SQLException e) {
-            mensaje = e.getMessage();
-        }
-    }
+   
 
     @Override
     public Usuarios getModel() {

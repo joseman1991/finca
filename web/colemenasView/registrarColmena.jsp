@@ -39,6 +39,7 @@
                 <label for="precio">Precio</label><input type="number" name="precio" value="0.00" min="0.00" required=""/> <br>
                 <label for="fecha">Fecha</label>   <input type="date" name="fecha" max="45" required=""/> <br>
                 <label for="idreina">Id Reina</label><input type="number" name="idreina" value="1" min="1" required=""/> <br>  
+                <label for="npisos">Numero de Pisos</label><input type="number" name="npisos" value="1" min="1" required=""/> <br>  
                 <label for="fechareina">Fecha de Reina</label>   <input type="date" name="fechareina" max="45" required=""/> <br>        
                 <input type="submit" value="Registrar Colmena"/>
                 <span><s:property value="mensaje"/></span>

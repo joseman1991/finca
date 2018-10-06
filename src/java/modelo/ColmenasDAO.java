@@ -15,8 +15,8 @@ public class ColmenasDAO extends ConexionMySQL {
 
     public int insertarColmena(Colmenas colmena) throws SQLException {
         abrirConexion();
-        sentencia = conexion.prepareStatement("INSERT INTO colmena (idarea, nmarcos, tipo, nalza, idorigen, precio, fecha, idreina, fechareina)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        sentencia = conexion.prepareStatement("INSERT INTO colmena (idarea, nmarcos, tipo, nalza, idorigen, precio, fecha, idreina,npisos, fechareina)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
         int i = 1;
         sentencia.setInt(i++, colmena.getIdarea());
         sentencia.setInt(i++, colmena.getNmarcos());
@@ -26,6 +26,7 @@ public class ColmenasDAO extends ConexionMySQL {
         sentencia.setFloat(i++, colmena.getPrecio());
         sentencia.setDate(i++, colmena.getFecha());
         sentencia.setInt(i++, colmena.getIdreina());
+        sentencia.setInt(i++, colmena.getNpisos());
         sentencia.setDate(i++, colmena.getFechareina());
         int res = sentencia.executeUpdate();
         cerrarConexion();
