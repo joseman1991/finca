@@ -51,6 +51,7 @@ create table origen(
 
 CREATE TABLE IF NOT EXISTS colmena (
   idcolmena INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  descripcion varchar(50) not null,
   idarea INT NOT NULL,
   nmarcos INT NOT NULL,
   tipo VARCHAR(45) NOT NULL,

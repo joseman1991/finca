@@ -17,6 +17,7 @@ public class Colmenas {
     private int idarea;
     private int nmarcos;
     private String tipo;
+    private String descripcion;
     private int nalza;
     private int idorigen;
     private int npisos;
@@ -118,6 +119,15 @@ public class Colmenas {
     public void setNpisos(int npisos) {
         this.npisos = npisos;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
 
 }

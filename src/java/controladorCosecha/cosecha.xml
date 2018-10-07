@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: JOSE -->
+ 
+<struts>
+    <package name="controladorCosecha" namespace="/" extends="struts-default">
+         <action name="cosechado" class="controladorCosecha.CosechaAction" method="insertar">
+            <result name="success">cosechaView/registrarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+         <action name="cosechaActualizada" class="controladorCosecha.CosechaAction" method="actualizar">
+            <result name="success">cosechaView/registrarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+    </package>
+</struts>

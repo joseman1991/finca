@@ -27,6 +27,7 @@
                 </select><br>
 
 
+                <label for="nmarcos">Descripción</label><input type="text" name="descripcion" max="50" required=""/> <br>
                 <label for="nmarcos">Numero de Marcos</label><input type="number" name="nmarcos" value="1" min="1" required=""/> <br>
                 <label for="tipo">Tipo</label>   <input type="text" name="tipo" max="45" required=""/> <br>
                 <label for="nalza">Numero de Marcos</label><input type="number" name="nalza" value="1" min="1" required=""/> <br>            

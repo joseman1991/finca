@@ -39,12 +39,40 @@ public class MantenimientoDAO extends ConexionMySQL {
         abrirConexion();
         sentencia = conexion.prepareStatement("select * from mantenimiento where idmantenimiento=?");
         sentencia.setInt(1, idmantenimiento);
-        resultado= sentencia.executeQuery();
-        if(resultado.next()){
-            
+        resultado = sentencia.executeQuery();
+        if (resultado.next()) {
+            m = new Mantenimiento();
+            int i = 1;
+            m.setIdmantenimiento(resultado.getInt(i++));
+            m.setTipo(resultado.getString(i++));
+            m.setFecha(resultado.getString(i++));
+            m.setIdobrero(resultado.getInt(i++));
+            m.setIdcolmena(resultado.getInt(i++));
+            m.setAlimentacion(resultado.getInt(i++));
         }
         cerrarConexion();
         return m;
+    }
+
+    public void obtenerListaMantenimiento() throws SQLException {      
+        abrirConexion();
+        listaMantenimientos.clear();
+        sentencia = conexion.prepareStatement("select * from mantenimiento");
+        resultado = sentencia.executeQuery();
+        if (resultado.next()) {
+            if (resultado.next()) {
+                 Mantenimiento m = new Mantenimiento();
+                int i = 1;
+                m.setIdmantenimiento(resultado.getInt(i++));
+                m.setTipo(resultado.getString(i++));
+                m.setFecha(resultado.getString(i++));
+                m.setIdobrero(resultado.getInt(i++));
+                m.setIdcolmena(resultado.getInt(i++));
+                m.setAlimentacion(resultado.getInt(i++));
+                listaMantenimientos.add(m);
+            }
+        }
+        cerrarConexion();       
     }
 
 }

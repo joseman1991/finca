@@ -22,6 +22,11 @@
         
         <s:url action="agregarsector" var="agregarsector"/>
         <s:url action="agregarcolmena" var="agregarcolmena"/>
+        <s:url action="agregarmantenimiento" var="agregarmantenimiento"/>
+        <s:url action="cosechar" var="cosechar"/>
+        <s:url action="editCosecha" var="editCosecha">
+            <s:param name="idcosecha"><s:property value="1"/></s:param>
+        </s:url>
     </head>
     <body>
         <s:if test="#user!=null">
@@ -60,8 +65,9 @@
             <li>
                 <a href="#">Acciones</a>
                 <ul>
-                    <li><a href="#">Agregar nuevo mantenimiento</a></li>
-                    <li><a href="#">Cosechar colmena</a></li>
+                    <li><s:a href="%{agregarmantenimiento}">Agregar nuevo mantenimiento</s:a></li>
+                    <li><s:a href="%{cosechar}">Cosechar colmena</s:a></li>
+                    <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
                 </ul>
             </li>
         </ul>

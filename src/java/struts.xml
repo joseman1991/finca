@@ -7,6 +7,8 @@
     <include file="controladorUsuarios/usuario.xml"/>
     <include file="controladorSectores/sectores.xml"/>
     <include file="controladorColmenas/colmenas.xml"/>
+    <include file="controladorMantenimiento/mantenimiento.xml"/>
+    <include file="controladorCosecha/cosecha.xml"/>
      
     <package name="default" extends="struts-default" namespace="/">
         <!-- Menú usuario --> 
@@ -56,8 +58,22 @@
             <result name="success">colemenasView/registrarColmena.jsp</result>
             <result name="error">error.jsp</result>
         </action>
-         
-                        
+        
+        <!-- Menú Mantenimiento -->            
+        <action name="agregarmantenimiento" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+            <result name="success">mantenimientoView/registrarMantenimiento.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>    
+          
+        <!-- Menú Cosecha -->            
+        <action name="cosechar" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+            <result name="success">cosechaView/registrarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>      
+        <action name="editCosecha" class="controladorCosecha.CosechaAction" method="obtenerColmenas">
+            <result name="success">cosechaView/actualizarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>      
                                                
     </package>
     
