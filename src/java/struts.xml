@@ -64,6 +64,13 @@
             <result name="success">mantenimientoView/registrarMantenimiento.jsp</result>
             <result name="error">error.jsp</result>
         </action>    
+        
+        <action name="listademantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaMantenimiento">
+            <result name="success">mantenimientoView/actualizar.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>     
+        
+        
           
         <!-- Menú Cosecha -->            
         <action name="cosechar" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
@@ -73,8 +80,15 @@
         <action name="editCosecha" class="controladorCosecha.CosechaAction" method="obtenerColmenas">
             <result name="success">cosechaView/actualizarCosecha.jsp</result>
             <result name="error">error.jsp</result>
-        </action>      
+        </action> 
+        
+                  
+        <action name="listadecosechas" class="controladorCosecha.CosechaAction" method="obtenerLista">
+            <result name="success">cosechaView/actualizar.jsp</result>
+            <result name="error">error.jsp</result>
+        </action> 
                                                
+                                                                                                   
     </package>
     
    

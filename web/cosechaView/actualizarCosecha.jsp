@@ -26,12 +26,12 @@
                         <option value="<s:property value="idcolmena"/>"><s:property value="descripcion"/></option>
                     </s:iterator>
                 </select><br>               
-                <label for="tipoalza">Tipo de Alza</label>   <input type="text" name="tipoalza" max="45" required=""/> <br>                
-                <label for="fecha">Fecha</label>   <input type="date" name="fecha" max="45" required=""/> <br>
-                <label for="idobrero">Id Obrero </label><input type="number" name="idobrero" value="1" min="1" required=""/> <br>  
-                <label for="marcos">Marcos </label><input type="number" name="marcos" value="1" min="1" required=""/> <br>
-                <label for="pesovacio">Peso vacío </label><input type="number" name="pesovacio" value="1" min="1" required=""/> <br>
-                <label for="pesolleno">Peso Lleno </label><input type="number" name="pesolleno" value="1" min="1" required=""/> <br>
+                <label for="tipoalza">Tipo de Alza</label>   <input type="text" name="tipoalza" value="<s:property value="objeto.tipoalza"/>" max="45" required=""/> <br>                
+                <label for="fecha">Fecha</label>   <input type="date" name="fecha" max="45" required="" value="<s:property value="objeto.fecha"/>"/> <br>
+                <label for="idobrero">Id Obrero </label><input type="number" name="idobrero" value="<s:property value="objeto.idobrero"/>" min="1" required=""/> <br>  
+                <label for="marcos">Marcos </label><input type="number" name="marcos" value="<s:property value="objeto.marcos"/>" min="1" required=""/> <br>
+                <label for="pesovacio">Peso vacío </label><input type="number" name="pesovacio" value="<s:property value="objeto.pesovacio"/>" min="1" required=""/> <br>
+                <label for="pesolleno">Peso Lleno </label><input type="number" name="pesolleno" value="<s:property value="objeto.pesolleno"/>" min="1" required=""/> <br>
                 <input type="submit" value="Registrar Colmena"/>
                 <span><s:property value="mensaje"/></span>
             </form> 

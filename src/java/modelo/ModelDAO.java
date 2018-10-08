@@ -19,7 +19,7 @@ public interface ModelDAO<T extends Object> {
 
     public int actualizarRegistro(T registro) throws SQLException;
 
-    public int elimiarRegistro(T registro)throws SQLException;
+    public int eliminarRegistro(T registro)throws SQLException;
 
     public T obtenerRegistro(T dato)throws SQLException;
 

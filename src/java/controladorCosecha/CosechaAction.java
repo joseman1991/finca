@@ -5,6 +5,7 @@
  */
 package controladorCosecha;
 
+import controlador.Action;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,36 +18,53 @@ import modelo.CosechaDAO;
  *
  * @author JOSE
  */
-public class CosechaAction extends Action<Cosecha>  {
-    
+public class CosechaAction extends Action<Cosecha> {
+
     private final ColmenasDAO cdao2;
     private final List<Colmenas> listaColmenas;
 
-    
-    public CosechaAction() {                
+    public CosechaAction() {
         objeto = new Cosecha();
         listaColmenas = new ArrayList<>();
         cdao2 = new ColmenasDAO(listaColmenas);
     }
-    
-     public String obtenerColmenas() {
+
+    public String obtenerColmenas() {
         try {
-            cdao2.obtenerListaColmenas();        
+            cdao2.obtenerListaColmenas();
+            conexion = new CosechaDAO();
+            Cosecha c = (Cosecha) objeto;
+            System.out.println(c.getIdcosecha());
+            objeto = (Cosecha) conexion.obtenerRegistro(objeto);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cdao2.cerrarConexion();           
+            cdao2.cerrarConexion();
+        }
+    }
+
+    public String obtenerLista() {
+        try {
+            cdao2.obtenerListaColmenas();
+            conexion = new CosechaDAO();
+            conexion.obtenerLista(lista);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cdao2.cerrarConexion();
         }
     }
 
     public String insertar() {
         try {
             cdao2.obtenerListaColmenas();
-            conexion= new CosechaDAO();
-            int res = conexion.insertarRegistro(objeto);            
-            if (res > 0) {                
+            conexion = new CosechaDAO();
+            int res = conexion.insertarRegistro(objeto);
+            if (res > 0) {
                 mensaje = "Cosecha realizada con éxito";
             }
         } catch (SQLException e) {
@@ -56,14 +74,14 @@ public class CosechaAction extends Action<Cosecha>  {
             conexion.cerrarConexion();
         }
         return SUCCESS;
-    } 
-    
+    }
+
     public String actualizar() {
         try {
             cdao2.obtenerListaColmenas();
-            conexion= new CosechaDAO();
-            int res = conexion.actualizarRegistro(objeto);            
-            if (res > 0) {                
+            conexion = new CosechaDAO();
+            int res = conexion.actualizarRegistro(objeto);
+            if (res > 0) {
                 mensaje = "Cosecha actualizada con éxito";
             }
         } catch (SQLException e) {
@@ -73,13 +91,10 @@ public class CosechaAction extends Action<Cosecha>  {
             conexion.cerrarConexion();
         }
         return SUCCESS;
-    } 
+    }
 
     public List<Colmenas> getListaColmenas() {
         return listaColmenas;
     }
-    
-    
-    
 
 }

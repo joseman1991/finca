@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Colmenas;
 import modelo.ColmenasDAO;
+import modelo.ConexionMySQL;
 import modelo.Mantenimiento;
 import modelo.MantenimientoDAO;
 
@@ -40,7 +41,7 @@ public class MantenimientoAction extends ActionSupport implements ModelDriven<Ma
         try {
             mdao.insertarMantenimiento(mantenimiento);
             cdao.obtenerListaColmenas();
-            mensaje= "Mantenimiento correctamente registrado";
+            mensaje = "Mantenimiento correctamente registrado";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -48,6 +49,17 @@ public class MantenimientoAction extends ActionSupport implements ModelDriven<Ma
         } finally {
             mdao.cerrarConexion();
             cdao.cerrarConexion();
+        }
+    }
+
+    public String obtenerListaMantenimiento() {
+        try {
+            ConexionMySQL c= new MantenimientoDAO();
+            c.obtenerLista(listaMantenimientos);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
         }
     }
 

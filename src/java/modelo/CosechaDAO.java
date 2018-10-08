@@ -15,6 +15,7 @@ import java.util.List;
 public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     public CosechaDAO() {
+        tipo = Cosecha.class;
         tabla = "cosecha";
     }
 
@@ -31,13 +32,27 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         campos = "idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
         camposCondicion = "idcosecha";
         condicion = "where idcosecha=?";
-        int res=super.actualizarRegistro(registro);
+        int res = super.actualizarRegistro(registro);
         cerrarConexion();
         return res;
     }
 
     @Override
+    public Cosecha obtenerRegistro(Cosecha dato) throws SQLException {
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        camposCondicion = "idcosecha";
+        condicion = "where idcosecha=?";
+        Cosecha co = (Cosecha) super.obtenerRegistro(dato);
+        cerrarConexion();
+        System.out.println("Datos: " + co.toString());
+        return co;
+    }
+
+    @Override
     public void obtenerLista(List<Cosecha> lista) throws SQLException {
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        camposCondicion = "";
+        condicion = "";
         super.obtenerLista(lista);
     }
 

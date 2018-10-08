@@ -12,12 +12,19 @@ import java.util.List;
  *
  * @author JOSE
  */
-public class ColmenasDAO extends ConexionMySQL {
+public class ColmenasDAO extends ConexionMySQL<Colmenas> {
 
     private List<Colmenas> listaColmenas;
 
+    public ColmenasDAO() {
+        tabla = "Colmena";
+        tipo = Colmenas.class;
+    }
+
     public ColmenasDAO(List<Colmenas> listaColmenas) {
         this.listaColmenas = listaColmenas;
+        tabla = "Colmena";
+        tipo = Colmenas.class;
     }
 
     public int insertarColmena(Colmenas colmena) throws SQLException {
@@ -64,6 +71,17 @@ public class ColmenasDAO extends ConexionMySQL {
             listaColmenas.add(c);
         }
         cerrarConexion();
+    }
+
+    @Override
+    public Colmenas obtenerRegistro(Colmenas dato) throws SQLException {
+        abrirConexion();
+        campos = "idcolmena,idarea, nmarcos, tipo, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
+        camposCondicion = "idcolmena";
+        condicion = "where idcolmena=?";
+        Colmenas c = super.obtenerRegistro(dato);
+        cerrarConexion();
+        return c; //To change body of generated methods, choose Tools | Templates.
     }
 
 }

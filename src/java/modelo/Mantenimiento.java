@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,12 +21,14 @@ public class Mantenimiento implements Serializable {
     private int idobrero;
     private int idcolmena;
     private int alimentacion;
+    private Colmenas colmena;
 
     public int getIdmantenimiento() {
         return idmantenimiento;
     }
 
     public void setIdmantenimiento(int idmantenimiento) {
+
         this.idmantenimiento = idmantenimiento;
     }
 
@@ -57,7 +60,10 @@ public class Mantenimiento implements Serializable {
         return idcolmena;
     }
 
-    public void setIdcolmena(int idcolmena) {
+    public void setIdcolmena(int idcolmena) throws SQLException {
+        colmena = new Colmenas();
+        colmena.setIdcolmena(idcolmena);
+        colmena = new ColmenasDAO().obtenerRegistro(colmena);
         this.idcolmena = idcolmena;
     }
 
@@ -68,4 +74,9 @@ public class Mantenimiento implements Serializable {
     public void setAlimentacion(int alimentacion) {
         this.alimentacion = alimentacion;
     }
+
+    public Colmenas getColmena() {
+        return colmena;
+    }
+
 }

@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,11 +26,16 @@ public class Cosecha implements Serializable {
     private Date fecha;
     private String tipoalza;
 
+    
+    
     public int getIdcolmena() {
         return idcolmena;
     }
 
-    public void setIdcolmena(int idcolmena) {
+    public void setIdcolmena(int idcolmena) throws SQLException {
+        colmena= new Colmenas();
+        colmena.setIdcolmena(idcolmena);
+        colmena=new ColmenasDAO().obtenerRegistro(colmena);
         this.idcolmena = idcolmena;
     }
 
@@ -97,4 +103,12 @@ public class Cosecha implements Serializable {
         this.idcosecha = idcosecha;
     }
 
+    @Override
+    public String toString() {
+        return "Cosecha{" + "idcosecha=" + idcosecha + ", idcolmena=" + idcolmena + ", colmena=" + colmena + ", idobrero=" + idobrero + ", marcos=" + marcos + ", pesovacio=" + pesovacio + ", pesolleno=" + pesolleno + ", fecha=" + fecha + ", tipoalza=" + tipoalza + '}';
+    }
+
+    
+    
+    
 }

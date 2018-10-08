@@ -27,6 +27,8 @@
         <s:url action="editCosecha" var="editCosecha">
             <s:param name="idcosecha"><s:property value="1"/></s:param>
         </s:url>
+        <s:url action="listadecosechas" var="listadecosechas"/>
+        <s:url action="listademantenimiento" var="listademantenimiento"/>
     </head>
     <body>
         <s:if test="#user!=null">
@@ -66,8 +68,10 @@
                 <a href="#">Acciones</a>
                 <ul>
                     <li><s:a href="%{agregarmantenimiento}">Agregar nuevo mantenimiento</s:a></li>
+                    <li><s:a href="%{listademantenimiento}">Actualizar Mantenimiento</s:a></li>
                     <li><s:a href="%{cosechar}">Cosechar colmena</s:a></li>
                     <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
+                    <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>
                 </ul>
             </li>
         </ul>
