@@ -31,39 +31,39 @@
                                     <div class="form-group">
                                         <label for="email" class="control-label col-sm-4">Correo</label> 
                                         <div class="col-sm-5">
-                                            <input type="email" class="form-control" name="email" max="35" value="<s:property value="usuario.email"/>"/>
+                                            <input type="email" class="form-control" name="email" max="35" value="<s:property value="usuario.email"/>" disabled/>
                                         </div>                                        
                                     </div>
 
                                     <div class="form-group">
                                         <label for="clave" class="control-label col-sm-4">Contraseña</label>
                                         <div class="col-sm-5">
-                                             <input type="password" class="form-control" name="pclave" max="16" value="<s:property value="usuario.clave"/>"/>
+                                            <input type="password" class="form-control" name="pclave" max="16" value="<s:property value="usuario.clave"/>" disabled=""/>
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
                                         <label for="clave" class="control-label col-sm-4">Repite la Contraseña</label>
                                         <div class="col-sm-5">
-                                             <input type="password" class="form-control" name="clave" max="16" value="<s:property value="usuario.clave"/>"/>
+                                             <input type="password" class="form-control" name="clave" max="16" value="<s:property value="usuario.clave"/>"disabled/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
                                         <label for="nombre" class="control-label col-sm-4">Nombres</label>
                                         <div class="col-sm-5">
-                                             <input type="text" class="form-control" name="nombre" max="35" value="<s:property value="usuario.nombre"/>"/>
+                                             <input type="text" class="form-control" name="nombre" max="35" value="<s:property value="usuario.nombre"/>"disabled/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
                                         <label for="apellido" class="control-label col-sm-4">Apellidos</label>   
                                         <div class="col-sm-5">
-                                             <input type="text" class="form-control" name="apellido" max="35" value="<s:property value="usuario.apellido"/>"/> 
+                                             <input type="text" class="form-control" name="apellido" max="35" value="<s:property value="usuario.apellido"/>"disabled/> 
                                         </div>                                       
                                     </div>
                                  
                                     <div class=" form-group col-sm-4 pull-right" >
-                                        <input class="btn btn-info" type="submit" value="Actualizar"/> <br>
+                                        <input class="btn btn-danger" type="button" value="Eliminar"/> <br>
                                         <span><s:property value="mensaje"/></span>
                                     </div>
 

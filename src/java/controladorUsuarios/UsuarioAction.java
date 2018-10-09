@@ -23,11 +23,11 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     private Usuarios usuario;
     private final UsuarioDAO uDAO;
-    private String mensaje;    
+    private String mensaje;
     private final HttpSession session;
     private final List<Usuarios> listaUsuarios;
 
-    public UsuarioAction() {        
+    public UsuarioAction() {
         usuario = new Usuarios();
         session = ServletActionContext.getRequest().getSession();
         listaUsuarios = new ArrayList<>();
@@ -41,7 +41,6 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public String insertarUsuario() {
         try {
-             
             int result = uDAO.insertarUsuario(usuario);
             if (result > 0) {
                 mensaje = "Usuario registrado";
@@ -54,17 +53,28 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-          uDAO.  cerrarConexion();
+            uDAO.cerrarConexion();
         }
     }
-    
+
     public String actualizarUsuario() {
         try {
-            
             int result = uDAO.actualizarUsuario(usuario);
             if (result > 0) {
-                mensaje = "Usuario actualizado";
-                return SUCCESS;
+                usuario = uDAO.obtenerUsusario(usuario);
+                if (usuario != null) {
+                    Usuarios u = (Usuarios) session.getAttribute("usuario");
+                    if (u != null) {
+                        if (u.getIdusuario() == usuario.getIdusuario()) {
+                            session.setAttribute("usuario", usuario);
+                        }
+                    }
+                    mensaje = "Usuario actualizado";
+                    return SUCCESS;
+                } else {
+                    mensaje = "Ha ocurrido un error";
+                    return ERROR;
+                }
             } else {
                 mensaje = "Ha ocurrido un error inesperado";
                 return ERROR;
@@ -73,13 +83,13 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-           uDAO. cerrarConexion();
+            uDAO.cerrarConexion();
         }
     }
 
     public String login() {
         try {
-            
+
             usuario = uDAO.obtenerUsusario(usuario);
             if (usuario != null) {
                 session.setAttribute("usuario", usuario);
@@ -92,19 +102,19 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-           uDAO. cerrarConexion();
+            uDAO.cerrarConexion();
         }
     }
 
     public String obtenerUsuarios() {
         try {
             usuario = (Usuarios) session.getAttribute("usuario");
-          
+
             if (usuario != null) {
                 uDAO.obtenerLista(usuario);
                 return SUCCESS;
             } else {
-                mensaje="No tienes permiso para ver esta página";
+                mensaje = "No tienes permiso para ver esta página";
                 return ERROR;
             }
         } catch (SQLException e) {
@@ -117,18 +127,29 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public String obtenerUsuario() {
         try {
-             
+
             usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-           uDAO. cerrarConexion();
+            uDAO.cerrarConexion();
         }
     }
 
-   
+    public String obtenerUsuario2() {
+        try {
+            usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
+            mensaje = "Usuario actualizado";
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            uDAO.cerrarConexion();
+        }
+    }
 
     @Override
     public Usuarios getModel() {

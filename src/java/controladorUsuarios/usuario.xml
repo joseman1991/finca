@@ -18,7 +18,7 @@
         
         <action name="actualizadatos" class="controladorUsuarios.UsuarioAction" method="actualizarUsuario">            
             <result name="success" type="redirectAction">
-                <param name="actionName">actualiza</param>
+                <param name="actionName">actualiza1</param>
                 <param  name="idusuario" >${usuario.idusuario}</param>                
             </result>
             <result name="error">error.jsp</result>

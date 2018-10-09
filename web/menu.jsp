@@ -8,66 +8,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <s:set name="user" value="#session['usuario']"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-        <s:url action="inicio" var="inicio"/>
-        <s:url action="login" var="login"/>
-        <s:url action="logout" var="logout"/>
-        <s:url action="registro" var="registro"/>
-        <s:url action="actualizar" var="actualizar"/>
-        <s:url action="actualiza" var="mydata">
-            <s:param name="idusuario"><s:property value="#user.idusuario"/></s:param>
-        </s:url>
-        
-        <s:url action="agregarsector" var="agregarsector"/>
-        <s:url action="agregarcolmena" var="agregarcolmena"/>
-        <s:url action="agregarmantenimiento" var="agregarmantenimiento"/>
-        <s:url action="cosechar" var="cosechar"/>
-        <s:url action="editCosecha" var="editCosecha">
-            <s:param name="idcosecha"><s:property value="1"/></s:param>
-        </s:url>
-        <s:url action="listadecosechas" var="listadecosechas"/>
-        <s:url action="listademantenimiento" var="listademantenimiento"/>
+
+
     </head>
     <body>
-        <s:if test="#user!=null">
-            Hola <s:property value="#user.nombre"/>
-            <s:a href="%{logout}"> Cerrar sesión</s:a>
-        </s:if>
-        <s:else>
-            <s:a href="%{login}">Iniciar sesión</s:a>
-        </s:else>
-        <ul>  
-            <li><s:a href="%{inicio}">Inicio</s:a></li>
+
+
+        <ul class="nav nav-pills nav-stacked list-unstyled bg-warning">  
+            <li class="active"><s:a href="%{inicio}">Inicio <span class="glyphicon glyphicon-home pull-right"></span></s:a> </li>
                 <li> 
-                    <a href="#">Usuarios</a>                    
-                    <ul>                    
-                        <li><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
-                    <li><s:a href="%{actualizar}">Actualizar</s:a></li>
-                    <li><s:a href="%{mydata}">Mis Datos</s:a></li>                     
-                </ul>
-            </li>
-            <li>
-                <a href="#">Sectores</a>
-                <ul>
-                    <li><s:a href="%{agregarsector}">Agregar nuevo sector</s:a></li>
-                    <li><a href="#">Actualizar sector</a></li>
-                    <li><a href="#">Listado de sectores</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Colmenas</a>
-                <ul>
-                    <li><s:a href="%{agregarcolmena}">Agregar nueva colmena</s:a></li>
-                    <li><a href="#">Actualizar colmena</a></li>
-                    <li><a href="#">Lista de colmenas</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Acciones</a>
-                <ul>
-                    <li><s:a href="%{agregarmantenimiento}">Agregar nuevo mantenimiento</s:a></li>
+                    <a href="#usuario" data-toggle="collapse" aria-expanded="false">Usuarios <span class="glyphicon glyphicon-menu-down pull-right"></span></a>                    
+                    <ul class=" nav collapse " id="usuario">                    
+                        <li ><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
+                    <li><s:a href="%{actualizar}">Lista de Usuarios</s:a></li>                                   
+                    </ul>
+                </li>
+                <li>
+                    <a href="#sectores" data-toggle="collapse" aria-expanded="false">Sectores  <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
+                    <ul class="nav collapse" id="sectores">
+                        <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>
+                        <li><a href="#">Actualizar sector</a></li>
+                        <li><a href="#">Listado de sectores</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#colmenas" data-toggle="collapse" aria-expanded="false">Colmenas  <span class="glyphicon glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
+                    <ul class="nav collapse" id="colmenas">
+                        <li><s:a href="%{agregarcolmena}">Agregar nueva colmena </s:a></li>
+                        <li><a href="#">Actualizar colmena</a></li>
+                        <li><a href="#">Lista de colmenas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#acciones" data-toggle="collapse" aria-expanded="false">Acciones <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+                    <ul class="nav collapse" id="acciones">
+                        <li><s:a href="%{agregarmantenimiento}">Agregar nuevo mantenimiento</s:a></li>
                     <li><s:a href="%{listademantenimiento}">Actualizar Mantenimiento</s:a></li>
                     <li><s:a href="%{cosechar}">Cosechar colmena</s:a></li>
                     <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
@@ -75,6 +50,7 @@
                 </ul>
             </li>
         </ul>
-        <h1>Sistema de Administración y Gestión de Colmenas</h1>
+
+
     </body>
 </html>
