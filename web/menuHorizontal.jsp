@@ -83,7 +83,7 @@
                         </li>
 
                     </ul>
-
+ 
                     <ul class="nav navbar-nav navbar-right">
                     <s:if test="#user!=null">
                         <li><s:a href="%{mydata}"> <span class="glyphicon glyphicon-user"></span>  Hola, <s:property value="#user.nombre"/></s:a> </li>
