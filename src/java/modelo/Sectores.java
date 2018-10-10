@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 public class Sectores implements Serializable {
 
+    
+    
     private int idsector;
     private String nombre;
     private String idprovincia;

@@ -8,12 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-
     </head>
     <body>
-
-
         <ul class="nav nav-pills nav-stacked list-unstyled bg-warning">  
             <li class="active"><s:a href="%{inicio}">Inicio <span class="glyphicon glyphicon-home pull-right"></span></s:a> </li>
                 <li> 
@@ -26,27 +22,23 @@
                 <li>
                     <a href="#sectores" data-toggle="collapse" aria-expanded="false">Sectores  <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
                     <ul class="nav collapse" id="sectores">
-                        <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>
-                        <li><a href="#">Actualizar sector</a></li>
-                        <li><a href="#">Listado de sectores</a></li>
+                        <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>                       
+                        <li><s:a href="%{sectores}">Listado de sectores</s:a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#colmenas" data-toggle="collapse" aria-expanded="false">Colmenas  <span class="glyphicon glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
                     <ul class="nav collapse" id="colmenas">
                         <li><s:a href="%{agregarcolmena}">Agregar nueva colmena </s:a></li>
-                        <li><a href="#">Actualizar colmena</a></li>
-                        <li><a href="#">Lista de colmenas</a></li>
+                        <li><s:a href="%{listacolmenas}">Lista de colmenas</s:a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#acciones" data-toggle="collapse" aria-expanded="false">Acciones <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
-                    <ul class="nav collapse" id="acciones">
-                        <li><s:a href="%{agregarmantenimiento}">Agregar nuevo mantenimiento</s:a></li>
-                    <li><s:a href="%{listademantenimiento}">Actualizar Mantenimiento</s:a></li>
-                    <li><s:a href="%{cosechar}">Cosechar colmena</s:a></li>
-                    <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
+                    <ul class="nav collapse" id="acciones">                        
+                    <li><s:a href="%{listademantenimiento}">Listado de Mantenimiento</s:a></li>
                     <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>
+                      <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
                 </ul>
             </li>
         </ul>

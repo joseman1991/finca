@@ -128,6 +128,8 @@ public class Colmenas {
         this.descripcion = descripcion;
     }
     
-    
+    public java.util.Date getFecha2(){
+        return new java.util.Date(fecha.getTime());
+    }
 
 }

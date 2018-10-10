@@ -92,9 +92,9 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
     @Override
     public int actualizarRegistro(T registro) throws SQLException {
         abrirConexion();
-        construirSentenciaUpdate();
-        System.out.println(sqlScript);
+        construirSentenciaUpdate();         
         sentencia = conexion.prepareStatement(sqlScript);
+      
         try {
             llenarSentencia(registro);
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException | SQLException e) {
@@ -240,7 +240,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         for (int i = 0; i < columnas.length; i++) {
             String campo = columnas[i];
             Method method = clase.getMethod("get" + campo);
-            Object dato = method.invoke(registro);
+            Object dato = method.invoke(registro); 
             sentencia.setObject(i + 1, dato);
         }
     }

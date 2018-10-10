@@ -12,7 +12,7 @@
         </action>
         
          <action name="cosechaActualizada" class="controladorCosecha.CosechaAction" method="actualizar">
-            <result name="success">cosechaView/registrarCosecha.jsp</result>
+            <result name="success">cosechaView/actualizarCosecha.jsp</result>
             <result name="error">error.jsp</result>
         </action>
     </package>

@@ -37,6 +37,8 @@
             <result name="error">error.jsp</result>
         </action>
         
+      
+        
         <action name="actualiza" class="controladorUsuarios.UsuarioAction" method="obtenerUsuario">
             <result name="success">usuarioView/datos.jsp</result>
             <result name="error">error.jsp</result>
@@ -63,14 +65,34 @@
             <result name="error">error.jsp</result>
         </action>
         
+        <action name="sectores" class="controladorSectores.SectoresAction" method="obtenerSectores">
+            <result name="success">sectoresView/actualizar.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="actualizarsector" class="controladorSectores.SectoresAction" method="obtenerSector">
+            <result name="success">sectoresView/actualiza.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
         <!-- Menú colmena -->      
         <action name="agregarcolmena" class="controladorColmenas.ColmenaAction" method="obtenerOrigen">
             <result name="success">colemenasView/registrarColmena.jsp</result>
             <result name="error">error.jsp</result>
         </action>
         
+        <action name="listacolmenas" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+            <result name="success">colemenasView/actualizar.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="actualizarcolmena" class="controladorColmenas.ColmenaAction" method="obtenerColmena">
+            <result name="success">colemenasView/actualiza.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
         <!-- Menú Mantenimiento -->            
-        <action name="agregarmantenimiento" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+        <action name="agregarmantenimiento" class="controladorColmenas.ColmenaAction" method="obtenerColmena">
             <result name="success">mantenimientoView/registrarMantenimiento.jsp</result>
             <result name="error">error.jsp</result>
         </action>    
@@ -83,7 +105,7 @@
         
           
         <!-- Menú Cosecha -->            
-        <action name="cosechar" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+        <action name="cosechar" class="controladorColmenas.ColmenaAction" method="obtenerColmena">
             <result name="success">cosechaView/registrarCosecha.jsp</result>
             <result name="error">error.jsp</result>
         </action>      

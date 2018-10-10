@@ -36,8 +36,7 @@ public class SectoresDAO extends ConexionMySQL {
         cerrarConexion();
         return res;
     }
-    
-    
+
     public int actualizarSector(Sectores sector) throws SQLException {
         abrirConexion();
         sentencia = conexion.prepareStatement("update sector set nombre=?,idprovincia=?,rcto=?,direccion=?,email=?,observacion=?,responsable=?"
@@ -68,6 +67,7 @@ public class SectoresDAO extends ConexionMySQL {
             s.setIdsector(resultado.getInt(i++));
             s.setNombre(resultado.getString(i++));
             s.setProvincia(new ProvinciasDAO(null).obtenerProvincia(resultado.getString(i++)));
+            s.setIdprovincia(s.getProvincia().getIdprovincia());
             s.setRcto(resultado.getString(i++));
             s.setDireccion(resultado.getString(i++));
             s.setEmail(resultado.getString(i++));
@@ -90,6 +90,7 @@ public class SectoresDAO extends ConexionMySQL {
             s.setIdsector(resultado.getInt(i++));
             s.setNombre(resultado.getString(i++));
             s.setProvincia(new ProvinciasDAO(null).obtenerProvincia(resultado.getString(i++)));
+            s.setIdprovincia(s.getProvincia().getIdprovincia());
             s.setRcto(resultado.getString(i++));
             s.setDireccion(resultado.getString(i++));
             s.setEmail(resultado.getString(i++));

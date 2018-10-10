@@ -13,10 +13,10 @@
         <link href="css/style.css" rel="stylesheet">
         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap.min.js"></script>
-        <title>Lista de usuarios</title>
+        <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <title>Lista de sectores</title>
     </head>
     <body>
 
@@ -30,33 +30,39 @@
                 <div class="container col-md-12">
                     <div class="col-md-12 col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="  text-warning">Lista de usuarios</h3></div>
+                            <div class="panel-heading"><h3 class="  text-warning">Lista de sectores</h3></div>
                             <div class="panel-body">
                                 <table class="table table-hover table-responsive">
                                     <thead>
                                     <th>Codigo</th>
+                                    <th>Nombre</th>
+                                    <th>Provincia</th>
+                                    <th>Recinto</th>
+                                    <th>Dirección</th>
                                     <th>Correo electrónico</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
+                                    <th>Observación</th>
+                                    <th>Responsable</th>
                                     <th>Acciones</th>
                                     </thead>
                                     <tbody>
-                                        <s:iterator value="listaUsuarios">
+                                        <s:iterator value="listaSectores">
                                             <tr>
-                                                <td><s:property value="idusuario"/></td>
-                                                <td><s:property value="email"/></td>
+                                                <td><s:property value="idsector"/></td>
                                                 <td><s:property value="nombre"/></td>
-                                                <td><s:property value="apellido"/></td>
-                                                <s:url action="actualiza" var="actualiza">
-                                                    <s:param name="idusuario"><s:property value="idusuario"/></s:param>
+                                                <td><s:property value="idprovincia"/></td>
+                                                <td><s:property value="rcto"/></td>
+                                                <td><s:property value="direccion"/></td>
+                                                <td><s:property value="email"/></td>
+                                                <td><s:property value="observacion"/></td>
+                                                <td><s:property value="responsable"/></td>
+                                                <s:url action="actualizarsector" var="actualizarsector">
+                                                    <s:param name="idsector"><s:property value="idsector"/></s:param>
                                                 </s:url>
                                                 <td>                                                    
-                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar usuario" href="%{actualiza}"> 
+                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar sector" href="%{actualizarsector}"> 
                                                         <span class="glyphicon glyphicon-edit"></span>
                                                     </s:a>
-                                                    <s:a cssClass="btn btn-danger" href="%{eliminar}" data-toggle="tooltip" title="Eliminar usuario"> 
-                                                        <span class="glyphicon glyphicon-remove"></span>
-                                                    </s:a>
+
                                                 </td>
                                             </tr>
                                         </s:iterator>
@@ -82,7 +88,6 @@
         <footer class="container-fluid text-center">
             <p>Footer Text</p>
         </footer>
-
 
         <script >
             $(document).ready(function () {

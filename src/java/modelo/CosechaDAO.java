@@ -29,10 +29,11 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public int actualizarRegistro(Cosecha registro) throws SQLException {
-        campos = "idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
         camposCondicion = "idcosecha";
         condicion = "where idcosecha=?";
         int res = super.actualizarRegistro(registro);
+        System.out.println("Resultado "+res);
         cerrarConexion();
         return res;
     }

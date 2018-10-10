@@ -10,5 +10,9 @@
             <result name="success">colemenasView/registrarColmena.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+        <action name="colmenaactualizada" class="controladorColmenas.ColmenaAction" method="actualizarColmena">
+            <result name="success">colemenasView/actualiza.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
     </package> 
 </struts>

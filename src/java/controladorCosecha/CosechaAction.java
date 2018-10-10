@@ -79,18 +79,25 @@ public class CosechaAction extends Action<Cosecha> {
     public String actualizar() {
         try {
             cdao2.obtenerListaColmenas();
-            conexion = new CosechaDAO();
-            int res = conexion.actualizarRegistro(objeto);
+            CosechaDAO c = new CosechaDAO(); 
+            
+            int res = c.actualizarRegistro(objeto);
             if (res > 0) {
                 mensaje = "Cosecha actualizada con éxito";
+                return SUCCESS;
+            }else{
+                mensaje = "Un error ha ocurrido";
+                return ERROR;
             }
+           
         } catch (SQLException e) {
             mensaje = e.getMessage();
+            return ERROR;
         } finally {
             cdao2.cerrarConexion();
-            conexion.cerrarConexion();
+//            conexion.cerrarConexion();
         }
-        return SUCCESS;
+        
     }
 
     public List<Colmenas> getListaColmenas() {

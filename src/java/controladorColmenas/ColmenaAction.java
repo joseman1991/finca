@@ -16,6 +16,8 @@ import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.Origen;
 import modelo.OrigenDAO;
+import modelo.Provincias;
+import modelo.ProvinciasDAO;
 import modelo.Sectores;
 import modelo.SectoresDAO;
 
@@ -33,12 +35,15 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
     private final List<Sectores> listaSectores;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
+     
 
     public ColmenaAction() {
         this.listaOrigen = new ArrayList<>();
         odao = new OrigenDAO(listaOrigen);
         listaColmenas = new ArrayList<>();
+        
         cdao = new ColmenasDAO(listaColmenas);
+        
         listaSectores = new ArrayList<>();
         sdao = new SectoresDAO(listaSectores);
         colmena = new Colmenas();
@@ -49,6 +54,28 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             int res = cdao.insertarColmena(colmena);
             if (res > 0) {
                 mensaje = "Colmena registrada correctamente";
+                odao.obtnerListas();
+                sdao.obtenerSectors();
+                return SUCCESS;
+            } else {
+                mensaje = "Ha ocurrido un error";
+                return ERROR;
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cdao.cerrarConexion();
+            odao.cerrarConexion();
+            sdao.cerrarConexion();
+        }
+    }
+    
+    public String actualizarColmena() {
+        try {
+            int res = cdao.actualizarRegistro(colmena);
+            if (res > 0) {
+                mensaje = "Colmena actualizado correctamente";
                 odao.obtnerListas();
                 sdao.obtenerSectors();
                 return SUCCESS;
@@ -79,16 +106,32 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             sdao.cerrarConexion();
         }
     }
-    
+
     public String obtenerColmenas() {
         try {
-            cdao.obtenerListaColmenas();        
+            cdao.obtenerListaColmenas();
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-            cdao.cerrarConexion();           
+            cdao.cerrarConexion();
+
+        }
+    }
+
+    public String obtenerColmena() {
+        try {
+            colmena = cdao.obtenerRegistro(colmena);
+            sdao.obtenerSectors();
+            odao.obtnerListas();
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cdao.cerrarConexion();
+
         }
     }
 
@@ -122,6 +165,5 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
     }
 
     
-    
-    
+
 }

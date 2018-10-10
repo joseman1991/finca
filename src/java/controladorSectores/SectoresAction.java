@@ -31,7 +31,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
     private Sectores sector;
 
     private String mensaje;
- 
+
     private final HttpSession session;
 
     public SectoresAction() {
@@ -45,11 +45,9 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public String insertarSector() {
         try {
-             
             int res = sdao.insertarSector(sector);
             if (res > 0) {
                 mensaje = "Sector registrado correctamente";
-          
                 pdao.obtnerListas();
                 return SUCCESS;
             } else {
@@ -60,34 +58,80 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-          sdao.  cerrarConexion();
-          pdao.  cerrarConexion();
+            sdao.cerrarConexion();
+            pdao.cerrarConexion();
+        }
+    }
+
+    public String actualizarSector() {
+        try {
+            int res = sdao.actualizarSector(sector);
+            if (res > 0) {
+                mensaje = "Sector actualizado correctamente";
+                pdao.obtnerListas();
+                return SUCCESS;
+            } else {
+                mensaje = "Ha ocurrido un error";
+                return ERROR;
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            sdao.cerrarConexion();
+            pdao.cerrarConexion();
         }
     }
 
     public String obtenerProvincias() {
         try {
-        
+
             pdao.obtnerListas();
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-           pdao. cerrarConexion();
+            pdao.cerrarConexion();
         }
     }
+
     public String obtenerProvincias2() {
         try {
-           
+
             pdao.obtnerListas();
-            mensaje= "Necesitas al menos un sector para registrar una colmena";
+            mensaje = "Necesitas al menos un sector para registrar una colmena";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
-          pdao.  cerrarConexion();
+            pdao.cerrarConexion();
+        }
+    }
+
+    public String obtenerSectores() {
+        try {
+            sdao.obtenerSectors();
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            pdao.cerrarConexion();
+        }
+    }
+
+    public String obtenerSector() {
+        try {
+            sector = sdao.obtenerSector(sector.getIdsector());
+            pdao.obtnerListas();
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            pdao.cerrarConexion();
         }
     }
 
@@ -104,8 +148,6 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         this.sector = sector;
     }
 
-   
-
     public String getMensaje() {
         return mensaje;
     }
@@ -116,6 +158,10 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public List<Provincias> getListaProvincias() {
         return listaProvincias;
+    }
+
+    public List<Sectores> getListaSectores() {
+        return listaSectores;
     }
 
 }

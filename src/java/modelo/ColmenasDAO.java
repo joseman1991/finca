@@ -84,6 +84,21 @@ public class ColmenasDAO extends ConexionMySQL<Colmenas> {
         return c; //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public int actualizarRegistro(Colmenas registro) throws SQLException {
+        campos = "idcolmena,idarea, nmarcos, tipo, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
+        camposCondicion = "idcolmena";
+        condicion = "where idcolmena=?";
+        int res=super.actualizarRegistro(registro);
+        cerrarConexion();
+        return res ; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
+    
+
 }
 
 /*

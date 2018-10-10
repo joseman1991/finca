@@ -25,14 +25,16 @@
         </s:url>
 
         <s:url action="agregarsector" var="agregarsector"/>
-        <s:url action="agregarcolmena" var="agregarcolmena"/>
-        <s:url action="agregarmantenimiento" var="agregarmantenimiento"/>
+        <s:url action="agregarcolmena" var="agregarcolmena"/>        
         <s:url action="cosechar" var="cosechar"/>
         <s:url action="editCosecha" var="editCosecha">
             <s:param name="idcosecha"><s:property value="1"/></s:param>
         </s:url>
         <s:url action="listadecosechas" var="listadecosechas"/>
         <s:url action="listademantenimiento" var="listademantenimiento"/>
+        <s:url action="sectores" var="sectores"/>
+        <s:url action="listacolmenas" var="listacolmenas"/>
+        <s:url action="actualizarcolmena" var="actualizarcolmena"/>
 
         <title> </title>
     </head>
@@ -53,15 +55,15 @@
 
                         <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Sectores<span class="caret"></span></s:a>
                             <ul class="dropdown-menu">
-                               <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>
-                             
+                                <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>
+                            <li><s:a href="%{sectores}">Lista de sectores</s:a></li>
+
                             </ul>
                         </li>
                         <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Colmenas<span class="caret"></span></s:a>
                             <ul class="dropdown-menu">
-                                <li><s:a href="#">Page 1-1</s:a></li>
-                            <li><s:a href="#">Page 1-2</s:a></li>
-                            <li><s:a href="#">Page 1-3</s:a></li>
+                                <li><s:a href="%{agregarcolmena}">Agregar nueva colmena </s:a></li>
+                                <li><s:a href="%{listacolmenas}">Lista de colmenas</s:a></li>
                             </ul>
                         </li>
 
@@ -74,8 +76,8 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                         <s:a href="#">Page 1-2</s:a>
-                                    </li>
-                                    <li><s:a href="#">Page 1-3</s:a></li>
+                                        </li>
+                                        <li><s:a href="#">Page 1-3</s:a></li>
                                     </ul>
                                 </li>
 
