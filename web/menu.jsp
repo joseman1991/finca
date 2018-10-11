@@ -37,8 +37,7 @@
                     <a href="#acciones" data-toggle="collapse" aria-expanded="false">Acciones <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
                     <ul class="nav collapse" id="acciones">                        
                     <li><s:a href="%{listademantenimiento}">Listado de Mantenimiento</s:a></li>
-                    <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>
-                      <li><s:a href="%{editCosecha}">Editar Cosecha colmena</s:a></li>
+                    <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>                     
                 </ul>
             </li>
         </ul>

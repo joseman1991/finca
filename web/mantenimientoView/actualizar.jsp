@@ -1,7 +1,7 @@
 <%-- 
     Document   : actualizar
     Created on : 30-sep-2018, 23:45:10
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +16,7 @@
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap.min.js"></script>
-        <title>Listado de mantenimiento</title>
+        <title>Listadodo de mantenimientos</title>
     </head>
     <body >
 
@@ -30,7 +30,7 @@
             <div class="col-md-8">
                 <div class="container col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="text-warning">Lista de cosechas</h3></div>
+                        <div class="panel-heading"><h3 class="text-warning">Listado de mantenimiento</h3></div>
                         <div class="panel-body">
                             <table class="table table-hover table-responsive table-bordered">
                                 <thead>
@@ -52,7 +52,7 @@
                                             <td><s:property value="colmena.descripcion"/></td>                   
                                             <td><s:property value="alimentacion"/></td> 
                                             <td>
-                                                <form action="actualiza" method="post">
+                                                <form action="actualizamantenimiento" method="post">
                                                     <input type="hidden" value="<s:property value="idmantenimiento"/>" name="idmantenimiento"/>
                                                     <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar sector" type="submit">
                                                      <span class="glyphicon glyphicon-edit"></span>

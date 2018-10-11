@@ -1,7 +1,7 @@
 <%-- 
     Document   : datos
     Created on : 01-oct-2018, 0:10:54
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

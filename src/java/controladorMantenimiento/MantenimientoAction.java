@@ -18,7 +18,7 @@ import modelo.MantenimientoDAO;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class MantenimientoAction extends ActionSupport implements ModelDriven<Mantenimiento> {
 
@@ -52,10 +52,35 @@ public class MantenimientoAction extends ActionSupport implements ModelDriven<Ma
         }
     }
 
+    public String actualizarMantenimiento() {
+        try {
+            mdao.actualizarRegistro(mantenimiento);
+           mantenimiento= mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
+            mensaje = "Mantenimiento correctamente actualizado";
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            mdao.cerrarConexion();
+            cdao.cerrarConexion();
+        }
+    }
+
     public String obtenerListaMantenimiento() {
         try {
-            ConexionMySQL c= new MantenimientoDAO();
+            ConexionMySQL c = new MantenimientoDAO();
             c.obtenerLista(listaMantenimientos);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        }
+    }
+
+    public String obtenerMantenimiento() {
+        try {
+            mantenimiento = mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();

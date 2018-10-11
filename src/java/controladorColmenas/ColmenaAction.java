@@ -23,7 +23,7 @@ import modelo.SectoresDAO;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas> {
 

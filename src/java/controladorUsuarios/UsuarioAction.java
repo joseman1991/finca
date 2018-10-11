@@ -17,7 +17,7 @@ import org.apache.struts2.ServletActionContext;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios> {
 

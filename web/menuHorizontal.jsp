@@ -1,7 +1,7 @@
 <%-- 
     Document   : menuHorizontal
     Created on : 08-oct-2018, 22:44:13
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -63,30 +63,31 @@
                         <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Colmenas<span class="caret"></span></s:a>
                             <ul class="dropdown-menu">
                                 <li><s:a href="%{agregarcolmena}">Agregar nueva colmena </s:a></li>
-                                <li><s:a href="%{listacolmenas}">Lista de colmenas</s:a></li>
+                            <li><s:a href="%{listacolmenas}">Lista de colmenas</s:a></li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
                         <s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Acciones<span class="caret"></span></s:a>
                             <ul class="dropdown-menu">
-                                <li><s:a href="#">Page 1-1</s:a></li>
-                                <li class="dropdown-submenu">                                
-                                    <a tabindex="-1" href="#">More options</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                        <s:a href="#">Page 1-2</s:a>
-                                        </li>
-                                        <li><s:a href="#">Page 1-3</s:a></li>
-                                    </ul>
-                                </li>
+                                
+                            <li><s:a href="%{listademantenimiento}">Listado de Mantenimiento</s:a></li>
+                            <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>       
+                                <%--<li class="dropdown-submenu">                                
+                                        <a tabindex="-1" href="#">More options</a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                            <s:a href="#">Page 1-2</s:a>
+                                            </li>
+                                            <li><s:a href="#">Page 1-3</s:a></li>
+                                        </ul>
+                                    </li>--%>
+                        </ul>
+                    </li>
 
-                            </ul>
-                        </li>
+                </ul>
 
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     <s:if test="#user!=null">
                         <li><s:a href="%{mydata}"> <span class="glyphicon glyphicon-user"></span>  Hola, <s:property value="#user.nombre"/></s:a> </li>
                         <li><s:a href="%{logout}"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</s:a></li>                        

@@ -10,5 +10,10 @@
             <result name="success">mantenimientoView/registrarMantenimiento.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+        
+         <action name="mantenimientactualizado" class="controladorMantenimiento.MantenimientoAction" method="actualizarMantenimiento">
+            <result name="success">mantenimientoView/actualizarMantenimiento.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
     </package>
 </struts>

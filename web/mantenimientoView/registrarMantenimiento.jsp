@@ -1,7 +1,7 @@
 <%-- 
     Document   : registrarColmena
     Created on : 04-oct-2018, 11:37:37
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

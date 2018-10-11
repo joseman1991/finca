@@ -1,7 +1,7 @@
 <%-- 
     Document   : insertarSector
     Created on : 04-oct-2018, 6:48:02
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

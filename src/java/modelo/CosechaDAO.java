@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class CosechaDAO extends ConexionMySQL<Cosecha> {
 

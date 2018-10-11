@@ -1,7 +1,7 @@
 <%-- 
     Document   : logout
     Created on : 12-jul-2018, 22:35:00
-    Author     : JOSE
+    Author     : 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

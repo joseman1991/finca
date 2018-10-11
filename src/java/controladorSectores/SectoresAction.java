@@ -19,7 +19,7 @@ import org.apache.struts2.ServletActionContext;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class SectoresAction extends ActionSupport implements ModelDriven<Sectores> {
 

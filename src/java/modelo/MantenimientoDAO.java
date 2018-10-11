@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
@@ -69,8 +69,18 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(lista);
-
     }
+
+    @Override
+    public int actualizarRegistro(Mantenimiento registro) throws SQLException {
+        campos = "idmantenimiento, tipo, fecha, idobrero, alimentacion ";
+        camposCondicion = "idmantenimiento";
+        condicion = "where idmantenimiento=?";
+        int res=super.actualizarRegistro(registro); 
+        cerrarConexion();
+        return res;
+    }
+    
 
     public void obtenerListaMantenimiento() throws SQLException {
         abrirConexion();
@@ -87,7 +97,6 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
             m.setIdcolmena(resultado.getInt(i++));
             m.setAlimentacion(resultado.getInt(i++));
             listaMantenimientos.add(m);
-
         }
         cerrarConexion();
     }

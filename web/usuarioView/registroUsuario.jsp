@@ -1,7 +1,7 @@
 <%-- 
     Document   : registroUsuario
     Created on : 30-sep-2018, 20:55:10
-    Author     : JOSE
+    Author     : 
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,7 +23,6 @@
 
             <div class="col-md-8 col-sm-8">
                 <div class="container col-md-12">
-
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo usuario</h3></div>

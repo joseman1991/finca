@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class UsuarioDAO extends ConexionMySQL {
 

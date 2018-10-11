@@ -16,7 +16,7 @@ import modelo.CosechaDAO;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class CosechaAction extends Action<Cosecha> {
 

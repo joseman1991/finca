@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class Provincias  implements Serializable{
     private String idprovincia;

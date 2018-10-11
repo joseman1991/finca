@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 public class Origen  implements Serializable{
     private int idorigen;

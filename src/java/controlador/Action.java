@@ -15,7 +15,7 @@ import org.apache.struts2.ServletActionContext;
 
 /**
  *
- * @author JOSE
+ * @author 
  * @param <T>
  */
 public class Action<T extends Object> extends ActionSupport implements ModelDriven<T> {

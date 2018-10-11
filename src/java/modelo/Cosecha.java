@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author JOSE
+ * @author 
  */
 
 public class Cosecha implements Serializable {

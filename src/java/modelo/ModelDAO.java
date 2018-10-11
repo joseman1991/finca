@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author JOSE
+ * @author 
  * @param <T>
  */
 public interface ModelDAO<T extends Object> {   

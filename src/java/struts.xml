@@ -102,6 +102,11 @@
             <result name="error">error.jsp</result>
         </action>     
         
+        <action name="actualizamantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerMantenimiento">
+            <result name="success">mantenimientoView/actualizarMantenimiento.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>     
+        
         
           
         <!-- Menú Cosecha -->            
