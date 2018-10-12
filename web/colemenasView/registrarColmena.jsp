@@ -8,9 +8,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+ 
         <title>Registrar Nueva Colmena</title>
     </head>
     <body>
@@ -66,7 +68,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nalza">Numero de Marcos</label>
+                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control" type="number" name="nalza" value="1" min="1" required=""/>       
                                         </div>
@@ -137,10 +139,10 @@
                                     </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                         <input type="submit" class=" btn btn-info " value="Registrar Colmena"/> <br>
+                                        <input type="submit" class=" btn btn-info " value="Registrar Colmena"/> <br>
                                         <span><s:property value="mensaje"/></span>
                                     </div>                                
-                                   
+
                                 </form> 
                             </div>
                         </div>
