@@ -164,9 +164,6 @@
             <p>Footer Text</p>
         </footer>
 
-
-
-
         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </body>
