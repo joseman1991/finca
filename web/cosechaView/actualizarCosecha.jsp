@@ -59,9 +59,10 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="idobrero">Id Obrero </label>
-                                    <div class="col-sm-5">
-                                        <input  class="form-control" type="number"  name="idobrero" value="<s:property value="objeto.idobrero"/>" min="1" required=""/>   
+                                    <label class="control-label col-sm-4" for="idobrero">Obrero </label>
+                                    <div class="col-sm-5">                                        
+                                        <input  class="form-control" type="text"   value="<s:property value="objeto.obrero.fullname"/>" min="1" required="" readonly=""/>   
+                                        <input  class="form-control" type="hidden"  name="idobrero" value="<s:property value="objeto.idobrero"/>" min="1" required=""/>   
                                     </div>
                                 </div>
 
@@ -113,16 +114,18 @@
             </div>
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Todos los derechos reservados</p>
         </footer>
 
 

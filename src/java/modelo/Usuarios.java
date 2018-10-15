@@ -5,21 +5,25 @@
  */
 package modelo;
 
+import java.sql.SQLException;
+
 /**
  *
- * @author 
+ * @author
  */
 public class Usuarios {
 
     private int idusuario;
+    private int idperfil;
     private String clave;
     private String nombre;
     private String apellido;
     private String email;
+    private Perfiles perfil;
 
     public Usuarios() {
-       
-    }    
+
+    }
 
     public String getClave() {
         return clave;
@@ -51,7 +55,7 @@ public class Usuarios {
 
     public void setEmail(String email) {
         this.email = email;
-    }    
+    }
 
     public int getIdusuario() {
         return idusuario;
@@ -61,6 +65,27 @@ public class Usuarios {
         this.idusuario = idusuario;
     }
 
-    
-    
+    public int getIdperfil() {
+        return idperfil;
+    }
+
+    public void setIdperfil(int idperfil) throws SQLException {
+        this.perfil = new Perfiles();
+        this.perfil.setIdperfil(idperfil);
+        perfil = new PerfilesDAO().obtenerRegistro(perfil);
+        this.idperfil = idperfil;
+    }
+
+    public Perfiles getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfiles perfil) {
+        this.perfil = perfil;
+    }
+
+    public String getFullname() {
+        return nombre + " " + apellido;
+    }
+
 }

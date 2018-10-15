@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Sectores implements Serializable {
     private String email;
     private String observacion;
     private String responsable;
+     
 
     public int getIdsector() {
         return idsector;
@@ -45,7 +47,8 @@ public class Sectores implements Serializable {
         return idprovincia;
     }
 
-    public void setIdprovincia(String idprovincia) {
+    public void setIdprovincia(String idprovincia) throws SQLException {
+        provincia= new ProvinciasDAO(null).obtenerProvincia(idprovincia);
         this.idprovincia = idprovincia;
     }
 

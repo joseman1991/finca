@@ -27,48 +27,78 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Actualizar Datos de Usuario</h3></div>
                             <div class="panel-body">
-                                <form action="actualizadatos" class="form-horizontal" method="post">
+                                <form action="actualizadatos" class="form-horizontal" method="post" id="formulario">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="idperfil">Perfil</label>
+                                        <div class="col-sm-5">
+                                            <s:if test="usuario.idusuario==#user.idusuario">
+                                                <input type="text" class="form-control"  maxlength="35" value="<s:property value="#user.perfil.descripcion"/>" readonly=""/>
+                                                <input type="hidden" name="idperfil" value="<s:property value="#user.idperfil"/>"/>                                                
+                                            </s:if> 
+                                            <s:else>
+                                                <select class="form-control" name="idperfil">
+                                                    <s:iterator value="listaPerfiles">
+                                                        <s:if test="usuario.idperfil==idperfil">
+                                                            <option value="<s:property value="idperfil"/>" selected="">
+                                                                <s:property value="descripcion"/>
+                                                            </option>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <option value="<s:property value="idperfil"/>">
+                                                                <s:property value="descripcion"/>
+                                                            </option>
+                                                        </s:else>
+
+                                                    </s:iterator>
+                                                </select>
+                                            </s:else>
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="form-group">
                                         <label for="email" class="control-label col-sm-4">Correo</label> 
                                         <div class="col-sm-5">
-                                            <input type="email" class="form-control" name="email" max="35" value="<s:property value="usuario.email"/>"/>
+                                            <input type="email" class="form-control required" name="email" maxlength="35" value="<s:property value="usuario.email"/>" required="" id="correo" autocomplete="off"/>
+                                            <label class="error" style="display: none" id="userError"><strong>Correo ya se encuentra registrado</strong></label>
                                         </div>                                        
                                     </div>
 
                                     <div class="form-group">
                                         <label for="clave" class="control-label col-sm-4">Contraseña</label>
                                         <div class="col-sm-5">
-                                             <input type="password" class="form-control" name="pclave" max="16" value="<s:property value="usuario.clave"/>"/>
+                                            <input type="password" class="form-control required" name="pclave" minlength="5" maxlength="16" value="<s:property value="usuario.clave"/>" required="" id="pclave"/>
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
                                         <label for="clave" class="control-label col-sm-4">Repite la Contraseña</label>
                                         <div class="col-sm-5">
-                                             <input type="password" class="form-control" name="clave" max="16" value="<s:property value="usuario.clave"/>"/>
+                                            <input type="password" class="form-control required" name="clave"  maxlength="16" value="<s:property value="usuario.clave"/>"required=""/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
                                         <label for="nombre" class="control-label col-sm-4">Nombres</label>
                                         <div class="col-sm-5">
-                                             <input type="text" class="form-control" name="nombre" max="35" value="<s:property value="usuario.nombre"/>"/>
+                                            <input type="text" class="form-control required" name="nombre" maxlength="35" value="<s:property value="usuario.nombre"/>"required=""/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
                                         <label for="apellido" class="control-label col-sm-4">Apellidos</label>   
                                         <div class="col-sm-5">
-                                             <input type="text" class="form-control" name="apellido" max="35" value="<s:property value="usuario.apellido"/>"/> 
+                                            <input type="text" class="form-control required" name="apellido" maxlength="35" value="<s:property value="usuario.apellido"/>" required=""/> 
                                         </div>                                       
                                     </div>
-                                 
+
                                     <div class=" form-group col-sm-4 pull-right" >
-                                        <input class="btn btn-info" type="submit" value="Actualizar"/> <br>
-                                        <span><s:property value="mensaje"/></span>
+                                        <input class="btn btn-info" type="button" value="Actualizar" id="boton"/> <br>
+                                        <span class="text-success"><strong><s:property value="mensaje"/></strong></span>
                                     </div>
 
-                                    <input type="hidden" name="idusuario" value="<s:property value="idusuario"/>"/>
-                                    
+                                    <input type="hidden" name="idusuario" value="<s:property value="idusuario"/>" id="idusuario"/>
                                 </form>
                             </div>
                         </div>
@@ -80,22 +110,27 @@
             </div>
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
 
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Derechos Reservados 2018</p>
         </footer>
 
 
 
         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js" ></script>    
+        <script type="text/javascript" src="js/messages_es.js" ></script>   
+        <script type="text/javascript" src="usuarioView/js/usuario.js"></script>
     </body>
 </html>

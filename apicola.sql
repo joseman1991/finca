@@ -4,15 +4,37 @@ create database apicola;
 
 use apicola;
 
+
+-- ----------------------------------------------------------------
+
+create table perfiles(
+ idperfil int not null primary key,
+ descripcion varchar(20)
+);
+
+insert into perfiles values(1,'ADMINISTRADOR');
+insert into perfiles values(2,'OBREROS');
+-- ----------------------------------------------------------------
+
 create table usuarios(
  idusuario int auto_increment primary key,
  email varchar(35) unique,
  clave varchar(16),
  nombre varchar(35),
- apellido varchar(35) 
+ apellido varchar(35),
+ idperfil int not null,
+ constraint fk_usuarios_perfiles foreign key (idperfil) references perfiles(idperfil) 
+ on update cascade on delete restrict 
 );
+-- -----------------------------------------------------------------
+insert into usuarios(email,clave,nombre,apellido,idperfil) values('shirley_choez@hotmail.com','123','SHIRLEY','CHOEZ',1);
+insert into usuarios(email,clave,nombre,apellido,idperfil) values('victor_choezs@hotmail.com','123','VÍCTOR','CHOEZ',1);
+insert into usuarios(email,clave,nombre,apellido,idperfil) values('Choezsantosvictor@gmail.com','123','VÍCTOR','CHOEZ',1);
+insert into usuarios(email,clave,nombre,apellido,idperfil) values('shirleychoezn@gmail.com','123','SHIRLEY','CHOEZ',1);
 
-
+ 
+ 
+ 
 -- ----------------------------------------------------------------
 create table provincias (
  idprovincia varchar(2) primary key,

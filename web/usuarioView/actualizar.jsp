@@ -38,6 +38,7 @@
                                     <th>Correo electrónico</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
+                                    <th>Perfil</th>
                                     <th>Acciones</th>
                                     </thead>
                                     <tbody>
@@ -47,6 +48,7 @@
                                                 <td><s:property value="email"/></td>
                                                 <td><s:property value="nombre"/></td>
                                                 <td><s:property value="apellido"/></td>
+                                                <td><s:property value="perfil.descripcion"/></td>
                                                 <s:url action="actualiza" var="actualiza">
                                                     <s:param name="idusuario"><s:property value="idusuario"/></s:param>
                                                 </s:url>
@@ -70,17 +72,18 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
-
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Todos los Derechos Reservados 2018</p>
         </footer>
 
 

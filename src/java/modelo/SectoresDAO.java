@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author 
  */
-public class SectoresDAO extends ConexionMySQL {
+public class SectoresDAO extends ConexionMySQL<Sectores> {
 
     private final List<Sectores> listaSectores;
 

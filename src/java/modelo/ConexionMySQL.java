@@ -208,7 +208,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
     }
 
     private void construirCondicion() {
-        camposCondicion = camposCondicion.replaceAll("\\s", "");
+        camposCondicion = camposCondicion.replaceAll("\\s", "").toLowerCase();
         this.columnasCondcion = camposCondicion.split(",");
         temp = columnas;
         columnas = new String[temp.length + columnasCondcion.length];

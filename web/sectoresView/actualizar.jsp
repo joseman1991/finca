@@ -49,7 +49,7 @@
                                             <tr>
                                                 <td><s:property value="idsector"/></td>
                                                 <td><s:property value="nombre"/></td>
-                                                <td><s:property value="idprovincia"/></td>
+                                                <td><s:property value="provincia.nombreprovincia"/></td>
                                                 <td><s:property value="rcto"/></td>
                                                 <td><s:property value="direccion"/></td>
                                                 <td><s:property value="email"/></td>
@@ -76,19 +76,19 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
-
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Todos los Derechos Reservados 2018</p>
         </footer>
-
         <script >
             $(document).ready(function () {
                 $('.table').DataTable({

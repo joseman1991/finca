@@ -42,7 +42,7 @@
         <nav class="navbar navbar-dark bg-warning">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <s:a cssClass="navbar-brand text-warning" href="#">Gestión de Colmenas</s:a>
+                    <s:a cssClass="navbar-brand text-warning" href="inicio">APÍCOLA CANAÁN</s:a>
                     </div>
                     <ul class="nav navbar-nav " role="menu" aria-labelledby="dLabel">
                         <li class="active"><s:a href="%{inicio}">Inicio</s:a></li>

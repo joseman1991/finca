@@ -81,7 +81,7 @@
                                     <label class="control-label col-sm-4" for="idorigen">Origen de Colmena</label>      
 
                                     <div class="col-sm-5">
-                                        <select  class="form-control" name="idorigen">
+                                        <select  class="form-control" name="idorigen" id="origen">
                                             <s:iterator value="listaOrigen">
                                                 <s:if test="idorigen==colmena.idorigen">
                                                     <option value="<s:property value="idorigen"/>" selected=""><s:property value="descripcion"/></option>
@@ -97,10 +97,10 @@
 
 
 
-                                <div class="form-group">
+                                <div class="form-group" id="divprecio">
                                     <label class="control-label col-sm-4" for="precio">Precio</label>
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:property value="colmena.precio"/>" type="number" name="precio" value="0.00" min="0.00" required=""/> 
+                                        <input  class="form-control" value="<s:property value="colmena.precio"/>" type="number" name="precio" value="0.00" min="0.00" required="" id="precio"/> 
                                     </div>
                                 </div>
 
@@ -157,10 +157,12 @@
             </div>
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
@@ -174,6 +176,7 @@
 
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="colemenasView/js/colmena.js"></script>
 
         <script type="text/javascript">
             $('#datepicker').datepicker({

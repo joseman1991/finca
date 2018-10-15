@@ -32,16 +32,16 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Lista de colmenas</h3></div>
                         <div class="panel-body">
-                            <table class="table table-hover table-responsive table-bordered">
+                            <table class="table table-hover table-responsive table-bordered table-sm">
                                 <thead>
-                                <th>Codigo</th>
-                                <th>Área</th>
-                                <th>N. Marcos</th>
+                                <th>Cod.</th>
+                                <th>Sector</th>
+                                <th> Marcos</th>
                                 <th>Tipo</th>
                                 <th>Descripción</th>
                                 <th>Alza</th>
                                 <th>Origen</th>
-                                <th>N. pisos</th>
+                                <th>Pisos</th>
                                 <th>Precio</th>
                                 <th>Fecha</th>
                                 <th>ID Reina</th>
@@ -52,17 +52,17 @@
                                     <s:iterator value="listaColmenas">
                                         <tr>
                                             <td><s:property value="idcolmena"/></td>
-                                            <td><s:property value="idarea"/></td>
+                                            <td><s:property value="sector.nombre"/></td>
                                             <td><s:property value="nmarcos"/></td>
                                             <td><s:property value="tipo"/></td>
                                             <td><s:property value="descripcion"/></td>
                                             <td><s:property value="nalza"/></td>
-                                            <td><s:property value="idorigen"/></td>
+                                            <td><s:property value="origen.descripcion"/></td>
                                             <td><s:property value="npisos"/></td>                                                
                                             <td><s:property value="precio"/></td>
-                                            <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
+                                            <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>
                                             <td><s:property value="idreina"/></td>
-                                            <td><s:date name="fechareina" format="EE, dd/MMM/yyyy"/></td>
+                                            <td><s:date name="fechareina" format="dd/MMM/yyyy"/></td>
 
                                             <s:url action="actualizarcolmena" var="actualizarcolmena">
                                                 <s:param name="idcolmena"><s:property value="idcolmena"/></s:param>
@@ -70,35 +70,40 @@
                                             <td>
                                                 <div class=" row">
                                                     <div class="col-xs-1">
-                                                        <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
+                                                        <s:a cssClass="btn btn-warning btn-sm" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
                                                             <span class="glyphicon glyphicon-edit"></span>
                                                         </s:a>
                                                     </div> 
-                                                    <div class="col-xs-1">
+                                                    <div class="col-xs-1 col-md-offset-1">
 
                                                         <form action="cosechar" method="post">
                                                             <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-success btn-xs" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
+                                                            <button class="btn btn-success btn-sm" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
                                                                 <span class="glyphicon glyphicon-ok"></span>
                                                             </button> 
                                                         </form>
                                                     </div> 
+                                                </div> 
 
-                                                    <div class="col-xs-1">
+                                                <div class=" row">
+                                                    <div class="col-xs-1 ">
                                                         <form action="agregarmantenimiento" method="post">
                                                             <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-default btn-xs" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
+                                                            <button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
                                                                 <span class="glyphicon glyphicon-cog"></span>
                                                             </button>
                                                         </form>
                                                     </div> 
+
+                                                    <div class="col-xs-1 col-md-offset-1">
+                                                        <form action="agregarmantenimiento" method="post">
+                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
+                                                            <button class="btn btn-primary btn-sm" type="submit" data-toggle="tooltip" title="Reportes"> 
+                                                                <span class="glyphicon glyphicon-list-alt"></span>
+                                                            </button>
+                                                        </form>
+                                                    </div> 
                                                 </div>                                                    
-
-
-
-
-
-
                                             </td>
                                         </tr>
                                     </s:iterator>
@@ -112,17 +117,19 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
 
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Derechos Reservado 2018</p>
         </footer>
         <script >
             $(document).ready(function () {
@@ -140,7 +147,6 @@
                             "previous": "Anterior"
                         },
                         "search": "Buscar"
-
                     }
                 });
             });

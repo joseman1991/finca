@@ -108,17 +108,18 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Otro contenido</p>
+                    <p>Miel 100% pura</p>
+                    <img src="image/med1.jpg" class="img-thumbnail" />
                 </div>
-                <div class="well">
-                    <p>Mas contenido</p>
+                <div class="well">   
+                    <p>Jalea Real</p>
+                    <img src="image/miel.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
-
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+            <p>Todos los Derechos Reservados 2018</p>
         </footer>
 
 

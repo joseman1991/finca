@@ -22,6 +22,7 @@ public class Mantenimiento implements Serializable {
     private int idcolmena;
     private int alimentacion;
     private Colmenas colmena;
+     private Usuarios obrero;
 
     public int getIdmantenimiento() {
         return idmantenimiento;
@@ -52,7 +53,8 @@ public class Mantenimiento implements Serializable {
         return idobrero;
     }
 
-    public void setIdobrero(int idobrero) {
+    public void setIdobrero(int idobrero) throws SQLException {
+        obrero= new UsuarioDAO().obtenerUsusario(idobrero);
         this.idobrero = idobrero;
     }
 
@@ -79,4 +81,13 @@ public class Mantenimiento implements Serializable {
         return colmena;
     }
 
+    public Usuarios getObrero() {
+        return obrero;
+    }
+
+    public void setObrero(Usuarios obrero) {
+        this.obrero = obrero;
+    }
+
+    
 }

@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,6 +26,8 @@ public class Colmenas {
     private Date fecha;
     private int idreina;
     private Date fechareina;
+    private Sectores sector;
+    private Origen origen;
 
     public int getIdcolmena() {
         return idcolmena;
@@ -38,7 +41,8 @@ public class Colmenas {
         return idarea;
     }
 
-    public void setIdarea(int idarea) {
+    public void setIdarea(int idarea) throws SQLException {      
+        sector= new SectoresDAO(null).obtenerSector(idarea);
         this.idarea = idarea;
     }
 
@@ -70,7 +74,8 @@ public class Colmenas {
         return idorigen;
     }
 
-    public void setIdorigen(int idorigen) {
+    public void setIdorigen(int idorigen) throws SQLException {
+        origen=new OrigenDAO(null).obtenerOrigen(idorigen);
         this.idorigen = idorigen;
     }
 
@@ -131,5 +136,24 @@ public class Colmenas {
     public java.util.Date getFecha2(){
         return new java.util.Date(fecha.getTime());
     }
+
+    public Sectores getSector() {
+        return sector;
+    }
+
+    public void setSector(Sectores sector) {
+        this.sector = sector;
+    }
+
+    public Origen getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(Origen origen) {
+        this.origen = origen;
+    }
+    
+    
+    
 
 }

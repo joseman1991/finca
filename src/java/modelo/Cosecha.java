@@ -25,6 +25,7 @@ public class Cosecha implements Serializable {
     private float pesolleno;
     private Date fecha;
     private String tipoalza;
+    private Usuarios obrero;
 
     
     
@@ -43,7 +44,8 @@ public class Cosecha implements Serializable {
         return idobrero;
     }
 
-    public void setIdobrero(int idobrero) {
+    public void setIdobrero(int idobrero) throws SQLException {
+        obrero= new UsuarioDAO().obtenerUsusario(idobrero);
         this.idobrero = idobrero;
     }
 
@@ -106,6 +108,14 @@ public class Cosecha implements Serializable {
     @Override
     public String toString() {
         return "Cosecha{" + "idcosecha=" + idcosecha + ", idcolmena=" + idcolmena + ", colmena=" + colmena + ", idobrero=" + idobrero + ", marcos=" + marcos + ", pesovacio=" + pesovacio + ", pesolleno=" + pesolleno + ", fecha=" + fecha + ", tipoalza=" + tipoalza + '}';
+    }
+
+    public Usuarios getObrero() {
+        return obrero;
+    }
+
+    public void setObrero(Usuarios obrero) {
+        this.obrero = obrero;
     }
 
     

@@ -34,11 +34,11 @@ public class OrigenDAO extends ConexionMySQL {
         cerrarConexion();
     }
 
-    public Origen obtenerProvincia(String idorigen) throws SQLException {
+    public Origen obtenerOrigen(int idorigen) throws SQLException {
         abrirConexion();
         Origen p = null;
         sentencia = conexion.prepareStatement("select * from origen where idorigen=?");
-        sentencia.setString(1, idorigen);
+        sentencia.setInt(1, idorigen);
         resultado= sentencia.executeQuery();
         if(resultado.next()){
             p= new Origen();
@@ -49,4 +49,5 @@ public class OrigenDAO extends ConexionMySQL {
         return p;
     }
 
+    
 }
