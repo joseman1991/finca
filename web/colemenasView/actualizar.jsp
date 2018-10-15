@@ -70,39 +70,31 @@
                                             <td>
                                                 <div class=" row">
                                                     <div class="col-xs-1">
-                                                        <s:a cssClass="btn btn-warning btn-sm" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
+                                                        <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
                                                             <span class="glyphicon glyphicon-edit"></span>
                                                         </s:a>
                                                     </div> 
-                                                    <div class="col-xs-1 col-md-offset-1">
-
+                                                    <div class="col-xs-1  ">
                                                         <form action="cosechar" method="post">
                                                             <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-success btn-sm" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
+                                                            <button class="btn btn-success btn-xs" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
                                                                 <span class="glyphicon glyphicon-ok"></span>
                                                             </button> 
                                                         </form>
                                                     </div> 
-                                                </div> 
-
-                                                <div class=" row">
                                                     <div class="col-xs-1 ">
                                                         <form action="agregarmantenimiento" method="post">
                                                             <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-default btn-sm" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
+                                                            <button class="btn btn-default btn-xs" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
                                                                 <span class="glyphicon glyphicon-cog"></span>
                                                             </button>
                                                         </form>
                                                     </div> 
 
-                                                    <div class="col-xs-1 col-md-offset-1">
-                                                        <form action="agregarmantenimiento" method="post">
-                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-primary btn-sm" type="submit" data-toggle="tooltip" title="Reportes"> 
-                                                                <span class="glyphicon glyphicon-list-alt"></span>
-                                                            </button>
-                                                        </form>
-                                                    </div> 
+
+
+
+
                                                 </div>                                                    
                                             </td>
                                         </tr>

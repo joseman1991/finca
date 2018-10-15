@@ -16,6 +16,8 @@ insert into perfiles values(1,'ADMINISTRADOR');
 insert into perfiles values(2,'OBREROS');
 -- ----------------------------------------------------------------
 
+ 
+
 create table usuarios(
  idusuario int auto_increment primary key,
  email varchar(35) unique,
