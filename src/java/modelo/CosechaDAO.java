@@ -5,12 +5,25 @@
  */
 package modelo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author 
+ * @author
  */
 public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
@@ -33,7 +46,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         camposCondicion = "idcosecha";
         condicion = "where idcosecha=?";
         int res = super.actualizarRegistro(registro);
-        System.out.println("Resultado "+res);
+        System.out.println("Resultado " + res);
         cerrarConexion();
         return res;
     }
@@ -55,6 +68,38 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(lista);
+    }
+
+    @Override
+    public void obtenerLista(List<Cosecha> lista, Cosecha c) throws SQLException {
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        camposCondicion = "fecha,fecha1";
+        condicion = "where fecha between ? and ?";
+        super.obtenerLista(lista, c);
+    }
+
+    private JasperViewer jv;
+
+    public int generarReporte(String ruta, Cosecha co) throws JRException, FileNotFoundException, SQLException {
+        abrirConexion();
+        File archivo = new File(ruta + "/" + "reporte" + ".jasper");
+        JasperReport report = (JasperReport) JRLoader.loadObject(archivo);
+        Map parametro = new HashMap();
+        parametro.put("Empresa", "APÍCOLA CANNAN");
+        parametro.put("fecha", co.getFecha());
+        parametro.put("fecha1", co.getFecha());
+        JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
+
+        JRPdfExporter exporter = new JRPdfExporter();
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+
+        File carpeta = new File(ruta + "/");
+        String[] lista = carpeta.list();
+        int codf = lista.length;
+        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(ruta + "/" + codf + ".pdf")); // your output goes here
+        exporter.exportReport();
+        cerrarConexion();
+        return codf;
     }
 
 }

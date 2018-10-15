@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="control-label col-sm-4" for="idobrero">Obrero </label>
                                     <div class="col-sm-5">                                        
                                         <input  class="form-control" type="text"   value="<s:property value="mantenimiento.obrero.fullname"/>" min="1" required="" readonly=""/>   
@@ -62,17 +62,22 @@
                                     </div>
                                 </div>
 
-                               
+                                <div class="form-group">           
+                                    <label class="control-label col-sm-4" for="c">¿Alimentacion?</label>                      
+                                    <div class="col-sm-1">                                       
+                                        <input class="form-control" name="c" type="checkbox" id="checkAl"/>                                        
+                                    </div>
+                                </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="alimentacion">Alimentacion </label>
+                                <div class="form-group" id="divAli" style="display: none">
+                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion </label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" type="number" name="alimentacion"  value="<s:property value="mantenimiento.alimentacion"/>" min="1" required=""/> 
+                                        <input class="form-control" type="number" name="alimentacion"  value="<s:property value="mantenimiento.alimentacion"/>" min="0" required="" id="alim"/> 
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-4 pull-right"  >
-                                    <input type="submit" class=" btn btn-info " value="Registrar Mantenimiento"/> <br>
+                                    <input type="submit" class=" btn btn-info " value="Actualizar Mantenimiento"/> <br>
                                     <span class="text-success"><b><s:property value="mensaje"/></b></span>
                                 </div>      
 
@@ -105,6 +110,7 @@
 
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="mantenimientoView/js/mantenimiento.js"></script>
         <script type="text/javascript">
 
             $('#datepicker').datepicker({

@@ -11,9 +11,8 @@ import java.sql.SQLException;
 
 /**
  *
- * @author 
+ * @author
  */
-
 public class Cosecha implements Serializable {
 
     private int idcosecha;
@@ -24,19 +23,20 @@ public class Cosecha implements Serializable {
     private float pesovacio;
     private float pesolleno;
     private Date fecha;
+    private Date fecha1;
+    private String fech;
+    private String fech1;
     private String tipoalza;
     private Usuarios obrero;
 
-    
-    
     public int getIdcolmena() {
         return idcolmena;
     }
 
     public void setIdcolmena(int idcolmena) throws SQLException {
-        colmena= new Colmenas();
+        colmena = new Colmenas();
         colmena.setIdcolmena(idcolmena);
-        colmena=new ColmenasDAO().obtenerRegistro(colmena);
+        colmena = new ColmenasDAO().obtenerRegistro(colmena);
         this.idcolmena = idcolmena;
     }
 
@@ -45,7 +45,7 @@ public class Cosecha implements Serializable {
     }
 
     public void setIdobrero(int idobrero) throws SQLException {
-        obrero= new UsuarioDAO().obtenerUsusario(idobrero);
+        obrero = new UsuarioDAO().obtenerUsusario(idobrero);
         this.idobrero = idobrero;
     }
 
@@ -78,7 +78,9 @@ public class Cosecha implements Serializable {
     }
 
     public void setFecha(String fecha) {
+
         this.fecha = Date.valueOf(fecha);
+
     }
 
     public String getTipoalza() {
@@ -118,7 +120,31 @@ public class Cosecha implements Serializable {
         this.obrero = obrero;
     }
 
-    
-    
-    
+    public Date getFecha1() {
+        return fecha1;
+    }
+
+    public void setFecha1(String fecha1) {
+        this.fecha1 = Date.valueOf(fecha1);
+    }
+
+    public String getFech() {
+        return fech;
+    }
+
+    public void setFech(String fech) {
+        this.fech = fech;
+        this.fecha = Date.valueOf(fech);
+    }
+
+    public String getFech1() {
+
+        return fech1;
+    }
+
+    public void setFech1(String fech1) {
+        this.fecha1 = Date.valueOf(fech1);
+        this.fech1 = fech1;
+    }
+
 }

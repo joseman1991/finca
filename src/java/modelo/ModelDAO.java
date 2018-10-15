@@ -25,4 +25,6 @@ public interface ModelDAO<T extends Object> {
 
     public void obtenerLista(List<T> lista)throws SQLException;
     
+    public void obtenerLista(List<T> lista,T dato)throws SQLException;
+    
 }

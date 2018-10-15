@@ -5,7 +5,9 @@
  */
 package controladorCosecha;
 
+import com.google.gson.Gson;
 import controlador.Action;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,28 +15,36 @@ import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.Cosecha;
 import modelo.CosechaDAO;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
- * @author 
+ * @author
  */
 public class CosechaAction extends Action<Cosecha> {
 
     private final ColmenasDAO cdao2;
     private final List<Colmenas> listaColmenas;
+    private Cosecha cos;
+    private String json;
+    private final Gson gson;
+    private final String ruta;
+    private String archivo;
 
     public CosechaAction() {
         objeto = new Cosecha();
         listaColmenas = new ArrayList<>();
         cdao2 = new ColmenasDAO(listaColmenas);
+        cos = new Cosecha();
+        gson = new Gson();
+        this.ruta = session.getServletContext().getRealPath("/reportes");
+        archivo = "";
     }
 
     public String obtenerColmenas() {
         try {
             cdao2.obtenerListaColmenas();
             conexion = new CosechaDAO();
-            Cosecha c = (Cosecha) objeto;
-            System.out.println(c.getIdcosecha());
             objeto = (Cosecha) conexion.obtenerRegistro(objeto);
             return SUCCESS;
         } catch (SQLException e) {
@@ -59,6 +69,33 @@ public class CosechaAction extends Action<Cosecha> {
         }
     }
 
+    public String obtenerReporte() {
+        CosechaDAO c = new CosechaDAO();
+        try {
+            archivo = c.generarReporte(ruta, objeto) + ".pdf";
+            return SUCCESS;
+        } catch (FileNotFoundException | SQLException | JRException e) {
+            mensaje=e.getMessage();
+            return ERROR;
+        }
+    }
+
+    public String obtenerListaPorFecha() {
+        try {
+            conexion = new CosechaDAO();
+            conexion.obtenerLista(lista, cos);
+            json = gson.toJson(lista);
+            System.out.println(json);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cdao2.cerrarConexion();
+        }
+        /*SQL*/
+    }
+
     public String insertar() {
         try {
             cdao2.obtenerListaColmenas();
@@ -79,17 +116,17 @@ public class CosechaAction extends Action<Cosecha> {
     public String actualizar() {
         try {
             cdao2.obtenerListaColmenas();
-            CosechaDAO c = new CosechaDAO(); 
-            
+            CosechaDAO c = new CosechaDAO();
+
             int res = c.actualizarRegistro(objeto);
             if (res > 0) {
                 mensaje = "Cosecha actualizada con éxito";
                 return SUCCESS;
-            }else{
+            } else {
                 mensaje = "Un error ha ocurrido";
                 return ERROR;
             }
-           
+
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
@@ -97,11 +134,33 @@ public class CosechaAction extends Action<Cosecha> {
             cdao2.cerrarConexion();
 //            conexion.cerrarConexion();
         }
-        
+
     }
 
     public List<Colmenas> getListaColmenas() {
         return listaColmenas;
     }
+
+    public void setCos(Cosecha cos) {
+        this.cos = cos;
+    }
+
+    public Cosecha getCos() {
+        return cos;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
+    }
+    
+    
 
 }

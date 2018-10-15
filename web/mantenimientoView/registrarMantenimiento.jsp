@@ -62,12 +62,19 @@
                                     </div>
                                 </div>
 
-                               
 
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="alimentacion">Alimentacion </label>
-                                    <div class="col-sm-5">
-                                        <input class="form-control" type="number" name="alimentacion" value="1" min="1" required=""/> 
+
+                                <div class="form-group">           
+                                    <label class="control-label col-sm-4" for="c">¿Alimentacion?</label>                      
+                                    <div class="col-sm-1">                                       
+                                        <input class="form-control" name="c" type="checkbox" id="checkAl"/>                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="divAli" style="display: none">
+                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion </label>
+                                    <div class="col-sm-5"> 
+                                        <input class="form-control checkbox-inline" type="number" name="alimentacion" value="0" min="0" required="" id="alim"/> 
                                     </div>
                                 </div>
 
@@ -105,6 +112,7 @@
 
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="mantenimientoView/js/mantenimiento.js"></script>
         <script type="text/javascript">
 
             $('#datepicker').datepicker({

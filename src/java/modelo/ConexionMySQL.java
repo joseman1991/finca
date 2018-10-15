@@ -11,10 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
 
-    
     protected Class tipo;
     protected Connection conexion;
     protected PreparedStatement sentencia;
@@ -92,9 +93,9 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
     @Override
     public int actualizarRegistro(T registro) throws SQLException {
         abrirConexion();
-        construirSentenciaUpdate();         
+        construirSentenciaUpdate();
         sentencia = conexion.prepareStatement(sqlScript);
-      
+
         try {
             llenarSentencia(registro);
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException | SQLException e) {
@@ -130,24 +131,22 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
 
     @Override
     public void obtenerLista(List<T> lista) throws SQLException {
-       abrirConexion();
+        abrirConexion();
         construirSentenciaSelect();
         sentencia = conexion.prepareStatement(sqlScript);
-        columnas= temp;     
-        try {           
+        columnas = temp;
+        try {
             resultado = sentencia.executeQuery();
             while (resultado.next()) {
-                T dato=(T)tipo.newInstance();
+                T dato = (T) tipo.newInstance();
                 dato = obtenerResultado(dato);
                 lista.add(dato);
             }
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException | SQLException | InstantiationException e) {
             System.out.println(e.getMessage());
-        }  
+        }
     }
 
-     
-    
     private void construirSentenciaSelect() {
         campos = campos.replaceAll("\\s", "");
         this.columnas = campos.split(",");
@@ -185,11 +184,11 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
                 method2 = clase.getMethod("set" + columna, String.class);
             } else {
                 method2 = clase.getMethod("set" + columna, method.getReturnType());
-            }            
+            }
             if (method.invoke(dato) instanceof Integer) {
                 method2.invoke(dato, resultado.getInt(i + 1));
             }
-            if (method.getReturnType() == String.class) {             
+            if (method.getReturnType() == String.class) {
                 method2.invoke(dato, resultado.getString(i + 1));
             }
             if (method.invoke(dato) instanceof Double) {
@@ -198,7 +197,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
             if (method.invoke(dato) instanceof Float) {
                 method2.invoke(dato, resultado.getFloat(i + 1));
             }
-            if (method.getReturnType() ==  Date.class) {
+            if (method.getReturnType() == Date.class) {
                 method2.invoke(dato, resultado.getString(i + 1));
             }
 
@@ -240,7 +239,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         for (int i = 0; i < columnas.length; i++) {
             String campo = columnas[i];
             Method method = clase.getMethod("get" + campo);
-            Object dato = method.invoke(registro); 
+            Object dato = method.invoke(registro);
             sentencia.setObject(i + 1, dato);
         }
     }
@@ -249,6 +248,25 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         for (int i = 0; i < columnas.length; i++) {
             String string = columnas[i];
             columnas[i] = Character.toUpperCase(string.charAt(0)) + string.substring(1).toLowerCase();
+        }
+    }
+
+    @Override
+    public void obtenerLista(List<T> lista, T dato) throws SQLException {
+        abrirConexion();
+        construirSentenciaSelect();
+        sentencia = conexion.prepareStatement(sqlScript);
+        try {
+            llenarSentencia(dato);           
+            columnas = temp;             
+            resultado = sentencia.executeQuery();
+            while (resultado.next()) {
+                T dato2 = (T) tipo.newInstance();
+                dato2 = obtenerResultado(dato2);
+                lista.add(dato2);
+            }
+        } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException | SQLException | InstantiationException e) {
+            System.out.println(e.getMessage());
         }
     }
 

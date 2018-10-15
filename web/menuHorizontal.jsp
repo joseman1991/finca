@@ -44,46 +44,25 @@
                 <div class="navbar-header">
                     <s:a cssClass="navbar-brand text-warning" href="inicio">APÍCOLA CANAÁN</s:a>
                     </div>
+
                     <ul class="nav navbar-nav " role="menu" aria-labelledby="dLabel">
                         <li class="active"><s:a href="%{inicio}">Inicio</s:a></li>
-                    <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Usuarios<span class="caret"></span></s:a>
-                            <ul class="dropdown-menu">
-                                <li><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
-                            <li><s:a href="%{actualizar}">Lista de Usuarios</s:a></li>                             
-                            </ul>
-                        </li>
+                        <s:if test="#user!=null">
+                        <li class="active"><s:a href="%{inicio}">Perfil: <s:property value="#user.perfil.descripcion"/></s:a></li>
+                        </s:if>
 
-                        <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Sectores<span class="caret"></span></s:a>
-                            <ul class="dropdown-menu">
-                                <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>
-                            <li><s:a href="%{sectores}">Lista de sectores</s:a></li>
 
-                            </ul>
-                        </li>
-                        <li class="dropdown"><s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Colmenas<span class="caret"></span></s:a>
+                    <%--<li class="dropdown-submenu">                                
+                            <a tabindex="-1" href="#">More options</a>
                             <ul class="dropdown-menu">
-                                <li><s:a href="%{agregarcolmena}">Agregar nueva colmena </s:a></li>
-                            <li><s:a href="%{listacolmenas}">Lista de colmenas</s:a></li>
+                                <li>
+                                <s:a href="#">Page 1-2</s:a>
+                                </li>
+                                <li><s:a href="#">Page 1-3</s:a></li>
                             </ul>
-                        </li>
-
-                        <li class="dropdown">
-                        <s:a cssClass="dropdown-toggle" data-toggle="dropdown" href="#">Acciones<span class="caret"></span></s:a>
-                            <ul class="dropdown-menu">
-                                
-                            <li><s:a href="%{listademantenimiento}">Listado de Mantenimiento</s:a></li>
-                            <li><s:a href="%{listadecosechas}">Lista de Cosechas</s:a></li>       
-                                <%--<li class="dropdown-submenu">                                
-                                        <a tabindex="-1" href="#">More options</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                            <s:a href="#">Page 1-2</s:a>
-                                            </li>
-                                            <li><s:a href="#">Page 1-3</s:a></li>
-                                        </ul>
-                                    </li>--%>
-                        </ul>
-                    </li>
+                        </li>--%>
+                </ul>
+                </li>
 
                 </ul>
 

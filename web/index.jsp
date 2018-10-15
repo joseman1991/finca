@@ -14,12 +14,17 @@
         <title>Inicio</title>
     </head>
     <body>
+
         <jsp:include page="menuHorizontal.jsp"/>
         <div class="row content">
             <div class="col-md-2">
                 <jsp:include page="menu.jsp" />        
             </div>
-
+            <s:if test="#user==null">
+                <%
+                    response.sendRedirect("login");
+                %>
+            </s:if>
             <div class="col-md-8 col-lg-8">
                 <div class="container col-md-12">                     
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -73,7 +78,7 @@
                 </div>
             </div>
 
-           <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav">
                 <div class="well">
                     <p>Miel 100% pura</p>
                     <img src="image/med1.jpg" class="img-thumbnail" />

@@ -16,7 +16,8 @@
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap.min.js"></script>
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
-
+        <script type="text/javascript" src="js/gijgo.min.js"></script>
+        <link href="css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <title>Lista de cosechas</title>
     </head>
     <body >
@@ -33,6 +34,38 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Lista de cosechas</h3></div>
                         <div class="panel-body">
+                            <div class="row">
+                                <form class="form-inline col-md-12" action="imprimir" method="post" target="_blank">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="fecha">Desde Fecha</label>   
+                                        <div class="col-sm-6">
+                                            <input  class="form-control" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>" max="45" required="" id="datepicker" readonly=""/> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="fecha">Hasta Fecha</label>   
+                                        <div class="col-sm-6">
+                                            <input  class="form-control" type="text" name="fecha1" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>" max="45" required="" id="datepicker2" readonly=""/> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">                                        
+                                        <div class="col-sm-6">
+                                            <button  class="btn btn-primary" type="button" id="buscar">Buscar
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                        
+                                        <div class="col-sm-6">
+                                            <button  class="btn btn-warning" type="submit"  max="45">Imprimir
+                                                <span class="glyphicon glyphicon-print"></span>
+                                            </button> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><hr>
                             <table class="table table-hover table-responsive table-bordered">
                                 <thead>
                                 <th>Codigo</th>
@@ -45,7 +78,7 @@
                                 <th>Tipo alza</th>
                                 <th>Acciones</th>
                                 </thead>
-                                <tbody>
+                                <tbody id="tbody">
                                     <s:iterator value="lista">
                                         <tr>
                                             <td><s:property value="idcosecha"/></td>
@@ -73,7 +106,7 @@
 
                 </div>
             </div>
-              <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav">
                 <div class="well">
                     <p>Miel 100% pura</p>
                     <img src="image/med1.jpg" class="img-thumbnail" />
@@ -95,6 +128,8 @@
 
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="cosechaView/js/cosecha.js"></script>
+        
         <script >
             $(document).ready(function () {
                 $('.table').DataTable({
@@ -114,6 +149,17 @@
 
                     }
                 });
+
+                $('#datepicker').datepicker({
+                    uiLibrary: 'bootstrap',
+                    format: 'yyyy-mm-dd'
+                });
+
+                $('#datepicker2').datepicker({
+                    uiLibrary: 'bootstrap',
+                    format: 'yyyy-mm-dd'
+                });
+
             });
         </script>
 
