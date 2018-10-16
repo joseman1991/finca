@@ -19,7 +19,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -85,7 +84,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         File archivo = new File(ruta + "/" + "reporte" + ".jasper");
         JasperReport report = (JasperReport) JRLoader.loadObject(archivo);
         Map parametro = new HashMap();
-        parametro.put("Empresa", "APÍCOLA CANNAN");
+        parametro.put("Empresa", "APÍCOLA CANAÁN");
         parametro.put("fecha", co.getFecha());
         parametro.put("fecha1", co.getFecha1());
         JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);

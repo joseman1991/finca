@@ -125,7 +125,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
         File archivo = new File(ruta + "/" + "reporte1" + ".jasper");
         JasperReport report = (JasperReport) JRLoader.loadObject(archivo);
         Map parametro = new HashMap();
-        parametro.put("Empresa", "APÍCOLA CANNAN");
+        parametro.put("Empresa", "APÍCOLA CANAÁN");
         parametro.put("fecha", co.getFecha());
         parametro.put("fecha1", co.getFecha2());
         JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
