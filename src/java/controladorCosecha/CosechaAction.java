@@ -52,6 +52,7 @@ public class CosechaAction extends Action<Cosecha> {
             return ERROR;
         } finally {
             cdao2.cerrarConexion();
+            conexion.cerrarConexion();
         }
     }
 
@@ -92,6 +93,7 @@ public class CosechaAction extends Action<Cosecha> {
             return ERROR;
         } finally {
             cdao2.cerrarConexion();
+            conexion.cerrarConexion();
         }
         /*SQL*/
     }

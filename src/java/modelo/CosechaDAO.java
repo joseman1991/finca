@@ -78,7 +78,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         super.obtenerLista(lista, c);
     }
 
-    private JasperViewer jv;
+ 
 
     public int generarReporte(String ruta, Cosecha co) throws JRException, FileNotFoundException, SQLException {
         abrirConexion();
@@ -87,7 +87,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         Map parametro = new HashMap();
         parametro.put("Empresa", "APÍCOLA CANNAN");
         parametro.put("fecha", co.getFecha());
-        parametro.put("fecha1", co.getFecha());
+        parametro.put("fecha1", co.getFecha1());
         JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
 
         JRPdfExporter exporter = new JRPdfExporter();

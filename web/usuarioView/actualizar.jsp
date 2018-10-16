@@ -32,38 +32,41 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Lista de usuarios</h3></div>
                             <div class="panel-body">
-                                <table class="table table-hover table-responsive">
-                                    <thead>
-                                    <th>Codigo</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
-                                    <th>Perfil</th>
-                                    <th>Acciones</th>
-                                    </thead>
-                                    <tbody>
-                                        <s:iterator value="listaUsuarios">
-                                            <tr>
-                                                <td><s:property value="idusuario"/></td>
-                                                <td><s:property value="email"/></td>
-                                                <td><s:property value="nombre"/></td>
-                                                <td><s:property value="apellido"/></td>
-                                                <td><s:property value="perfil.descripcion"/></td>
-                                                <s:url action="actualiza" var="actualiza">
-                                                    <s:param name="idusuario"><s:property value="idusuario"/></s:param>
-                                                </s:url>
-                                                <td>                                                    
-                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar usuario" href="%{actualiza}"> 
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                                    </s:a>
-                                                    <s:a cssClass="btn btn-danger" href="%{eliminar}" data-toggle="tooltip" title="Eliminar usuario"> 
-                                                        <span class="glyphicon glyphicon-remove"></span>
-                                                    </s:a>
-                                                </td>
-                                            </tr>
-                                        </s:iterator>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-responsive">
+                                        <thead>
+                                        <th>Codigo</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Perfil</th>
+                                        <th>Acciones</th>
+                                        </thead>
+                                        <tbody>
+                                            <s:iterator value="listaUsuarios">
+                                                <tr>
+                                                    <td><s:property value="idusuario"/></td>
+                                                    <td><s:property value="email"/></td>
+                                                    <td><s:property value="nombre"/></td>
+                                                    <td><s:property value="apellido"/></td>
+                                                    <td><s:property value="perfil.descripcion"/></td>
+                                                    <s:url action="actualiza" var="actualiza">
+                                                        <s:param name="idusuario"><s:property value="idusuario"/></s:param>
+                                                    </s:url>
+                                                    <td>                                                    
+                                                        <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar usuario" href="%{actualiza}"> 
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </s:a>
+                                                        <s:a cssClass="btn btn-danger" href="%{eliminar}" data-toggle="tooltip" title="Eliminar usuario"> 
+                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                        </s:a>
+                                                    </td>
+                                                </tr>
+                                            </s:iterator>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>                    
                         </div>                    
                     </div>                    

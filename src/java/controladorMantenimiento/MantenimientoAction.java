@@ -5,8 +5,11 @@
  */
 package controladorMantenimiento;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import com.google.gson.Gson;
+import static com.opensymphony.xwork2.Action.ERROR;
+import static com.opensymphony.xwork2.Action.SUCCESS;
+import controlador.Action;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,26 +18,34 @@ import modelo.ColmenasDAO;
 import modelo.ConexionMySQL;
 import modelo.Mantenimiento;
 import modelo.MantenimientoDAO;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
  * @author 
  */
-public class MantenimientoAction extends ActionSupport implements ModelDriven<Mantenimiento> {
+public class MantenimientoAction extends Action<Mantenimiento> {
 
     private final MantenimientoDAO mdao;
     private Mantenimiento mantenimiento;
-    private final List<Mantenimiento> listaMantenimientos;
-    private String mensaje;
+    private final List<Mantenimiento> listaMantenimientos;     
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
 
+     private final Gson gson;
+    private final String ruta;
+    private String archivo;
+     private String json;
+    
     public MantenimientoAction() {
         listaMantenimientos = new ArrayList<>();
         mdao = new MantenimientoDAO(listaMantenimientos);
         mantenimiento = new Mantenimiento();
         listaColmenas = new ArrayList<>();
         cdao = new ColmenasDAO(listaColmenas);
+        gson = new Gson();
+        this.ruta = session.getServletContext().getRealPath("/reportes");
+        archivo = "";
     }
 
     public String insertarMantenimiento() {
@@ -50,6 +61,33 @@ public class MantenimientoAction extends ActionSupport implements ModelDriven<Ma
             mdao.cerrarConexion();
             cdao.cerrarConexion();
         }
+    }
+    
+    
+     public String obtenerReporte() {
+        MantenimientoDAO c = new MantenimientoDAO();
+        try {
+            archivo = c.generarReporte(ruta, mantenimiento) + ".pdf";
+            return SUCCESS;
+        } catch (FileNotFoundException | SQLException | JRException e) {
+            mensaje=e.getMessage();
+            return ERROR;
+        }
+    }
+    
+     public String obtenerListaPorFecha() {
+        try {
+            conexion = new MantenimientoDAO();
+            conexion.obtenerLista(lista, mantenimiento);
+            json = gson.toJson(lista);
+            System.out.println(json);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            conexion.cerrarConexion();
+        }         
     }
 
     public String actualizarMantenimiento() {
@@ -105,8 +143,16 @@ public class MantenimientoAction extends ActionSupport implements ModelDriven<Ma
         return mantenimiento;
     }
 
-    public String getMensaje() {
-        return mensaje;
+   
+
+    public String getArchivo() {
+        return archivo;
     }
 
+    public String getJson() {
+        return json;
+    }
+
+    
+    
 }

@@ -15,6 +15,7 @@
             <result name="success">cosechaView/actualizarCosecha.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+        
         <action name="imprimir" class="controladorCosecha.CosechaAction" method="obtenerReporte">
             <result name="success" type="redirect">reportes/${archivo}</result>
             <result name="error">error.jsp</result>

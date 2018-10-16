@@ -16,7 +16,9 @@
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap.min.js"></script>
-        <title>Listadodo de mantenimientos</title>
+        <script type="text/javascript" src="js/gijgo.min.js"></script>
+        <link href="css/gijgo.min.css" rel="stylesheet" type="text/css" />
+        <title>Listado de mantenimientos</title>
     </head>
     <body >
 
@@ -32,37 +34,73 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Listado de mantenimiento</h3></div>
                         <div class="panel-body">
-                            <table class="table table-hover table-responsive table-bordered">
-                                <thead>
-                                <th>Codigo</th>
-                                <th>Tipo</th>
-                                <th>Fecha</th>
-                                <th>Obrero</th>
-                                <th>Colmena</th>
-                                <th>Aliementacion</th>             
-                                <th>Acciones</th>
-                                </thead>
-                                <tbody>
-                                    <s:iterator value="listaMantenimientos">
-                                        <tr>
-                                            <td><s:property value="idmantenimiento"/></td>
-                                            <td><s:property value="tipo"/></td>
-                                            <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
-                                             <td><s:property value="obrero.fullname"/></td>                 
-                                            <td><s:property value="colmena.descripcion"/></td>                   
-                                            <td><s:property value="alimentacion"/></td> 
-                                            <td>
-                                                <form action="actualizamantenimiento" method="post">
-                                                    <input type="hidden" value="<s:property value="idmantenimiento"/>" name="idmantenimiento"/>
-                                                    <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar sector" type="submit">
-                                                     <span class="glyphicon glyphicon-edit"></span>
-                                                    </button>
-                                                </form>  
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                </tbody>
-                            </table>
+
+                            <div class="row">
+                                <form class="form-inline col-md-12" action="imprimirm" method="post" target="_blank">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="fecha">Desde Fecha</label>   
+                                        <div class="col-sm-6">
+                                            <input  class="form-control" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>" max="45" required="" id="datepicker" readonly=""/> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="fecha">Hasta Fecha</label>   
+                                        <div class="col-sm-6">
+                                            <input  class="form-control" type="text" name="fecha2" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>" max="45" required="" id="datepicker2" readonly=""/> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">                                        
+                                        <div class="col-sm-6">
+                                            <button  class="btn btn-primary" type="button" id="buscar">Buscar
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                        
+                                        <div class="col-sm-6">
+                                            <button  class="btn btn-warning" type="submit"  max="45">Imprimir
+                                                <span class="glyphicon glyphicon-print"></span>
+                                            </button> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><hr>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-responsive table-bordered">
+                                    <thead>
+                                    <th>Codigo</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha</th>
+                                    <th>Obrero</th>
+                                    <th>Colmena</th>
+                                    <th>Aliementacion</th>             
+                                    <th>Acciones</th>
+                                    </thead>
+                                    <tbody id="tbody">
+                                        <s:iterator value="listaMantenimientos">
+                                            <tr>
+                                                <td><s:property value="idmantenimiento"/></td>
+                                                <td><s:property value="tipo"/></td>
+                                                <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
+                                                <td><s:property value="obrero.fullname"/></td>                 
+                                                <td><s:property value="colmena.descripcion"/></td>                   
+                                                <td><s:property value="alimentacion"/></td> 
+                                                <td>
+                                                    <form action="actualizamantenimiento" method="post">
+                                                        <input type="hidden" value="<s:property value="idmantenimiento"/>" name="idmantenimiento"/>
+                                                        <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar mantenimiento" type="submit">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </button>
+                                                    </form>  
+                                                </td>
+                                            </tr>
+                                        </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +123,9 @@
 
 
 
+        <script type="text/javascript" src="mantenimientoView/js/mantenimiento.js">
 
+        </script>
 
         <script >
             $(document).ready(function () {
@@ -105,6 +145,15 @@
                         "search": "Buscar"
 
                     }
+                });
+                $('#datepicker').datepicker({
+                    uiLibrary: 'bootstrap',
+                    format: 'yyyy-mm-dd'
+                });
+
+                $('#datepicker2').datepicker({
+                    uiLibrary: 'bootstrap',
+                    format: 'yyyy-mm-dd'
                 });
             });
         </script>

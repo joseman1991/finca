@@ -66,41 +66,44 @@
                                     </div>
                                 </form>
                             </div><hr>
-                            <table class="table table-hover table-responsive table-bordered">
-                                <thead>
-                                <th>Codigo</th>
-                                <th>Colmena</th>
-                                <th>Obrero</th>
-                                <th>Marcos</th>
-                                <th>Peso vacío</th>
-                                <th>Peso lleno</th>
-                                <th>Fecha</th>
-                                <th>Tipo alza</th>
-                                <th>Acciones</th>
-                                </thead>
-                                <tbody id="tbody">
-                                    <s:iterator value="lista">
-                                        <tr>
-                                            <td><s:property value="idcosecha"/></td>
-                                            <td><s:property value="colmena.descripcion"/></td>
-                                            <td><s:property value="obrero.fullname"/></td>
-                                            <td><s:property value="marcos"/></td>                   
-                                            <td><s:property value="pesovacio"/></td>                   
-                                            <td><s:property value="pesolleno"/></td>                   
-                                            <td><s:date name="fecha" format="EE,dd-MMM-yyyy"/></td>                   
-                                            <td><s:property value="tipoalza"/></td>                   
-                                            <td>
-                                                <form action="editCosecha" method="post">
-                                                    <input type="hidden" value="<s:property value="idcosecha"/>" name="idcosecha"/>
-                                                    <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar sector" type="submit">
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                                    </button>
-                                                </form>    
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-responsive table-bordered">
+                                    <thead>
+                                    <th>Codigo</th>
+                                    <th>Colmena</th>
+                                    <th>Obrero</th>
+                                    <th>Marcos</th>
+                                    <th>Peso vacío</th>
+                                    <th>Peso lleno</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo alza</th>
+                                    <th>Acciones</th>
+                                    </thead>
+                                    <tbody id="tbody">
+                                        <s:iterator value="lista">
+                                            <tr>
+                                                <td><s:property value="idcosecha"/></td>
+                                                <td><s:property value="colmena.descripcion"/></td>
+                                                <td><s:property value="obrero.fullname"/></td>
+                                                <td><s:property value="marcos"/></td>                   
+                                                <td><s:property value="pesovacio"/></td>                   
+                                                <td><s:property value="pesolleno"/></td>                   
+                                                <td><s:date name="fecha" format="EE,dd-MMM-yyyy"/></td>                   
+                                                <td><s:property value="tipoalza"/></td>                   
+                                                <td>
+                                                    <form action="editCosecha" method="post">
+                                                        <input type="hidden" value="<s:property value="idcosecha"/>" name="idcosecha"/>
+                                                        <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar sector" type="submit">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </button>
+                                                    </form>    
+                                                </td>
+                                            </tr>
+                                        </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
 
@@ -129,7 +132,7 @@
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="cosechaView/js/cosecha.js"></script>
-        
+
         <script >
             $(document).ready(function () {
                 $('.table').DataTable({

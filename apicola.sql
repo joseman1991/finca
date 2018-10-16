@@ -13,7 +13,7 @@ create table perfiles(
 );
 
 insert into perfiles values(1,'ADMINISTRADOR');
-insert into perfiles values(2,'OBREROS');
+insert into perfiles values(2,'OBRERO');
 -- ----------------------------------------------------------------
 
  

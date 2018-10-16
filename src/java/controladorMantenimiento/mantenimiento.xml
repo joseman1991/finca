@@ -6,14 +6,41 @@
  
 <struts>
     <package name="controladorMantenimiento" namespace="/" extends="struts-default">
-         <action name="mantenimientogistrado" class="controladorMantenimiento.MantenimientoAction" method="insertarMantenimiento">
+        <action name="mantenimientogistrado" class="controladorMantenimiento.MantenimientoAction" method="insertarMantenimiento">
             <result name="success">mantenimientoView/registrarMantenimiento.jsp</result>
             <result name="error">error.jsp</result>
         </action>
         
-         <action name="mantenimientactualizado" class="controladorMantenimiento.MantenimientoAction" method="actualizarMantenimiento">
+        <action name="mantenimientactualizado" class="controladorMantenimiento.MantenimientoAction" method="actualizarMantenimiento">
             <result name="success">mantenimientoView/actualizarMantenimiento.jsp</result>
             <result name="error">error.jsp</result>
         </action>
+        
+        <action name="imprimirm" class="controladorMantenimiento.MantenimientoAction" method="obtenerReporte">
+            <result name="success" type="redirect">reportes/${archivo}</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
     </package>
+    
+    <package name="dinamico3" extends="json-default" >
+        <interceptors>
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="json">
+                    <param name="enableSMD">true</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="defaultStack" />
+        
+        <action name="obtenerlistaMantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaPorFecha">
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>   
+        </action>
+        
+ 
+        
+        
+    </package>
+    
 </struts>

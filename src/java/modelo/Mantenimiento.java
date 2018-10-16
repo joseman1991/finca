@@ -11,18 +11,21 @@ import java.sql.SQLException;
 
 /**
  *
- * @author 
+ * @author
  */
 public class Mantenimiento implements Serializable {
 
     private int idmantenimiento;
     private String tipo;
     private Date fecha;
+    private Date fecha2;
+    private String fech;
+    private String fech2;
     private int idobrero;
     private int idcolmena;
     private int alimentacion;
     private Colmenas colmena;
-     private Usuarios obrero;
+    private Usuarios obrero;
 
     public int getIdmantenimiento() {
         return idmantenimiento;
@@ -54,7 +57,7 @@ public class Mantenimiento implements Serializable {
     }
 
     public void setIdobrero(int idobrero) throws SQLException {
-        obrero= new UsuarioDAO().obtenerUsusario(idobrero);
+        obrero = new UsuarioDAO().obtenerUsusario(idobrero);
         this.idobrero = idobrero;
     }
 
@@ -89,5 +92,30 @@ public class Mantenimiento implements Serializable {
         this.obrero = obrero;
     }
 
-    
+    public Date getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(String fecha2) {
+        this.fecha2 = Date.valueOf(fecha2);
+    }
+
+    public String getFech() {
+        return fech;
+    }
+
+    public void setFech(String fech) {
+         this.fecha = Date.valueOf(fech);
+        this.fech = fech;
+    }
+
+    public String getFech2() {
+        return fech2;
+    }
+
+    public void setFech2(String fech2) {
+        this.fecha2 = Date.valueOf(fech2);
+        this.fech2 = fech2;
+    }
+
 }

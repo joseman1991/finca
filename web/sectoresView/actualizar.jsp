@@ -32,7 +32,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Lista de sectores</h3></div>
                             <div class="panel-body">
-                                <table class="table table-hover table-responsive">
+                                <div class="table-responsive">
+                                      <table class="table table-hover table-responsive">
                                     <thead>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
@@ -68,6 +69,8 @@
                                         </s:iterator>
                                     </tbody>
                                 </table>
+                                </div>
+                              
                             </div>                    
                         </div>                    
                     </div>                    

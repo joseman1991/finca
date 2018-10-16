@@ -13,17 +13,20 @@
         <ul class="nav nav-pills nav-stacked list-unstyled bg-warning">  
             <li class="active"><s:a href="%{inicio}">Inicio <span class="glyphicon glyphicon-home pull-right"></span></s:a> </li>
                 <s:if test="#user!=null">
-                <li> 
-                    <a href="#usuario" data-toggle="collapse" aria-expanded="false">Usuarios <span class="glyphicon glyphicon-menu-down pull-right"></span></a>                    
-                    <ul class=" nav collapse " id="usuario">                    
-                        <li ><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
-                        <li><s:a href="%{actualizar}">Lista de Usuarios</s:a></li>                                   
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#sectores" data-toggle="collapse" aria-expanded="false">Sectores  <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
-                        <ul class="nav collapse" id="sectores">
-                            <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>                       
+                    <s:if test="#user.idperfil==1">
+                    <li>                     
+                        <a href="#usuario" data-toggle="collapse" aria-expanded="false">Usuarios <span class="glyphicon glyphicon-menu-down pull-right"></span></a>                    
+                        <ul class=" nav collapse " id="usuario">                    
+                            <li ><s:a href="%{registro}">Agregar nuevo usuario</s:a></li>
+                            <li><s:a href="%{actualizar}">Lista de Usuarios</s:a></li>                                   
+                            </ul>
+                        </li>
+                </s:if>
+
+                <li>
+                    <a href="#sectores" data-toggle="collapse" aria-expanded="false">Sectores  <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
+                    <ul class="nav collapse" id="sectores">
+                        <li><s:a href="%{agregarsector}">Agregar nuevo sector  </s:a></li>                       
                         <li><s:a href="%{sectores}">Listado de sectores</s:a></li>
                         </ul>
                     </li>

@@ -5,13 +5,25 @@
  */
 package modelo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
- * @author 
+ * @author
  */
 public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
@@ -64,7 +76,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
     }
 
     @Override
-    public void obtenerLista(List lista) throws SQLException {        
+    public void obtenerLista(List lista) throws SQLException {
         campos = "idmantenimiento, tipo, fecha, idobrero, idcolmena, alimentacion ";
         camposCondicion = "";
         condicion = "";
@@ -76,11 +88,10 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
         campos = "idmantenimiento, tipo, fecha, idobrero, alimentacion ";
         camposCondicion = "idmantenimiento";
         condicion = "where idmantenimiento=?";
-        int res=super.actualizarRegistro(registro); 
+        int res = super.actualizarRegistro(registro);
         cerrarConexion();
         return res;
     }
-    
 
     public void obtenerListaMantenimiento() throws SQLException {
         abrirConexion();
@@ -99,6 +110,36 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
             listaMantenimientos.add(m);
         }
         cerrarConexion();
+    }
+
+    @Override
+    public void obtenerLista(List<Mantenimiento> lista, Mantenimiento dato) throws SQLException {
+        campos = "idmantenimiento, tipo, fecha, idobrero, idcolmena, alimentacion ";
+        camposCondicion = "fecha,fecha2";
+        condicion = "where fecha between ? and ?";
+        super.obtenerLista(lista, dato);
+    }
+
+    public int generarReporte(String ruta, Mantenimiento co) throws JRException, FileNotFoundException, SQLException {
+        abrirConexion();
+        File archivo = new File(ruta + "/" + "reporte1" + ".jasper");
+        JasperReport report = (JasperReport) JRLoader.loadObject(archivo);
+        Map parametro = new HashMap();
+        parametro.put("Empresa", "APÍCOLA CANNAN");
+        parametro.put("fecha", co.getFecha());
+        parametro.put("fecha1", co.getFecha2());
+        JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
+
+        JRPdfExporter exporter = new JRPdfExporter();
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+
+        File carpeta = new File(ruta + "/");
+        String[] lista = carpeta.list();
+        int codf = lista.length;
+        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(ruta + "/" + codf + ".pdf")); // your output goes here
+        exporter.exportReport();
+        cerrarConexion();
+        return codf;
     }
 
 }

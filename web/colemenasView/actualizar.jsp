@@ -32,75 +32,78 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Lista de colmenas</h3></div>
                         <div class="panel-body">
-                            <table class="table table-hover table-responsive table-bordered table-sm">
-                                <thead>
-                                <th>Cod.</th>
-                                <th>Sector</th>
-                                <th> Marcos</th>
-                                <th>Tipo</th>
-                                <th>Descripción</th>
-                                <th>Alza</th>
-                                <th>Origen</th>
-                                <th>Pisos</th>
-                                <th>Precio</th>
-                                <th>Fecha</th>
-                                <th>ID Reina</th>
-                                <th>Fecha de reina</th>
-                                <th>Acciones</th>
-                                </thead>
-                                <tbody>
-                                    <s:iterator value="listaColmenas">
-                                        <tr>
-                                            <td><s:property value="idcolmena"/></td>
-                                            <td><s:property value="sector.nombre"/></td>
-                                            <td><s:property value="nmarcos"/></td>
-                                            <td><s:property value="tipo"/></td>
-                                            <td><s:property value="descripcion"/></td>
-                                            <td><s:property value="nalza"/></td>
-                                            <td><s:property value="origen.descripcion"/></td>
-                                            <td><s:property value="npisos"/></td>                                                
-                                            <td><s:property value="precio"/></td>
-                                            <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>
-                                            <td><s:property value="idreina"/></td>
-                                            <td><s:date name="fechareina" format="dd/MMM/yyyy"/></td>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered table-sm">
+                                    <thead>
+                                    <th>Cod.</th>
+                                    <th>Sector</th>
+                                    <th> Marcos</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Alza</th>
+                                    <th>Origen</th>
+                                    <th>Pisos</th>
+                                    <th>Precio</th>
+                                    <th>Fecha</th>
+                                    <th>ID Reina</th>
+                                    <th>Fecha de reina</th>
+                                    <th>Acciones</th>
+                                    </thead>
+                                    <tbody>
+                                        <s:iterator value="listaColmenas">
+                                            <tr>
+                                                <td><s:property value="idcolmena"/></td>
+                                                <td><s:property value="sector.nombre"/></td>
+                                                <td><s:property value="nmarcos"/></td>
+                                                <td><s:property value="tipo"/></td>
+                                                <td><s:property value="descripcion"/></td>
+                                                <td><s:property value="nalza"/></td>
+                                                <td><s:property value="origen.descripcion"/></td>
+                                                <td><s:property value="npisos"/></td>                                                
+                                                <td><s:property value="precio"/></td>
+                                                <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>
+                                                <td><s:property value="idreina"/></td>
+                                                <td><s:date name="fechareina" format="dd/MMM/yyyy"/></td>
 
-                                            <s:url action="actualizarcolmena" var="actualizarcolmena">
-                                                <s:param name="idcolmena"><s:property value="idcolmena"/></s:param>
-                                            </s:url>
-                                            <td>
-                                                <div class=" row">
-                                                    <div class="col-xs-1">
-                                                        <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </s:a>
-                                                    </div> 
-                                                    <div class="col-xs-1  ">
-                                                        <form action="cosechar" method="post">
-                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-success btn-xs" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
-                                                                <span class="glyphicon glyphicon-ok"></span>
-                                                            </button> 
-                                                        </form>
-                                                    </div> 
-                                                    <div class="col-xs-1 ">
-                                                        <form action="agregarmantenimiento" method="post">
-                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-default btn-xs" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
-                                                                <span class="glyphicon glyphicon-cog"></span>
-                                                            </button>
-                                                        </form>
-                                                    </div> 
-
-
-
+                                                <s:url action="actualizarcolmena" var="actualizarcolmena">
+                                                    <s:param name="idcolmena"><s:property value="idcolmena"/></s:param>
+                                                </s:url>
+                                                <td>
+                                                    <div class=" row">
+                                                        <div class="col-xs-1">
+                                                            <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
+                                                                <span class="glyphicon glyphicon-edit"></span>
+                                                            </s:a>
+                                                        </div> 
+                                                        <div class="col-xs-1  ">
+                                                            <form action="cosechar" method="post">
+                                                                <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
+                                                                <button class="btn btn-success btn-xs" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
+                                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                                </button> 
+                                                            </form>
+                                                        </div> 
+                                                        <div class="col-xs-1 ">
+                                                            <form action="agregarmantenimiento" method="post">
+                                                                <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
+                                                                <button class="btn btn-default btn-xs" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
+                                                                    <span class="glyphicon glyphicon-cog"></span>
+                                                                </button>
+                                                            </form>
+                                                        </div> 
 
 
-                                                </div>                                                    
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                </tbody>
-                            </table>
+
+
+
+                                                    </div>                                                    
+                                                </td>
+                                            </tr>
+                                        </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>                    
                     </div>                    
                 </div>                    

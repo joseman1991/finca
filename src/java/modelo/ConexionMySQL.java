@@ -257,7 +257,8 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         construirSentenciaSelect();
         sentencia = conexion.prepareStatement(sqlScript);
         try {
-            llenarSentencia(dato);           
+            llenarSentencia(dato);       
+            System.out.println(sentencia);
             columnas = temp;             
             resultado = sentencia.executeQuery();
             while (resultado.next()) {
