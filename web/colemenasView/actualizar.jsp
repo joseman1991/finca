@@ -33,7 +33,7 @@
                         <div class="panel-heading"><h3 class="text-warning">Lista de colmenas</h3></div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered table-sm">
+                                <table class="table table-hover table-bordered">
                                     <thead>
                                     <th>Cod.</th>
                                     <th>Sector</th>
@@ -48,6 +48,7 @@
                                     <th>ID Reina</th>
                                     <th>Fecha de reina</th>
                                     <th>Acciones</th>
+                                    <th>Reportes</th>
                                     </thead>
                                     <tbody>
                                         <s:iterator value="listaColmenas">
@@ -69,7 +70,7 @@
                                                     <s:param name="idcolmena"><s:property value="idcolmena"/></s:param>
                                                 </s:url>
                                                 <td>
-                                                    <div class=" row">
+                                                    <div class=" row ">
                                                         <div class="col-xs-1">
                                                             <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
                                                                 <span class="glyphicon glyphicon-edit"></span>
@@ -90,14 +91,27 @@
                                                                     <span class="glyphicon glyphicon-cog"></span>
                                                                 </button>
                                                             </form>
-                                                        </div> 
-
-
-
-
-
+                                                        </div>  
                                                     </div>                                                    
                                                 </td>
+                                                <th>
+                                                    <div class="col-xs-1 ">
+                                                        <form action="reportecosechas" method="post">
+                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
+                                                            <button class="btn btn-info btn-xs" type="submit" data-toggle="tooltip" title="Lista  de Cosechas"> 
+                                                                <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                                                            </button>
+                                                        </form>
+                                                    </div> 
+                                                    <div class="col-xs-1 ">
+                                                        <form action="reportemantenimiento" method="post">
+                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
+                                                            <button class="btn btn-primary btn-xs" type="submit" data-toggle="tooltip" title="Lista  de mantenimiento"> 
+                                                                <span class="glyphicon glyphicon glyphicon-asterisk"></span>
+                                                            </button>
+                                                        </form>
+                                                    </div> 
+                                                </th>
                                             </tr>
                                         </s:iterator>
                                     </tbody>

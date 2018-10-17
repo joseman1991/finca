@@ -6,13 +6,23 @@
  
 <struts>
     <package name="controladorCosecha" namespace="/" extends="struts-default">
-         <action name="cosechado" class="controladorCosecha.CosechaAction" method="insertar">
+        <action name="cosechado" class="controladorCosecha.CosechaAction" method="insertar">
             <result name="success">cosechaView/registrarCosecha.jsp</result>
             <result name="error">error.jsp</result>
         </action>
         
-         <action name="cosechaActualizada" class="controladorCosecha.CosechaAction" method="actualizar">
+        <action name="cosechaActualizada" class="controladorCosecha.CosechaAction" method="actualizar">
             <result name="success">cosechaView/actualizarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="cosechaActualizada" class="controladorCosecha.CosechaAction" method="actualizar">
+            <result name="success">cosechaView/actualizarCosecha.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="reportecosechas" class="controladorCosecha.CosechaAction" method="obtenerListaCosechaColmena">
+            <result name="success">cosechaView/reporte.jsp</result>
             <result name="error">error.jsp</result>
         </action>
         
@@ -21,11 +31,15 @@
             <result name="error">error.jsp</result>
         </action>
         
+        <action name="imprimirs" class="controladorCosecha.CosechaAction" method="obtenerReporteC">
+            <result name="success" type="redirect">reportes/${archivo}</result>
+            <result name="error">error.jsp</result>
+        </action>
         
         
     </package>
     
-     <package name="dinamico2" extends="json-default" >
+    <package name="dinamico2" extends="json-default" >
         <interceptors>
             <interceptor-stack name="defaultStack">
                 <interceptor-ref name="json">
@@ -36,6 +50,11 @@
         <default-interceptor-ref name="defaultStack" />
         
         <action name="obtenerlistaCosecha" class="controladorCosecha.CosechaAction" method="obtenerListaPorFecha">
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>   
+        </action>
+        
+        <action name="obtenerlistaCosechaC" class="controladorCosecha.CosechaAction" method="obtenerListaCosechaColmenaFecha">
             <result name="success" type="json"></result>
             <result name="error" type="json"></result>   
         </action>

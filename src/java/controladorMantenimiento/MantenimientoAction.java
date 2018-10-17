@@ -22,21 +22,21 @@ import net.sf.jasperreports.engine.JRException;
 
 /**
  *
- * @author 
+ * @author
  */
 public class MantenimientoAction extends Action<Mantenimiento> {
 
     private final MantenimientoDAO mdao;
     private Mantenimiento mantenimiento;
-    private final List<Mantenimiento> listaMantenimientos;     
+    private final List<Mantenimiento> listaMantenimientos;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
 
-     private final Gson gson;
+    private final Gson gson;
     private final String ruta;
     private String archivo;
-     private String json;
-    
+    private String json;
+
     public MantenimientoAction() {
         listaMantenimientos = new ArrayList<>();
         mdao = new MantenimientoDAO(listaMantenimientos);
@@ -62,20 +62,30 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             cdao.cerrarConexion();
         }
     }
-    
-    
-     public String obtenerReporte() {
+
+    public String obtenerReporte() {
         MantenimientoDAO c = new MantenimientoDAO();
         try {
             archivo = c.generarReporte(ruta, mantenimiento) + ".pdf";
             return SUCCESS;
         } catch (FileNotFoundException | SQLException | JRException e) {
-            mensaje=e.getMessage();
+            mensaje = e.getMessage();
             return ERROR;
         }
     }
-    
-     public String obtenerListaPorFecha() {
+   
+    public String obtenerReporteM() {
+        MantenimientoDAO c = new MantenimientoDAO();
+        try {
+            archivo = c.generarReporteM(ruta, mantenimiento) + ".pdf";
+            return SUCCESS;
+        } catch (FileNotFoundException | SQLException | JRException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        }
+    }
+
+    public String obtenerListaPorFecha() {
         try {
             conexion = new MantenimientoDAO();
             conexion.obtenerLista(lista, mantenimiento);
@@ -87,13 +97,13 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             return ERROR;
         } finally {
             conexion.cerrarConexion();
-        }         
+        }
     }
 
     public String actualizarMantenimiento() {
         try {
             mdao.actualizarRegistro(mantenimiento);
-           mantenimiento= mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
+            mantenimiento = mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
             mensaje = "Mantenimiento correctamente actualizado";
             return SUCCESS;
         } catch (SQLException e) {
@@ -107,12 +117,38 @@ public class MantenimientoAction extends Action<Mantenimiento> {
 
     public String obtenerListaMantenimiento() {
         try {
-            ConexionMySQL c = new MantenimientoDAO();
-            c.obtenerLista(listaMantenimientos);
+            conexion = new MantenimientoDAO();
+            conexion.obtenerLista(listaMantenimientos);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
+        } finally {
+            conexion.cerrarConexion();
+        }
+    }
+    
+    public String obtenerListaMantenimientoColmena() {        
+        try {            
+            mdao.obtenerListaPorColmena(listaMantenimientos, mantenimiento);            
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            mdao.cerrarConexion();
+        }
+    }
+    public String obtenerListaMantenimientoColmenaFecha() {        
+        try {            
+            mdao.obtenerListaPorColmenaFecha(lista, mantenimiento);      
+            json = gson.toJson(lista);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            mdao.cerrarConexion();
         }
     }
 
@@ -143,8 +179,6 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         return mantenimiento;
     }
 
-   
-
     public String getArchivo() {
         return archivo;
     }
@@ -153,6 +187,4 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         return json;
     }
 
-    
-    
 }

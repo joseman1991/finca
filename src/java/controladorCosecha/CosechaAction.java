@@ -76,8 +76,49 @@ public class CosechaAction extends Action<Cosecha> {
             archivo = c.generarReporte(ruta, objeto) + ".pdf";
             return SUCCESS;
         } catch (FileNotFoundException | SQLException | JRException e) {
-            mensaje=e.getMessage();
+            mensaje = e.getMessage();
             return ERROR;
+        } finally {
+            c.cerrarConexion();
+        }
+    }
+    public String obtenerReporteC() {
+        CosechaDAO c = new CosechaDAO();
+        try {
+            archivo = c.generarReporteC(ruta, objeto) + ".pdf";
+            return SUCCESS;
+        } catch (FileNotFoundException | SQLException | JRException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            c.cerrarConexion();
+        }
+    }
+
+    public String obtenerListaCosechaColmena() {
+        CosechaDAO c = new CosechaDAO();
+        try {
+            c.obtenerListaPorColmena(lista, objeto);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            c.cerrarConexion();
+        }
+    }
+
+    public String obtenerListaCosechaColmenaFecha() {
+        CosechaDAO c = new CosechaDAO();
+        try {
+            c.obtenerListaPorColmenaFecha(lista, cos);
+             json = gson.toJson(lista);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            c.cerrarConexion();
         }
     }
 
@@ -162,7 +203,5 @@ public class CosechaAction extends Action<Cosecha> {
     public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
-    
-    
 
 }

@@ -67,6 +67,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(lista);
+        cerrarConexion();
     }
 
     @Override
@@ -75,6 +76,25 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         camposCondicion = "fecha,fecha1";
         condicion = "where fecha between ? and ?";
         super.obtenerLista(lista, c);
+        cerrarConexion();
+    }   
+    
+    
+    public void obtenerListaPorColmena(List<Cosecha> lista, Cosecha c) throws SQLException{
+        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        camposCondicion = "idcolmena";
+        condicion = "where idcolmena = ?";
+        super.obtenerLista(lista, c);
+        cerrarConexion();
+    }
+    
+    
+    public void obtenerListaPorColmenaFecha(List<Cosecha> lista, Cosecha c) throws SQLException{
+        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        camposCondicion = "idcolmena,fecha,fecha1";
+        condicion = "where idcolmena = ? and fecha between ? and ? ";
+        super.obtenerLista(lista, c);
+        cerrarConexion();
     }
 
  
@@ -88,6 +108,31 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
         parametro.put("fecha", co.getFecha());
         parametro.put("fecha1", co.getFecha1());
         parametro.put("path", ruta);
+        JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
+
+        JRPdfExporter exporter = new JRPdfExporter();
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+
+        File carpeta = new File(ruta + "/");
+        String[] lista = carpeta.list();
+        int codf = lista.length;
+        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(ruta + "/" + codf + ".pdf")); // your output goes here
+        exporter.exportReport();
+        cerrarConexion();
+        return codf;
+    }
+    
+    public int generarReporteC(String ruta, Cosecha co) throws JRException, FileNotFoundException, SQLException {
+        abrirConexion();
+        File archivo = new File(ruta + "/" + "reporteC" + ".jasper");
+        JasperReport report = (JasperReport) JRLoader.loadObject(archivo);
+        Map parametro = new HashMap();
+        parametro.put("Empresa", "APÍCOLA CANAÁN");
+        parametro.put("fecha", co.getFecha());
+        parametro.put("fecha1", co.getFecha1());
+        parametro.put("path", ruta);
+          parametro.put("colmena", co.getColmena().getDescripcion());
+        parametro.put("sector", co.getColmena().getSector().getNombre());
         JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
 
         JRPdfExporter exporter = new JRPdfExporter();

@@ -16,8 +16,18 @@
             <result name="error">error.jsp</result>
         </action>
         
+        <action name="imprimirc" class="controladorMantenimiento.MantenimientoAction" method="obtenerReporteM">
+            <result name="success" type="redirect">reportes/${archivo}</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
         <action name="imprimirm" class="controladorMantenimiento.MantenimientoAction" method="obtenerReporte">
             <result name="success" type="redirect">reportes/${archivo}</result>
+            <result name="error">error.jsp</result>
+        </action>
+        
+        <action name="reportemantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaMantenimientoColmena">
+             <result name="success">mantenimientoView/reporte.jsp</result>
             <result name="error">error.jsp</result>
         </action>
         
@@ -34,6 +44,10 @@
         <default-interceptor-ref name="defaultStack" />
         
         <action name="obtenerlistaMantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaPorFecha">
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>   
+        </action>
+        <action name="obtenerlistaMantenimientoC" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaMantenimientoColmenaFecha">
             <result name="success" type="json"></result>
             <result name="error" type="json"></result>   
         </action>
