@@ -37,7 +37,7 @@ $(document).ready(function () {
             async: true,
             success: function (res) {
                 var dato = JSON.parse(res.json);
-                alert(dato);
+                 
                 $.each(dato, function (key, value) {
                     var fila = $((document).createElement('tr'));
                     tbody.append(fila);

@@ -128,6 +128,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
         parametro.put("Empresa", "APÍCOLA CANAÁN");
         parametro.put("fecha", co.getFecha());
         parametro.put("fecha1", co.getFecha2());
+        parametro.put("path", ruta);
         JasperPrint jp = JasperFillManager.fillReport(report, parametro, conexion);
 
         JRPdfExporter exporter = new JRPdfExporter();
