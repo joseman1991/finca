@@ -29,13 +29,12 @@ public class ColmenasDAO extends ConexionMySQL<Colmenas> {
 
     public int insertarColmena(Colmenas colmena) throws SQLException {
         abrirConexion();
-        sentencia = conexion.prepareStatement("INSERT INTO colmena (idarea, descripcion,nmarcos, tipo, nalza, idorigen, precio, fecha, idreina,npisos, fechareina)"
-                + "VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?,?)");
+        sentencia = conexion.prepareStatement("INSERT INTO colmena (idarea, descripcion,nmarcos, nalza, idorigen, precio, fecha, idreina,npisos, fechareina)"
+                + "VALUES (?, ?,?, ?, ?, ?, ?, ?, ?,?)");
         int i = 1;
         sentencia.setInt(i++, colmena.getIdarea());
         sentencia.setString(i++, colmena.getDescripcion());
         sentencia.setInt(i++, colmena.getNmarcos());
-        sentencia.setString(i++, colmena.getTipo());
         sentencia.setInt(i++, colmena.getNalza());
         sentencia.setInt(i++, colmena.getIdorigen());
         sentencia.setFloat(i++, colmena.getPrecio());
@@ -60,7 +59,6 @@ public class ColmenasDAO extends ConexionMySQL<Colmenas> {
             c.setDescripcion(resultado.getString(i++));
             c.setIdarea(resultado.getInt(i++));
             c.setNmarcos(resultado.getInt(i++));
-            c.setTipo(resultado.getString(i++));
             c.setNalza(resultado.getInt(i++));
             c.setIdorigen(resultado.getInt(i++));
             c.setPrecio(resultado.getFloat(i++));
@@ -76,7 +74,7 @@ public class ColmenasDAO extends ConexionMySQL<Colmenas> {
     @Override
     public Colmenas obtenerRegistro(Colmenas dato) throws SQLException {
         abrirConexion();
-        campos = "idcolmena,idarea, nmarcos, tipo, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
+        campos = "idcolmena,idarea, nmarcos, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
         camposCondicion = "idcolmena";
         condicion = "where idcolmena=?";
         Colmenas c = super.obtenerRegistro(dato);
@@ -86,7 +84,7 @@ public class ColmenasDAO extends ConexionMySQL<Colmenas> {
 
     @Override
     public int actualizarRegistro(Colmenas registro) throws SQLException {
-        campos = "idcolmena,idarea, nmarcos, tipo, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
+        campos = "idcolmena,idarea, nmarcos, descripcion,nalza,idorigen,npisos,precio,fecha,idreina,fechareina";
         camposCondicion = "idcolmena";
         condicion = "where idcolmena=?";
         int res=super.actualizarRegistro(registro);

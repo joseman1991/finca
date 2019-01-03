@@ -16,44 +16,51 @@ import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.Origen;
 import modelo.OrigenDAO;
-import modelo.Provincias;
-import modelo.ProvinciasDAO;
+import modelo.Reinas;
+import modelo.ReinasDAO;
 import modelo.Sectores;
 import modelo.SectoresDAO;
 
 /**
  *
- * @author 
+ * @author
  */
 public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas> {
 
     private Colmenas colmena;
     private final List<Origen> listaOrigen;
     private String mensaje;
+    private String estado;
+    private String style;
     private final OrigenDAO odao;
     private final SectoresDAO sdao;
+    private final ReinasDAO rdao;
     private final List<Sectores> listaSectores;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
-     
+    private final List<Reinas> listaReinas;
 
     public ColmenaAction() {
         this.listaOrigen = new ArrayList<>();
         odao = new OrigenDAO(listaOrigen);
         listaColmenas = new ArrayList<>();
-        
+
         cdao = new ColmenasDAO(listaColmenas);
-        
         listaSectores = new ArrayList<>();
         sdao = new SectoresDAO(listaSectores);
         colmena = new Colmenas();
+        rdao = new ReinasDAO();
+        listaReinas = new ArrayList<>();
     }
 
     public String insertarColmena() {
         try {
             int res = cdao.insertarColmena(colmena);
             if (res > 0) {
+                style = "alert-success";
+                estado = "ÉXITO";
                 mensaje = "Colmena registrada correctamente";
+                rdao.obtenerLista(listaReinas);
                 odao.obtnerListas();
                 sdao.obtenerSectors();
                 return SUCCESS;
@@ -70,12 +77,15 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             sdao.cerrarConexion();
         }
     }
-    
+
     public String actualizarColmena() {
         try {
             int res = cdao.actualizarRegistro(colmena);
             if (res > 0) {
+                style = "alert-success";
+                estado = "ÉXITO";
                 mensaje = "Colmena actualizado correctamente";
+                rdao.obtenerLista(listaReinas);
                 odao.obtnerListas();
                 sdao.obtenerSectors();
                 return SUCCESS;
@@ -97,6 +107,7 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
         try {
             odao.obtnerListas();
             sdao.obtenerSectors();
+            rdao.obtenerLista(listaReinas);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -125,6 +136,8 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             colmena = cdao.obtenerRegistro(colmena);
             sdao.obtenerSectors();
             odao.obtnerListas();
+            rdao.obtenerLista(listaReinas);
+
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -164,6 +177,24 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
         return listaColmenas;
     }
 
-    
+    public List<Reinas> getListaReinas() {
+        return listaReinas;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
 
 }

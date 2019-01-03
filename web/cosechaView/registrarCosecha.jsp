@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/gijgo.min.js"></script>
         <link href="css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <title>Registrar nueva cosecha</title>
@@ -36,13 +36,6 @@
                                     <div class="col-sm-5">
                                         <input class="form-control" type="text" max="45" value="<s:property value="colmena.descripcion"/>" readonly=""/>                                
                                         <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>  
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="tipoalza">Tipo de Alza</label>   
-                                    <div class="col-sm-5">
-                                        <input  class="form-control" type="text" name="tipoalza" max="45" required=""/> 
                                     </div>
                                 </div>
 
@@ -111,7 +104,7 @@
 
                 </div>
             </div>
-              <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav">
                 <div class="well">
                     <p>Miel 100% pura</p>
                     <img src="image/med1.jpg" class="img-thumbnail" />

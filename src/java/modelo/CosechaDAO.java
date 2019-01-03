@@ -33,7 +33,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public int insertarRegistro(Cosecha registro) throws SQLException {
-        campos = "idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha";
         int res = super.insertarRegistro(registro);
         cerrarConexion();
         return res;
@@ -41,7 +41,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public int actualizarRegistro(Cosecha registro) throws SQLException {
-        campos = "idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "idcosecha";
         condicion = "where idcosecha=?";
         int res = super.actualizarRegistro(registro);
@@ -52,7 +52,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public Cosecha obtenerRegistro(Cosecha dato) throws SQLException {
-        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "idcosecha";
         condicion = "where idcosecha=?";
         Cosecha co = (Cosecha) super.obtenerRegistro(dato);
@@ -63,7 +63,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public void obtenerLista(List<Cosecha> lista) throws SQLException {
-        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(lista);
@@ -72,7 +72,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
 
     @Override
     public void obtenerLista(List<Cosecha> lista, Cosecha c) throws SQLException {
-        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcosecha,idcolmena, idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "fecha,fecha1";
         condicion = "where fecha between ? and ?";
         super.obtenerLista(lista, c);
@@ -81,7 +81,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
     
     
     public void obtenerListaPorColmena(List<Cosecha> lista, Cosecha c) throws SQLException{
-        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "idcolmena";
         condicion = "where idcolmena = ?";
         super.obtenerLista(lista, c);
@@ -90,7 +90,7 @@ public class CosechaDAO extends ConexionMySQL<Cosecha> {
     
     
     public void obtenerListaPorColmenaFecha(List<Cosecha> lista, Cosecha c) throws SQLException{
-        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha,tipoalza";
+        campos = "idcosecha, idobrero, marcos, pesovacio,pesolleno,fecha";
         camposCondicion = "idcolmena,fecha,fecha1";
         condicion = "where idcolmena = ? and fecha between ? and ? ";
         super.obtenerLista(lista, c);

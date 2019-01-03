@@ -20,6 +20,11 @@ public class Usuarios {
     private String apellido;
     private String email;
     private Perfiles perfil;
+    private String nombre2;
+    private String apellido2;
+    private String cedula;
+    private String direccion;
+    private String telefono;
 
     public Usuarios() {
 
@@ -88,4 +93,48 @@ public class Usuarios {
         return nombre + " " + apellido;
     }
 
+    public String getNombre2() {
+        return nombre2;
+    }
+
+    public void setNombre2(String nombre2) {
+        this.nombre2 = nombre2;
+    }
+
+    public String getApellido2() {
+        return apellido2;
+    }
+
+    public void setApellido2(String apellido2) {
+        this.apellido2 = apellido2;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    
+    
+    
+    
 }

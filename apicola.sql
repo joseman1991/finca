@@ -19,23 +19,25 @@ insert into perfiles values(2,'OBRERO');
  
 
 create table usuarios(
- idusuario int auto_increment primary key,
- email varchar(35) unique,
- clave varchar(16),
- nombre varchar(35),
- apellido varchar(35),
- idperfil int not null,
+ idusuario int auto_increment primary key not null,
+ email varchar(35) unique not null,
+ clave varchar(16) not null,
+ nombre varchar(35) not null,
+ nombre2 varchar(35) not null,
+ apellido varchar(35) not null,
+ apellido2 varchar(35) not null,
+ idperfil int not null not null,
+ cedula varchar(10) not null unique,
+ direccion varchar(100) not null,
+ telefono varchar(10) not null,
  constraint fk_usuarios_perfiles foreign key (idperfil) references perfiles(idperfil) 
  on update cascade on delete restrict 
 );
 -- -----------------------------------------------------------------
-insert into usuarios(email,clave,nombre,apellido,idperfil) values('shirley_choez@hotmail.com','123','SHIRLEY','CHOEZ',1);
-insert into usuarios(email,clave,nombre,apellido,idperfil) values('victor_choezs@hotmail.com','123','VÍCTOR','CHOEZ',1);
-insert into usuarios(email,clave,nombre,apellido,idperfil) values('Choezsantosvictor@gmail.com','123','VÍCTOR','CHOEZ',1);
-insert into usuarios(email,clave,nombre,apellido,idperfil) values('shirleychoezn@gmail.com','123','SHIRLEY','CHOEZ',1);
-
- 
- 
+insert into usuarios(email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono) 
+values('jemima@hotmail.com','1234567','JEMIMA','SANTILLÁN',1,'CESIA','VILLOTA','1206846774','VINCES','0968603173');
+insert into usuarios(email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono) 
+values('jessica@hotmail.com','1234567','JESSICA','ESTRADA',1,'LIZBETH','ORTIZ','1726051913','BABAHOYO','0967062252');
  
 -- ----------------------------------------------------------------
 create table provincias (
@@ -72,13 +74,27 @@ create table origen(
  insert into origen values (3,'DIVISIÓN');
  
  -- ----------------------------------------------------------------
+ 
+ 
+ create table reinas(
+  idreina int not null auto_increment not null primary key,
+  descripcion varchar(50) not null 
+ ); 
+ 
+ -- ----------------------------------------------------------------
+ insert into reinas values(default,'Abeja Buckfas');
+ insert into reinas values(default,'Abeja Italiana');
+ insert into reinas values(default,'Abeja Carniola');
+ insert into reinas values(default,'Abeja Caucásica');
+ insert into reinas values(default,'Abeja Griega del Norte');
+ -- ----------------------------------------------------------------
+
 
 CREATE TABLE IF NOT EXISTS colmena (
   idcolmena INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descripcion varchar(50) not null,
   idarea INT NOT NULL,
-  nmarcos INT NOT NULL,
-  tipo VARCHAR(45) NOT NULL,
+  nmarcos INT NOT NULL,  
   nalza INT NOT NULL,
   idorigen int NOT NULL,
   precio float not null,
@@ -93,7 +109,9 @@ CREATE TABLE IF NOT EXISTS colmena (
     ON UPDATE CASCADE,
     constraint fk_colmena_origen 
     foreign key (idorigen) 
-	 references origen(idorigen) on update cascade on delete restrict    
+	 references origen(idorigen) on update cascade on delete restrict,
+     foreign key (idreina) 
+	 references reinas(idreina) on update cascade on delete restrict    
    );
 
 -- ----------------------------------------------------------------
@@ -124,8 +142,7 @@ CREATE TABLE IF NOT EXISTS cosecha (
   marcos INT NOT NULL,
   pesovacio float NOT NULL,
   pesolleno float NOT NULL,
-  fecha DATE NOT NULL,
-  tipoalza VARCHAR(45) NOT NULL,
+  fecha DATE NOT NULL,  
   PRIMARY KEY (idcosecha),  
   CONSTRAINT fk_cosecha_colmena
     FOREIGN KEY (idcolmena)

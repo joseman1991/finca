@@ -15,6 +15,7 @@ $(document).ready(function () {
 
     var isSUbmit = true;
 
+
     jQuery(formulario).validate(
             {
                 rules: {
@@ -25,6 +26,13 @@ $(document).ready(function () {
                     },
                     pclave: {
 
+                    },
+                    cedula: {
+                        digits: true,
+                        valCedula: true
+                    },
+                    telefono: {
+                        digits: true
                     }
 
                 },
@@ -33,13 +41,45 @@ $(document).ready(function () {
                         minlength: $.format("Necesitamos por lo menos {0} caracteres")
                     }
                 }
+
             }
 
     );
 
+    jQuery.validator.addMethod("valCedula", function (value, element) {
+        var val = false;
+        if (value.length === 10) {
+            var dato = value.split('');
+            var suma = 0;
+            var validador = Number(dato[dato.length - 1]);
+            for (var i = 0, max = dato.length - 1; i < max; i++) {
+                var d = Number(dato[i]);
+                if (i % 2 === 0) {
+                    d = d * 2;
+                    if (d > 9) {
+                        d = d - 9;
+                    }
+                }
+                suma = suma + d;
+            }
+            suma = suma % 10;
+            if (suma !== 0) {
+                suma = 10 - suma;
+            }
+            val = suma === validador;
+        }
+        return this.optional(element) || val;
+    }, 'Ingresa una cédula válida');
+    
+
+
+
+
+
 
     boton.click(function () {
         if (isSUbmit) {
+            $('#ok').css('display','none');
             formulario.submit();
         }
     });

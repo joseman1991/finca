@@ -30,7 +30,13 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="  text-warning">Actualizar colmena</h3></div>
                         <div class="panel-body">
-                            <form action="colmenaactualizada" class="form-horizontal"  method="post">
+                            <s:if test="mensaje!=null">
+                                <div class="alert <s:property value="style"/> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                </div>
+                            </s:if>
+                            <form action="colmenaactualizada" class="form-horizontal"  method="post" id="colmena">
                                 <input type="hidden" value="<s:property value="idcolmena"/>" name="idcolmena"/>
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="idarea">Sector</label> 
@@ -58,22 +64,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="nmarcos">Numero de Marcos</label>
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:property value="colmena.nmarcos"/>" type="number" name="nmarcos" value="1" min="1" required=""/> 
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="tipo">Tipo</label>   
-                                    <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:property value="colmena.tipo"/>" type="text" name="tipo" max="45" required=""/> 
+                                        <input  class="form-control" value="<s:property value="colmena.nmarcos"/>" type="text" name="nmarcos" value="1" min="1" required=""/> 
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="nalza">Numero de Marcos</label>
+                                    <label class="control-label col-sm-4" for="nalza">Numero de Alzas Melaria</label>
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:property value="colmena.nalza"/>" type="number" name="nalza" value="1" min="1" required=""/>       
+                                        <input  class="form-control" value="<s:property value="colmena.nalza"/>" type="text" name="nalza" value="1" min="1" required=""/>       
                                     </div>
                                 </div>
 
@@ -110,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="fecha">Fecha</label>   
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:date name="colmena.fecha" format="yyyy-MM-dd"/>" type="text"  name="fecha" max="45" required="" id="datepicker" readonly /> 
+                                        <input  class="form-control" value="<s:date name="colmena.fecha" format="yyyy-MM-dd"/>" type="text"  name="fecha"   required="" id="datepicker" readonly /> 
                                     </div>
                                 </div>
 
@@ -119,9 +117,22 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="idreina">Id Reina</label>
+                                    <label class="control-label col-sm-4" for="idreina">Raza de Reina</label>
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:property value="colmena.idreina"/>" type="number" name="idreina" value="1" min="1" required=""/>  
+                                        
+                                        <select class="form-control" name="idreina">  
+                                            
+                                            <s:iterator value="listaReinas"> 
+                                                
+                                                <s:if test="idreina==colmena.idreina">
+                                                    <option value="<s:property value="idreina"/>" selected=""><s:property value="descripcion"/></option>
+                                                </s:if>
+                                                <s:else>
+                                                    <option value="<s:property value="idreina"/>"><s:property value="descripcion"/></option>
+                                                </s:else>
+                                               
+                                            </s:iterator>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -139,13 +150,12 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="fechareina">Fecha de Reina</label>   
                                     <div class="col-sm-5">
-                                        <input  class="form-control" value="<s:date name="colmena.fechareina" format="yyyy-MM-dd"/>" type="text" name="fechareina" max="45" id="datepicker2" readonly required=""/>   
+                                        <input  class="form-control" value="<s:date name="colmena.fechareina" format="yyyy-MM-dd"/>" type="text" name="fechareina"   id="datepicker2" readonly required=""/>   
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-4 pull-right">
-                                    <input type="submit" class=" btn btn-info " value="Actualizar Colmena"/> <br>
-                                    <span><s:property value="mensaje"/></span>
+                                    <input type="submit" class=" btn btn-info " value="Actualizar Colmena" id="btn-colmena"/> <br>                                    
                                 </div>                                
 
                             </form> 
@@ -177,6 +187,11 @@
 
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="colemenasView/js/colmena.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js" ></script>    
+        <script type="text/javascript" src="js/messages_es.js" ></script>   
+
+        <script type="text/javascript" src="colemenasView/js/colmena.js"></script>
+
 
         <script type="text/javascript">
             $('#datepicker').datepicker({

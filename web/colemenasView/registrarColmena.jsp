@@ -34,7 +34,13 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registrar Nueva colmena</h3></div>
                             <div class="panel-body">
-                                <form action="colmenaregistrada" class="form-horizontal"  method="post">
+                                <s:if test="mensaje!=null">
+                                    <div class="alert <s:property value="style"/> alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                    </div>
+                                </s:if>
+                                <form action="colmenaregistrada" class="form-horizontal"  method="post" id="colmena">
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="idarea">Sector</label> 
@@ -48,31 +54,23 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nmarcos">Descripción</label>
+                                        <label class="control-label col-sm-4" for="descripcion">Descripción</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="text" name="descripcion" max="50" required=""/> 
+                                            <input  class="form-control required" type="text" name="descripcion" maxlength="50" required=""/> 
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="nmarcos">Numero de Marcos</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="number" name="nmarcos" value="1" min="1" required=""/> 
+                                            <input  class="form-control required" type="text" name="nmarcos" value="1" required=""/> 
                                         </div>
-                                    </div>
-
+                                    </div>                                     
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="tipo">Tipo</label>   
+                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas Melaria</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="text" name="tipo" max="45" required=""/> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas</label>
-                                        <div class="col-sm-5">
-                                            <input  class="form-control" type="number" name="nalza" value="1" min="1" required=""/>       
+                                            <input  class="form-control required" type="text" name="nalza" value="1"   required=""/>       
                                         </div>
                                     </div>
 
@@ -94,7 +92,7 @@
                                     <div class="form-group" id="divprecio">
                                         <label class="control-label col-sm-4" for="precio">Precio</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="number" name="precio" value="1.00" min="0.00" required="" id="precio"/> 
+                                            <input  class="form-control required" type="number" name="precio" value="1.00" min="0.00" required="" id="precio"/> 
                                         </div>
                                     </div>
 
@@ -104,7 +102,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="fecha">Fecha</label>   
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>" max="45" required="" id="datepicker" readonly=""/> 
+                                            <input  class="form-control required" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>"   required="" id="datepicker" readonly=""/> 
                                         </div>
                                     </div>
 
@@ -113,9 +111,13 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idreina">Id Reina</label>
+                                        <label class="control-label col-sm-4" for="idreina">Raza de Reina</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="number" name="idreina" value="1" min="1" required=""/>  
+                                            <select class="form-control" name="idreina">
+                                                <s:iterator value="listaReinas">
+                                                    <option value="<s:property value="idreina"/>"><s:property value="descripcion"/></option>
+                                                </s:iterator>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -126,7 +128,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="npisos">Numero de Pisos</label>
                                         <div class="col-sm-5">
-                                            <input class="form-control"  type="number" name="npisos" value="1" min="1" required=""/>   
+                                            <input class="form-control required"  type="text" name="npisos" value="1"  required=""/>   
                                         </div>
                                     </div>
 
@@ -136,13 +138,13 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="fechareina">Fecha de Reina</label>   
                                         <div class="col-sm-5">
-                                            <input  class="form-control" type="text" name="fechareina" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd" />" max="45" required="" id="datepicker2" readonly=""/>   
+                                            <input  class="form-control required" type="text" name="fechareina" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd" />"   required="" id="datepicker2" readonly=""/>   
                                         </div>
                                     </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                        <input type="submit" class=" btn btn-info " value="Registrar Colmena"/> <br>
-                                        <span><s:property value="mensaje"/></span>
+                                        <input type="submit" class=" btn btn-info " value="Registrar Colmena" id="btn-colmena"/> <br>
+                                       
                                     </div>                                
 
                                 </form> 
@@ -152,7 +154,7 @@
                     </s:else>
                 </div>
             </div>
-           <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav">
                 <div class="well">
                     <p>Miel 100% pura</p>
                     <img src="image/med1.jpg" class="img-thumbnail" />
@@ -168,10 +170,13 @@
             <p>Derechos Reservados 2018</p>
         </footer>
 
-        
-         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-         <script type="text/javascript" src="colemenasView/js/colmena.js"></script>
-        
+
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js" ></script>    
+        <script type="text/javascript" src="js/messages_es.js" ></script>   
+
+        <script type="text/javascript" src="colemenasView/js/colmena.js"></script>
+
 
         <script type="text/javascript">
             $('#datepicker').datepicker({
@@ -185,6 +190,9 @@
             });
 
         </script>
+
+
+
     </body>
 </html>
 

@@ -27,6 +27,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Actualizar Datos de Usuario</h3></div>
                             <div class="panel-body">
+                                <s:if test="mensaje!=null">
+                                    <div class="alert <s:property value="style"/> alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                    </div>
+                                </s:if>   
                                 <form action="actualizadatos" class="form-horizontal" method="post" id="formulario">
 
                                     <div class="form-group">
@@ -80,22 +86,53 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="nombre" class="control-label col-sm-4">Nombres</label>
+                                        <label for="nombre" class="control-label col-sm-4">Primer Nombre</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="nombre" maxlength="35" value="<s:property value="usuario.nombre"/>"required=""/>
                                         </div>                                       
                                     </div>
+                                    <div class="form-group">
+                                        <label for="nombre" class="control-label col-sm-4">Segundo Nombre</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="nombre2" maxlength="35" value="<s:property value="usuario.nombre2"/>"required=""/>
+                                        </div>                                       
+                                    </div>
 
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Apellidos</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Apellido paterno</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="apellido" maxlength="35" value="<s:property value="usuario.apellido"/>" required=""/> 
                                         </div>                                       
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="apellido" class="control-label col-sm-4">Apellido materno</label>   
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="apellido2" maxlength="35" value="<s:property value="usuario.apellido2"/>" required=""/> 
+                                        </div>                                       
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="apellido" class="control-label col-sm-4">Dirección</label>   
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="direccion" maxlength="35" value="<s:property value="usuario.direccion"/>" required=""/> 
+                                        </div>                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido" class="control-label col-sm-4">Teléfono</label>   
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="telefono" maxlength="35" value="<s:property value="usuario.telefono"/>" required=""/> 
+                                        </div>                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido" class="control-label col-sm-4">Cédula</label>   
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="cedula" maxlength="35" value="<s:property value="usuario.cedula"/>" required=""/> 
+                                        </div>                                       
+                                    </div>
+
                                     <div class=" form-group col-sm-4 pull-right" >
                                         <input class="btn btn-info" type="button" value="Actualizar" id="boton"/> <br>
-                                        <span class="text-success"><strong><s:property value="mensaje"/></strong></span>
                                     </div>
 
                                     <input type="hidden" name="idusuario" value="<s:property value="idusuario"/>" id="idusuario"/>

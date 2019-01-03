@@ -26,6 +26,8 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     private Usuarios usuario;
     private final UsuarioDAO uDAO;
     private String mensaje;
+    private String style;
+    private String estado;
     private final HttpSession session;
     private final List<Usuarios> listaUsuarios;
     private final List<Perfiles> listaPerfiles;
@@ -54,8 +56,10 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     public String insertarUsuario() {
         try {
             int result = uDAO.insertarUsuario(usuario);
-             pdao.obtenerLista(listaPerfiles);
+            pdao.obtenerLista(listaPerfiles);
             if (result > 0) {
+                style = "alert-success";
+                estado = "ÉXITO";
                 mensaje = "Usuario registrado";
                 return SUCCESS;
             } else {
@@ -82,7 +86,10 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                             session.setAttribute("usuario", usuario);
                         }
                     }
+                    pdao.obtenerLista(listaPerfiles);
                     mensaje = "Usuario actualizado";
+                    style = "alert-success";
+                    estado = "ÉXITO";
                     return SUCCESS;
                 } else {
                     mensaje = "Ha ocurrido un error";
@@ -109,6 +116,8 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 return SUCCESS;
             } else {
                 mensaje = "Error de credenciales";
+                style = "alert-danger";
+                estado = "ERROR";
                 return ERROR;
             }
         } catch (SQLException e) {
@@ -150,10 +159,10 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             uDAO.cerrarConexion();
         }
     }
-    
+
     public String obteneruser() {
         try {
-            usuario = uDAO.obtenerUsusario(usuario.getEmail());             
+            usuario = uDAO.obtenerUsusario(usuario.getEmail());
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -166,7 +175,10 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     public String obtenerUsuario2() {
         try {
             usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
+             pdao.obtenerLista(listaPerfiles);
             mensaje = "Usuario actualizado";
+            style = "alert-success";
+                    estado = "ÉXITO";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -203,6 +215,22 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public List<Perfiles> getListaPerfiles() {
         return listaPerfiles;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

@@ -28,5 +28,32 @@ $(document).ready(function () {
 
     });
 
+    var formulario = $("#colmena");
+    var boton = $("#btn-colmena");
+
+    jQuery(formulario).validate(
+            {
+                rules: {
+                    nmarcos: {
+                        digits: true
+                    },
+                    npisos: {
+                        digits: true
+                    },
+                    nalsa: {
+                        digits: true
+                    }
+                }
+                
+            }
+
+    );
+
+
+    boton.click(function () {
+        formulario.submit();
+    });
+
+
 
 });

@@ -7,19 +7,22 @@ package controladorSectores;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Provincias;
 import modelo.ProvinciasDAO;
 import modelo.Sectores;
 import modelo.SectoresDAO;
+import modelo.Usuarios;
 import org.apache.struts2.ServletActionContext;
 
 /**
  *
- * @author 
+ * @author
  */
 public class SectoresAction extends ActionSupport implements ModelDriven<Sectores> {
 
@@ -31,8 +34,11 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
     private Sectores sector;
 
     private String mensaje;
+    private String style;
+    private String estado;
 
     private final HttpSession session;
+    private final HttpServletResponse response;
 
     public SectoresAction() {
         sector = new Sectores();
@@ -41,6 +47,7 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         pdao = new ProvinciasDAO(listaProvincias);
         sdao = new SectoresDAO(listaSectores);
         session = ServletActionContext.getRequest().getSession();
+        response = ServletActionContext.getResponse();
     }
 
     public String insertarSector() {
@@ -48,6 +55,8 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             int res = sdao.insertarSector(sector);
             if (res > 0) {
                 mensaje = "Sector registrado correctamente";
+                style = "alert-success";
+                estado = "ÉXITO";
                 pdao.obtnerListas();
                 return SUCCESS;
             } else {
@@ -68,6 +77,8 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             int res = sdao.actualizarSector(sector);
             if (res > 0) {
                 mensaje = "Sector actualizado correctamente";
+                style = "alert-success";
+                estado = "ÉXITO";
                 pdao.obtnerListas();
                 return SUCCESS;
             } else {
@@ -85,10 +96,15 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public String obtenerProvincias() {
         try {
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            if (u != null) {
+                pdao.obtnerListas();
+            } else {             
+                response.sendRedirect("login");
+            }
 
-            pdao.obtnerListas();
             return SUCCESS;
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -101,6 +117,8 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
             pdao.obtnerListas();
             mensaje = "Necesitas al menos un sector para registrar una colmena";
+            style = "alert-danger";
+            estado = "ERROR";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -162,6 +180,22 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public List<Sectores> getListaSectores() {
         return listaSectores;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

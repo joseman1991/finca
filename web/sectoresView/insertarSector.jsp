@@ -24,16 +24,25 @@
             <div class="col-md-8">
                 <div class="container">
 
+
+
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo sector</h3></div>
                             <div class="panel-body">
-                                <form class="form-horizontal" action="registrarsector" method="post">
+                                <s:if test="mensaje!=null">
+                                    <div class="alert <s:property value="style"/> alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                    </div>
+                                </s:if>
+
+                                <form class="form-horizontal" action="registrarsector" method="post" id="sector">
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-4"  for="nombre">Nombre Sector</label>   
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" name="nombre" max="45" required=""/>
+                                            <input class="form-control required" type="text" name="nombre" maxlength="45" required=""/>
                                         </div>
                                     </div>
 
@@ -51,7 +60,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="rcto">Recinto</label> 
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" name="rcto" max="45" required=""/> 
+                                            <input class="form-control required" type="text" name="rcto" maxlength="45" required=""/> 
                                         </div>
                                     </div>
 
@@ -59,7 +68,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="direccion">Dirección</label>   
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" name="direccion" max="45" required=""/> 
+                                            <input class="form-control required" type="text" name="direccion" maxlength="45" required=""/> 
                                         </div>
                                     </div>
 
@@ -67,15 +76,15 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="email">Correo Electrónico</label>   
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" name="email" max="50" required=""/>    
+                                            <input class="form-control required" type="email" name="email" maxlength="50" required=""/>    
                                         </div>            
                                     </div>
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="apellido">Observación</label>   
+                                        <label class="control-label col-sm-4" for="observacion">Observación</label>   
                                         <div class="col-sm-5">
-                                            <textarea class="form-control" name="observacion" cols="1" rows="10"></textarea> 
+                                            <textarea class="form-control required" name="observacion" cols="1" rows="10"></textarea> 
                                         </div>
                                     </div>
 
@@ -83,13 +92,12 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="responsable">Responsable</label>   
                                         <div class="col-sm-5">
-                                            <input class="form-control" type="text" name="responsable" max="50" required=""/> 
+                                            <input class="form-control required" type="text" name="responsable" maxlength="50" required=""/> 
                                         </div>
                                     </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                        <input type="submit" class=" btn btn-info " value="Registrar sector"/> <br>
-                                        <span><s:property value="mensaje"/></span>
+                                        <input type="submit" class=" btn btn-info " value="Registrar sector" id="btn-sector"/> <br>                                         
                                     </div>
                                 </form>
                             </div>
@@ -120,6 +128,9 @@
 
         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js" ></script>    
+        <script type="text/javascript" src="js/messages_es.js" ></script>   
+        <script type="text/javascript" src="sectoresView/js/validar.js"></script> 
     </body>
 </html>
 

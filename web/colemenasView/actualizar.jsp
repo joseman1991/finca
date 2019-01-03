@@ -38,14 +38,14 @@
                                     <th>Cod.</th>
                                     <th>Sector</th>
                                     <th> Marcos</th>
-                                    <th>Tipo</th>
+                                     
                                     <th>Descripción</th>
                                     <th>Alza</th>
                                     <th>Origen</th>
                                     <th>Pisos</th>
                                     <th>Precio</th>
                                     <th>Fecha</th>
-                                    <th>ID Reina</th>
+                                    <th>Raza Reina</th>
                                     <th>Fecha de reina</th>
                                     <th>Acciones</th>
                                     <th>Reportes</th>
@@ -56,14 +56,14 @@
                                                 <td><s:property value="idcolmena"/></td>
                                                 <td><s:property value="sector.nombre"/></td>
                                                 <td><s:property value="nmarcos"/></td>
-                                                <td><s:property value="tipo"/></td>
+                                                 
                                                 <td><s:property value="descripcion"/></td>
                                                 <td><s:property value="nalza"/></td>
                                                 <td><s:property value="origen.descripcion"/></td>
                                                 <td><s:property value="npisos"/></td>                                                
                                                 <td><s:property value="precio"/></td>
                                                 <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>
-                                                <td><s:property value="idreina"/></td>
+                                                <td><s:property value="reinas.descripcion"/></td>
                                                 <td><s:date name="fechareina" format="dd/MMM/yyyy"/></td>
 
                                                 <s:url action="actualizarcolmena" var="actualizarcolmena">

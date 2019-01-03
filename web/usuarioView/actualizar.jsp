@@ -37,9 +37,14 @@
                                         <thead>
                                         <th>Codigo</th>
                                         <th>Correo electrónico</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
+                                        <th>P. Nombre</th>
+                                        <th>S. Nombre</th>
+                                        <th>Apellido P.</th>
+                                        <th>Apellido M.</th>
                                         <th>Perfil</th>
+                                        <th>Direccion</th>
+                                        <th>Telefono</th>
+                                        <th>Cedula</th>
                                         <th>Acciones</th>
                                         </thead>
                                         <tbody>
@@ -48,8 +53,13 @@
                                                     <td><s:property value="idusuario"/></td>
                                                     <td><s:property value="email"/></td>
                                                     <td><s:property value="nombre"/></td>
+                                                    <td><s:property value="nombre2"/></td>
                                                     <td><s:property value="apellido"/></td>
+                                                    <td><s:property value="apellido2"/></td>
                                                     <td><s:property value="perfil.descripcion"/></td>
+                                                    <td><s:property value="direccion"/></td>
+                                                    <td><s:property value="telefono"/></td>
+                                                    <td><s:property value="cedula"/></td>
                                                     <s:url action="actualiza" var="actualiza">
                                                         <s:param name="idusuario"><s:property value="idusuario"/></s:param>
                                                     </s:url>

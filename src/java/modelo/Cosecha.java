@@ -26,7 +26,6 @@ public class Cosecha implements Serializable {
     private Date fecha1;
     private String fech;
     private String fech1;
-    private String tipoalza;
     private Usuarios obrero;
 
     public int getIdcolmena() {
@@ -83,13 +82,7 @@ public class Cosecha implements Serializable {
 
     }
 
-    public String getTipoalza() {
-        return tipoalza;
-    }
-
-    public void setTipoalza(String tipoalza) {
-        this.tipoalza = tipoalza;
-    }
+     
 
     public Colmenas getColmena() {
         return colmena;
@@ -107,10 +100,7 @@ public class Cosecha implements Serializable {
         this.idcosecha = idcosecha;
     }
 
-    @Override
-    public String toString() {
-        return "Cosecha{" + "idcosecha=" + idcosecha + ", idcolmena=" + idcolmena + ", colmena=" + colmena + ", idobrero=" + idobrero + ", marcos=" + marcos + ", pesovacio=" + pesovacio + ", pesolleno=" + pesolleno + ", fecha=" + fecha + ", tipoalza=" + tipoalza + '}';
-    }
+    
 
     public Usuarios getObrero() {
         return obrero;

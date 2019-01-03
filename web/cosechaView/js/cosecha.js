@@ -69,10 +69,7 @@ $(document).ready(function () {
                     celda.append(valorCela);
                     fila.append(celda);
 
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.tipoalza));
-                    celda.append(valorCela);
-                    fila.append(celda);
+                     
 
                     var celda = $((document).createElement('td'));
                     var formulario = $((document).createElement('form'));
@@ -163,10 +160,7 @@ $(document).ready(function () {
                     celda.append(valorCela);
                     fila.append(celda);
 
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.tipoalza));
-                    celda.append(valorCela);
-                    fila.append(celda);
+                    
 
                     var celda = $((document).createElement('td'));
                     var formulario = $((document).createElement('form'));

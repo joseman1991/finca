@@ -17,7 +17,6 @@ public class Colmenas {
     private int idcolmena;
     private int idarea;
     private int nmarcos;
-    private String tipo;
     private String descripcion;
     private int nalza;
     private int idorigen;
@@ -28,6 +27,7 @@ public class Colmenas {
     private Date fechareina;
     private Sectores sector;
     private Origen origen;
+    private Reinas reinas;
 
     public int getIdcolmena() {
         return idcolmena;
@@ -54,13 +54,7 @@ public class Colmenas {
         this.nmarcos = nmarcos;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    
 
     public int getNalza() {
         return nalza;
@@ -102,8 +96,11 @@ public class Colmenas {
         return idreina;
     }
 
-    public void setIdreina(int idreina) {
+    public void setIdreina(int idreina) throws SQLException {
         this.idreina = idreina;
+        reinas= new Reinas();
+        reinas.setIdreina(idreina);
+        reinas=new ReinasDAO().obtenerRegistro(reinas);
     }
 
     public Date getFechareina() {
@@ -151,6 +148,14 @@ public class Colmenas {
 
     public void setOrigen(Origen origen) {
         this.origen = origen;
+    }
+
+    public Reinas getReinas() {
+        return reinas;
+    }
+
+    public void setReinas(Reinas reinas) {
+        this.reinas = reinas;
     }
     
     

@@ -40,12 +40,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="tipoalza">Tipo de Alza</label>   
-                                    <div class="col-sm-5">
-                                        <input  class="form-control" type="text" value="<s:property value="objeto.tipoalza"/>" name="tipoalza" max="45" required=""/> 
-                                    </div>
-                                </div>
+                                 
 
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="fecha">Fecha</label>   

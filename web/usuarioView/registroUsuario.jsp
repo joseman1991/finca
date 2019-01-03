@@ -27,6 +27,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo usuario</h3></div>
                             <div class="panel-body">
+                               <s:if test="mensaje!=null">
+                                    <div class="alert <s:property value="style"/> alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                    </div>
+                                </s:if>                                
                                 <form action="registrar" class="form-horizontal" method="post" id="formulario">
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="idperfil">Perfil</label>
@@ -63,20 +69,50 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nombre">Nombres</label>
+                                        <label class="control-label col-sm-4" for="nombre">Primer Nombre</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control required" name="nombre" maxlength="35" placeholder="nombres"/>
+                                            <input type="text" class="form-control required" name="nombre" maxlength="35" placeholder="Primer nombre"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="apellido">Apellidos</label>
+                                        <label class="control-label col-sm-4" for="nombre2">Segundo Nombre</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control required" name="apellido" maxlength="35" placeholder="apellidos"/>
+                                            <input type="text" class="form-control required" name="nombre2" maxlength="35" placeholder="Segundo nombre"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="apellido">Primer Apellido</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="apellido" maxlength="35" placeholder="Primer apellido"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="apellido2">Segundo Apellido</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="apellido2" maxlength="35" placeholder="Segundo apellido"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="telefono">Teléfono</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="telefono" maxlength="10" placeholder="Teléfono"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="cedula">Cédula</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="cedula" maxlength="10" placeholder="Cédula" id="cedula"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="direccion">Dirección</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control required" name="direccion" maxlength="100" placeholder="Direccion"/>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="button" class=" btn btn-info " value="Registrar" id="boton"/> <br>
-                                        <span class="text-success"><strong><s:property value="mensaje"/></strong></span>
+                                     
                                     </div>
 
                                 </form>
