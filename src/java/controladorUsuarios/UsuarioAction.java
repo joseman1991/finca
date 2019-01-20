@@ -27,6 +27,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     private final UsuarioDAO uDAO;
     private String mensaje;
     private String style;
+    private int rediret;
     private String estado;
     private final HttpSession session;
     private final List<Usuarios> listaUsuarios;
@@ -112,11 +113,11 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             int result = uDAO.actualizarRegistro(usuario);
             System.out.println("aqui");
             if (result > 0) {
-                
+
                 if (usuario.getIdestado() == 1) {
                     mensaje = "Usuario activado";
                     style = "alert-success";
-                } else { 
+                } else {
                     mensaje = "Usuario desactivado";
                     style = "alert-danger";
                 }
@@ -136,7 +137,6 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public String login() {
         try {
-
             usuario = uDAO.obtenerUsusario(usuario);
             if (usuario != null) {
                 session.setAttribute("usuario", usuario);
@@ -221,8 +221,14 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             if (usuario.getIdestado() == 1) {
                 mensaje = "Usuario activado";
                 style = "alert-success";
+                rediret = 0;
             } else {
-                mensaje = "Usuario desactivado";
+                Usuarios u = (Usuarios) session.getAttribute("usuario");
+                System.out.println(u.getIdusuario());
+                if (u.getIdusuario() == usuario.getIdusuario()) {
+                    rediret = 1;
+                }
+                mensaje = "Usuario desactivados";
                 style = "alert-warning";
             }
             estado = "ÉXITO";
@@ -240,7 +246,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             int res = uDAO.actualizarRegistro(usuario);
             if (res > 0) {
                 return SUCCESS;
-            }else{
+            } else {
                 return ERROR;
             }
         } catch (SQLException e) {
@@ -294,6 +300,10 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getRediret() {
+        return rediret;
     }
 
 }

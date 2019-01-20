@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">        
         <title>Actualizar datos</title>
     </head>
     <body>
@@ -35,7 +35,8 @@
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                        <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>. 
+                                        <s:property value="rediret"></s:property>
                                     </div>
                                 </s:if>   
                                 <form action="cambioestado" class="form-horizontal" method="post">
