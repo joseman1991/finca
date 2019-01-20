@@ -52,6 +52,9 @@ values('jemima@hotmail.com','1234567','JEMIMA','SANTILLÁN',1,'CESIA','VILLOTA',
 insert into usuarios(email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono) 
 values('jessica@hotmail.com','1234567','JESSICA','ESTRADA',1,'LIZBETH','ORTIZ','1726051913','BABAHOYO','0967062252');
  
+ 
+ select * from usuarios;
+ 
 -- ----------------------------------------------------------------
 create table provincias (
  idprovincia varchar(2) primary key,
