@@ -10,7 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">        
+        <link href="css/style.css" rel="stylesheet">     
+        <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <title>Actualizar datos</title>
     </head>
     <body>
@@ -23,7 +24,7 @@
 
             <div class="col-md-8">
                 <div class="container">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="panel panel-default">
                             <s:if test="usuario.idestado==1">
                                 <div class="panel-heading"><h3 class="  text-warning">Desactivar Usuario</h3></div>
@@ -36,7 +37,27 @@
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                         <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>. 
-                                        <s:property value="rediret"></s:property>
+
+                                        <s:if test="rediret==1">
+                                            El usuario loggeado ha sido desactivado, se cerrará sesion en <strong><span id="time">3</span>...</strong>
+                                            <script type="text/javascript">
+                                                var tiempo = $("#time");
+                                                (function myLoop(i) {
+                                                    setTimeout(function () {
+                                                        tiempo.html(i);
+                                                        if (i === 1) {
+                                                            window.setTimeout(function () {
+                                                                tiempo.html(0);
+                                                                window.location.href = 'logout';
+                                                            }, 1000);
+                                                        }
+                                                        if (--i)
+                                                            myLoop(i);
+                                                    }, 1000);
+                                                })(2);
+                                            </script>
+                                        </s:if>
+
                                     </div>
                                 </s:if>   
                                 <form action="cambioestado" class="form-horizontal" method="post">
@@ -111,7 +132,6 @@
 
 
 
-        <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

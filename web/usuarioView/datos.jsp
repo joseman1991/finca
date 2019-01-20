@@ -23,7 +23,7 @@
 
             <div class="col-md-8">
                 <div class="container">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Actualizar Datos de Usuario</h3></div>
                             <div class="panel-body">

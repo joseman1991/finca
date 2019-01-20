@@ -139,8 +139,15 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
         try {
             usuario = uDAO.obtenerUsusario(usuario);
             if (usuario != null) {
-                session.setAttribute("usuario", usuario);
-                return SUCCESS;
+                if (usuario.getIdestado() == 1) {
+                    session.setAttribute("usuario", usuario);
+                    return SUCCESS;
+                } else {
+                    estado = "ERROR";
+                    mensaje = "Usuario desactivado, consulta con un administrador";
+                    style = "alert-danger";
+                    return ERROR;
+                }
             } else {
                 mensaje = "Error de credenciales";
                 style = "alert-danger";
