@@ -34,10 +34,9 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
         abrirConexion();
         listaUsuarios.clear();
         campos = "idusuario,email,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
-        camposCondicion = "idusuario";
-        condicion = "where idusuario<>?";
-        super.obtenerLista(listaUsuarios, u);
-
+        camposCondicion = "";
+        condicion = "";
+        super.obtenerLista(listaUsuarios);
         cerrarConexion();
     }
 
@@ -77,7 +76,7 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
 
     public Usuarios obtenerUsusario(Usuarios user) throws SQLException {
         abrirConexion();
-        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
+        campos = "idusuario,email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "email,clave";
         condicion = "where  email=? and clave=?";
         user = super.obtenerRegistro(user);
