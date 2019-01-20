@@ -15,11 +15,13 @@ public class Usuarios {
 
     private int idusuario;
     private int idperfil;
+    private int idestado;
     private String clave;
     private String nombre;
     private String apellido;
     private String email;
     private Perfiles perfil;
+    private Estados estados;
     private String nombre2;
     private String apellido2;
     private String cedula;
@@ -131,6 +133,25 @@ public class Usuarios {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public int getIdestado() {
+        return idestado;
+    }
+
+    public void setIdestado(int idestado) throws SQLException {
+        this.estados= new Estados();
+        this.estados.setIdestado(idestado);
+        this.idestado = idestado;
+        estados= new EstadoDAO().obtenerRegistro(estados);                
+    }
+
+    public Estados getEstados() {
+        return estados;
+    }
+
+    public void setEstados(Estados estados) {
+        this.estados = estados;
     }
 
     

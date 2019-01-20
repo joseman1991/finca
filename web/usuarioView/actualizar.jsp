@@ -63,13 +63,23 @@
                                                     <s:url action="actualiza" var="actualiza">
                                                         <s:param name="idusuario"><s:property value="idusuario"/></s:param>
                                                     </s:url>
+                                                    <s:url action="eliminar" var="eliminar">
+                                                        <s:param name="idusuario"><s:property value="idusuario"/></s:param>
+                                                    </s:url>
                                                     <td>                                                    
                                                         <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar usuario" href="%{actualiza}"> 
                                                             <span class="glyphicon glyphicon-edit"></span>
                                                         </s:a>
-                                                        <s:a cssClass="btn btn-danger" href="%{eliminar}" data-toggle="tooltip" title="Eliminar usuario"> 
-                                                            <span class="glyphicon glyphicon-remove"></span>
-                                                        </s:a>
+                                                        <s:if test="idestado==1" >
+                                                            <s:a cssClass="btn btn-danger" href="%{eliminar}" data-toggle="tooltip" title="Desactivar usuario"> 
+                                                                <span class="glyphicon glyphicon-ban-circle"></span>
+                                                            </s:a>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <s:a cssClass="btn btn-info" href="%{eliminar}" data-toggle="tooltip" title="Activar usuario"> 
+                                                                <span class="glyphicon glyphicon-check"></span>
+                                                            </s:a>
+                                                        </s:else>
                                                     </td>
                                                 </tr>
                                             </s:iterator>

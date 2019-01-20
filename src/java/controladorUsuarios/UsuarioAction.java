@@ -107,6 +107,33 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
         }
     }
 
+    public String cambioEstado() {
+        try {
+            int result = uDAO.actualizarRegistro(usuario);
+            System.out.println("aqui");
+            if (result > 0) {
+                
+                if (usuario.getIdestado() == 1) {
+                    mensaje = "Usuario activado";
+                    style = "alert-success";
+                } else { 
+                    mensaje = "Usuario desactivado";
+                    style = "alert-danger";
+                }
+                estado = "ÉXITO";
+                return SUCCESS;
+            } else {
+                mensaje = "Ha ocurrido un error inesperado";
+                return ERROR;
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            uDAO.cerrarConexion();
+        }
+    }
+
     public String login() {
         try {
 
@@ -175,11 +202,47 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     public String obtenerUsuario2() {
         try {
             usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
-             pdao.obtenerLista(listaPerfiles);
+            pdao.obtenerLista(listaPerfiles);
             mensaje = "Usuario actualizado";
             style = "alert-success";
-                    estado = "ÉXITO";
+            estado = "ÉXITO";
             return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            uDAO.cerrarConexion();
+        }
+    }
+
+    public String obtenerUsuario3() {
+        try {
+            usuario = uDAO.obtenerUsusario(usuario.getIdusuario());
+            if (usuario.getIdestado() == 1) {
+                mensaje = "Usuario activado";
+                style = "alert-success";
+            } else {
+                mensaje = "Usuario desactivado";
+                style = "alert-warning";
+            }
+            estado = "ÉXITO";
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            uDAO.cerrarConexion();
+        }
+    }
+
+    public String cambiarEstado() {
+        try {
+            int res = uDAO.actualizarRegistro(usuario);
+            if (res > 0) {
+                return SUCCESS;
+            }else{
+                return ERROR;
+            }
         } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;

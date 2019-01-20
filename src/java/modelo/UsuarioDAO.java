@@ -33,7 +33,7 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
     public void obtenerLista(Usuarios u) throws SQLException {
         abrirConexion();
         listaUsuarios.clear();
-        campos = "idusuario,email,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono";
+        campos = "idusuario,email,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "idusuario";
         condicion = "where idusuario<>?";
         super.obtenerLista(listaUsuarios, u);
@@ -60,6 +60,16 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
     }
 
     @Override
+    public int actualizarRegistro(Usuarios registro) throws SQLException {
+        campos = "idestado";
+        camposCondicion = "idusuario";
+        condicion = " where idusuario=?";
+        int result = super.actualizarRegistro(registro);
+        cerrarConexion();
+        return result;
+    }
+
+    @Override
     public Usuarios obtenerRegistro(Usuarios dato) throws SQLException {
 
         return super.obtenerRegistro(dato); //To change body of generated methods, choose Tools | Templates.
@@ -67,7 +77,7 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
 
     public Usuarios obtenerUsusario(Usuarios user) throws SQLException {
         abrirConexion();
-        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono";
+        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "email,clave";
         condicion = "where  email=? and clave=?";
         user = super.obtenerRegistro(user);
@@ -79,7 +89,7 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
         Usuarios user = new Usuarios();
         user.setIdusuario(idusuario);
         abrirConexion();
-        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono";
+        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "idusuario";
         condicion = "where idusuario=?";
         user = super.obtenerRegistro(user);
@@ -90,7 +100,7 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
     public Usuarios obtenerUsusario(String email) throws SQLException {
         Usuarios user = null;
         abrirConexion();
-        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono";
+        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "email";
         condicion = "where email=?";
         user = super.obtenerRegistro(user);

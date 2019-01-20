@@ -23,6 +23,14 @@
             </result>
             <result name="error">error.jsp</result>
         </action>
+        
+        <action name="cambioestado" class="controladorUsuarios.UsuarioAction" method="cambioEstado">            
+            <result name="success" type="redirectAction">
+                <param name="actionName">cambioestado1</param>
+                <param  name="idusuario" >${usuario.idusuario}</param>                
+            </result>
+            <result name="error">error.jsp</result>
+        </action>
     </package>
     
     <package name="dinamico" extends="json-default" >

@@ -5,6 +5,16 @@ create database apicola;
 use apicola;
 
 
+
+-- ----------------------------------------------------------------
+create table estados(
+ idestado int not null primary key,
+ descripcion varchar(20)
+);
+
+insert into estados values(1,'ACTIVO');
+insert into estados values(2,'INACTIVO');
+
 -- ----------------------------------------------------------------
 
 create table perfiles(
@@ -27,12 +37,15 @@ create table usuarios(
  apellido varchar(35) not null,
  apellido2 varchar(35) not null,
  idperfil int not null not null,
+ idestado int not null not null default 1,
  cedula varchar(10) not null unique,
  direccion varchar(100) not null,
  telefono varchar(10) not null,
- constraint fk_usuarios_perfiles foreign key (idperfil) references perfiles(idperfil) 
+ constraint fk_usuarios_perfiles foreign key (idperfil) references perfiles(idperfil) on update cascade on delete restrict ,
+ constraint fk_usuarios_estado foreign key (idestado) references estados(idestado) 
  on update cascade on delete restrict 
 );
+
 -- -----------------------------------------------------------------
 insert into usuarios(email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono) 
 values('jemima@hotmail.com','1234567','JEMIMA','SANTILLÁN',1,'CESIA','VILLOTA','1206846774','VINCES','0968603173');
