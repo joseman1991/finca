@@ -38,6 +38,8 @@
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Provincia</th>
+                                    <th>Canton</th>
+                                    <th>Parroquia</th>
                                     <th>Recinto</th>
                                     <th>Dirección</th>
                                     <th>Correo electrónico</th>
@@ -50,7 +52,9 @@
                                             <tr>
                                                 <td><s:property value="idsector"/></td>
                                                 <td><s:property value="nombre"/></td>
-                                                <td><s:property value="provincia.nombreprovincia"/></td>
+                                                <td><s:property value="parroquia.canton.provincia.nombreprovincia"/></td>
+                                                <td><s:property value="parroquia.canton.nombrecanton"/></td>
+                                                <td><s:property value="parroquia.descripcion"/></td>
                                                 <td><s:property value="rcto"/></td>
                                                 <td><s:property value="direccion"/></td>
                                                 <td><s:property value="email"/></td>

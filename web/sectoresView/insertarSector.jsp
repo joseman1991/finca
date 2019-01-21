@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo sector</h3></div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -47,11 +47,33 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia">Provincia</label>
+                                        <label class="control-label col-sm-4" for="idprovincia" >Provincia</label>
                                         <div class="col-sm-5">
-                                            <select class="form-control" name="idprovincia">
+                                            <select class="form-control" name="idprovincia" id="provincia">
                                                 <s:iterator value="listaProvincias">
                                                     <option value="<s:property value="idprovincia"/>"><s:property value="nombreprovincia"/></option>
+                                                </s:iterator>
+                                            </select>
+                                        </div>                     
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="idcanton">Cantón</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" name="idcanton" id="canton">
+                                                <s:iterator value="listaCantones" >
+                                                    <option value="<s:property value="idcanton"/>"><s:property value="nombrecanton"/></option>
+                                                </s:iterator>
+                                            </select>
+                                        </div>                     
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="idparroquia">Parroquia</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" name="idparroquia" id="parroquia">
+                                                <s:iterator value="listaParroquias">
+                                                    <option value="<s:property value="idparroquia"/>"><s:property value="descripcion"/></option>
                                                 </s:iterator>
                                             </select>
                                         </div>                     

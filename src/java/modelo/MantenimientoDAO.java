@@ -43,9 +43,9 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
     public int insertarMantenimiento(Mantenimiento m) throws SQLException {
         abrirConexion();
-        sentencia = conexion.prepareStatement("insert into mantenimiento(tipo, fecha, idobrero, idcolmena, alimentacion) values(?,?,?,?,?)");
+        sentencia = conexion.prepareStatement("insert into mantenimiento(idtipo, fecha, idobrero, idcolmena, alimentacion) values(?,?,?,?,?)");
         int i = 1;
-        sentencia.setString(i++, m.getTipo());
+        sentencia.setInt(i++, m.getIdtipo());
         sentencia.setDate(i++, m.getFecha());
         sentencia.setInt(i++, m.getIdobrero());
         sentencia.setInt(i++, m.getIdcolmena());
@@ -65,7 +65,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
             m = new Mantenimiento();
             int i = 1;
             m.setIdmantenimiento(resultado.getInt(i++));
-            m.setTipo(resultado.getString(i++));
+            m.setIdtipo(resultado.getInt(i++));
             m.setFecha(resultado.getString(i++));
             m.setIdobrero(resultado.getInt(i++));
             m.setIdcolmena(resultado.getInt(i++));
@@ -77,7 +77,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
     @Override
     public void obtenerLista(List lista) throws SQLException {
-        campos = "idmantenimiento, tipo, fecha, idobrero, idcolmena, alimentacion ";
+        campos = "idmantenimiento, idtipo, fecha, idobrero, idcolmena, alimentacion ";
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(lista);
@@ -85,7 +85,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
     @Override
     public int actualizarRegistro(Mantenimiento registro) throws SQLException {
-        campos = "idmantenimiento, tipo, fecha, idobrero, alimentacion ";
+        campos = "idmantenimiento, idtipo, fecha, idobrero, alimentacion ";
         camposCondicion = "idmantenimiento";
         condicion = "where idmantenimiento=?";
         int res = super.actualizarRegistro(registro);
@@ -102,7 +102,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
             Mantenimiento m = new Mantenimiento();
             int i = 1;
             m.setIdmantenimiento(resultado.getInt(i++));
-            m.setTipo(resultado.getString(i++));
+            m.setIdtipo(resultado.getInt(i++));
             m.setFecha(resultado.getString(i++));
             m.setIdobrero(resultado.getInt(i++));
             m.setIdcolmena(resultado.getInt(i++));
@@ -114,14 +114,14 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
 
     @Override
     public void obtenerLista(List<Mantenimiento> lista, Mantenimiento dato) throws SQLException {
-        campos = "idmantenimiento, tipo, fecha, idobrero, idcolmena, alimentacion ";
+        campos = "idmantenimiento, idtipo, fecha, idobrero, idcolmena, alimentacion ";
         camposCondicion = "fecha,fecha2";
         condicion = "where fecha between ? and ?";
         super.obtenerLista(lista, dato);
     }
 
     public void obtenerListaPorColmena(List<Mantenimiento> lista, Mantenimiento c) throws SQLException {
-        campos = "idmantenimiento, tipo, fecha, idobrero, alimentacion ";
+        campos = "idmantenimiento, idtipo, fecha, idobrero, alimentacion ";
         camposCondicion = "idcolmena";
         condicion = "where idcolmena = ?";
         super.obtenerLista(lista, c);
@@ -129,7 +129,7 @@ public class MantenimientoDAO extends ConexionMySQL<Mantenimiento> {
     }
 
     public void obtenerListaPorColmenaFecha(List<Mantenimiento> lista, Mantenimiento c) throws SQLException {
-        campos = "idmantenimiento, tipo, fecha, idobrero, alimentacion ";
+        campos = "idmantenimiento, idtipo, fecha, idobrero, alimentacion ";
         camposCondicion = "idcolmena,fecha,fecha2";
         condicion = "where  idcolmena = ? and fecha between ? and ?";
         super.obtenerLista(lista, c);

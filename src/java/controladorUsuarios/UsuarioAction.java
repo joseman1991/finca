@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import modelo.Cantones;
 import modelo.Perfiles;
 import modelo.PerfilesDAO;
 import modelo.UsuarioDAO;
@@ -38,7 +39,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
         usuario = new Usuarios();
         session = ServletActionContext.getRequest().getSession();
         listaUsuarios = new ArrayList<>();
-        listaPerfiles = new ArrayList<>();
+        listaPerfiles = new ArrayList<>();        
         uDAO = new UsuarioDAO(listaUsuarios);
         pdao = new PerfilesDAO();
     }

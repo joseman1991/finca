@@ -83,13 +83,13 @@ CREATE TABLE parroquia
 CREATE TABLE IF NOT EXISTS sector (
   idsector INT NOT NULL AUTO_INCREMENT primary key,
   nombre VARCHAR(45) NOT NULL,
-  idprovincia VARCHAR(2) NOT NULL,
+  idparroquia VARCHAR(6) NOT NULL,
   rcto VARCHAR(45) NOT NULL,
   direccion VARCHAR(45) NOT NULL,
   email VARCHAR(50) NOT NULL,
   observacion LONGTEXT NOT NULL,
   responsable VARCHAR(50) NOT NULL,
-  constraint fk_provincia_sector foreign key (idprovincia) references provincias(idprovincia) on update cascade on delete restrict
+  constraint fk_provincia_sector foreign key (idparroquia) references parroquia(idparroquia) on update cascade on delete restrict
   );
 
 
@@ -148,12 +148,17 @@ CREATE TABLE IF NOT EXISTS colmena (
 
 -- ----------------------------------------------------------------
 
- 
+ create table tipo(
+  idtipo int not null primary key,
+  descricion varchar(20)
+ );
 
+insert into tipo values(1,'Preventivo');
+insert into tipo values(2,'Correctivo');
 -- ----------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS mantenimiento (
   idmantenimiento INT NOT NULL AUTO_INCREMENT,
-  tipo VARCHAR(45) NOT NULL,
+  idtipo int NOT NULL,
   fecha DATE NOT NULL,
   idobrero INT NOT NULL,
   idcolmena INT NOT NULL,
@@ -162,6 +167,11 @@ CREATE TABLE IF NOT EXISTS mantenimiento (
   CONSTRAINT fk_mantenimiento_colmena
     FOREIGN KEY (idcolmena)
     REFERENCES colmena (idcolmena)
+    ON DELETE restrict
+    ON UPDATE cascade,
+    CONSTRAINT fk_mantenimiento_tipo
+    FOREIGN KEY (idtipo)
+    REFERENCES tipo (idtipo)
     ON DELETE restrict
     ON UPDATE cascade
 );

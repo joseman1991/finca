@@ -18,8 +18,8 @@ public class Sectores implements Serializable {
     
     private int idsector;
     private String nombre;
-    private String idprovincia;
-    private Provincias provincia;
+    private String idparroquia;
+    private Parroquia parroquia;
     private String rcto;
     private String direccion;
     private String email;
@@ -43,13 +43,15 @@ public class Sectores implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getIdprovincia() {
-        return idprovincia;
+    public String getIdparroquia() {
+        return idparroquia;
     }
 
-    public void setIdprovincia(String idprovincia) throws SQLException {
-        provincia= new ProvinciasDAO(null).obtenerProvincia(idprovincia);
-        this.idprovincia = idprovincia;
+    public void setIdparroquia(String idparroquia) throws SQLException {
+        parroquia= new Parroquia();
+        parroquia.setIdparroquia(idparroquia);
+        parroquia= new ParroquiasDAO().obtenerRegistro(parroquia);
+        this.idparroquia = idparroquia;
     }
 
     public String getRcto() {
@@ -92,12 +94,12 @@ public class Sectores implements Serializable {
         this.responsable = responsable;
     }
 
-    public Provincias getProvincia() {
-        return provincia;
+    public Parroquia getParroquia() {
+        return parroquia;
     }
 
-    public void setProvincia(Provincias provincia) {
-        this.provincia = provincia;
+    public void setParroquia(Parroquia parroquia) {
+        this.parroquia = parroquia;
     }
 
     

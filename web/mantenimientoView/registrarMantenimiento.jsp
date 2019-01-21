@@ -40,9 +40,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="tipo">Tipo</label>   
+                                    <label class="control-label col-sm-4" for="idtipo">Tipo</label> 
                                     <div class="col-sm-5">
-                                        <input class="form-control" type="text" name="tipo" max="45" required=""/>       
+                                        <select class="form-control" name="idtipo">
+                                            <s:iterator value="listaTipos">                          
+                                                <option value="<s:property value="idtipo"/>"><s:property value="descricion"/></option>
+                                            </s:iterator>
+                                        </select>
                                     </div>
                                 </div>
 

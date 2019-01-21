@@ -5,21 +5,27 @@
  */
 package modelo;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author
  */
 public class Parroquia {
-    
+
     private String idcanton;
-   private Cantones canton;
+    private String descripcion;
+    private Cantones canton;
     private String idparroquia;
 
     public String getIdcanton() {
         return idcanton;
     }
 
-    public void setIdcanton(String idcanton) {
+    public void setIdcanton(String idcanton) throws SQLException {
+        canton = new Cantones();
+        canton.setIdcanton(idcanton);
+        canton = new CantonesDAO().obtenerRegistro(canton);
         this.idcanton = idcanton;
     }
 
@@ -29,7 +35,7 @@ public class Parroquia {
 
     public void setCanton(Cantones canton) {
         this.canton = canton;
-    }    
+    }
 
     public String getIdparroquia() {
         return idparroquia;
@@ -38,7 +44,13 @@ public class Parroquia {
     public void setIdparroquia(String idparroquia) {
         this.idparroquia = idparroquia;
     }
-    
-    
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 }

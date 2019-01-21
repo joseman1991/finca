@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Cantones;
+import modelo.CantonesDAO;
+import modelo.Parroquia;
+import modelo.ParroquiasDAO;
 import modelo.Provincias;
 import modelo.ProvinciasDAO;
 import modelo.Sectores;
@@ -27,9 +31,17 @@ import org.apache.struts2.ServletActionContext;
 public class SectoresAction extends ActionSupport implements ModelDriven<Sectores> {
 
     private final List<Provincias> listaProvincias;
+    private final List<Cantones> listaCantones;
+    private final List<Parroquia> listaParroquias;
+
+    private Parroquia p;
+    private Cantones c;
+
     private final List<Sectores> listaSectores;
     private final ProvinciasDAO pdao;
     private final SectoresDAO sdao;
+    private final ParroquiasDAO parroquiasDAO;
+    private final CantonesDAO cdao;
 
     private Sectores sector;
 
@@ -43,9 +55,13 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
     public SectoresAction() {
         sector = new Sectores();
         listaProvincias = new ArrayList<>();
+        listaCantones = new ArrayList<>();
+        listaParroquias = new ArrayList<>();
         listaSectores = new ArrayList<>();
         pdao = new ProvinciasDAO(listaProvincias);
         sdao = new SectoresDAO(listaSectores);
+        parroquiasDAO = new ParroquiasDAO();
+        cdao = new CantonesDAO();
         session = ServletActionContext.getRequest().getSession();
         response = ServletActionContext.getResponse();
     }
@@ -99,7 +115,13 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
             Usuarios u = (Usuarios) session.getAttribute("usuario");
             if (u != null) {
                 pdao.obtnerListas();
-            } else {             
+                c = new Cantones();
+                p = new Parroquia();
+                c.setIdprovincia("01");
+                p.setIdcanton("0101");
+                cdao.obtenerLista(listaCantones, c);
+                parroquiasDAO.obtenerLista(listaParroquias, p);
+            } else {
                 response.sendRedirect("login");
             }
 
@@ -112,10 +134,59 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         }
     }
 
+    public String obtenerCantones() {
+        try {
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            if (u != null) {
+                cdao.obtenerLista(listaCantones, c);
+                if (listaCantones != null) {
+                    if (listaCantones.size() > 0) {
+                        p = new Parroquia();
+                        p.setIdcanton(listaCantones.get(0).getIdcanton());
+                        parroquiasDAO.obtenerLista(listaParroquias, p);
+                    }
+                }
+
+            } else {
+                response.sendRedirect("login");
+            }
+
+            return SUCCESS;
+        } catch (SQLException | IOException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            pdao.cerrarConexion();
+        }
+    }
+
+    public String obtenerParroquias() {
+        try {
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            if (u != null) {               
+                parroquiasDAO.obtenerLista(listaParroquias, p);
+            } else {
+                response.sendRedirect("login");
+            } 
+
+            return SUCCESS;
+        } catch (SQLException | IOException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            pdao.cerrarConexion();
+        }
+    }
+
     public String obtenerProvincias2() {
         try {
-
             pdao.obtnerListas();
+            c = new Cantones();
+            p = new Parroquia();
+            c.setIdprovincia("01");
+            p.setIdcanton("0101");
+            cdao.obtenerLista(listaCantones, c);
+            parroquiasDAO.obtenerLista(listaParroquias, p);
             mensaje = "Necesitas al menos un sector para registrar una colmena";
             style = "alert-danger";
             estado = "ERROR";
@@ -196,6 +267,22 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public List<Cantones> getListaCantones() {
+        return listaCantones;
+    }
+
+    public List<Parroquia> getListaParroquias() {
+        return listaParroquias;
+    }
+
+    public void setP(Parroquia p) {
+        this.p = p;
+    }
+
+    public void setC(Cantones c) {
+        this.c = c;
     }
 
 }

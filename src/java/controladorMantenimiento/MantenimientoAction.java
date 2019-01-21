@@ -18,6 +18,8 @@ import modelo.ColmenasDAO;
 import modelo.ConexionMySQL;
 import modelo.Mantenimiento;
 import modelo.MantenimientoDAO;
+import modelo.Tipo;
+import modelo.TipoDAO;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -27,10 +29,12 @@ import net.sf.jasperreports.engine.JRException;
 public class MantenimientoAction extends Action<Mantenimiento> {
 
     private final MantenimientoDAO mdao;
+    
     private Mantenimiento mantenimiento;
     private final List<Mantenimiento> listaMantenimientos;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
+    
 
     private final Gson gson;
     private final String ruta;
@@ -39,10 +43,12 @@ public class MantenimientoAction extends Action<Mantenimiento> {
 
     public MantenimientoAction() {
         listaMantenimientos = new ArrayList<>();
+       
         mdao = new MantenimientoDAO(listaMantenimientos);
         mantenimiento = new Mantenimiento();
         listaColmenas = new ArrayList<>();
         cdao = new ColmenasDAO(listaColmenas);
+        
         gson = new Gson();
         this.ruta = session.getServletContext().getRealPath("/reportes");
         archivo = "";
@@ -73,7 +79,7 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             return ERROR;
         }
     }
-   
+
     public String obtenerReporteM() {
         MantenimientoDAO c = new MantenimientoDAO();
         try {
@@ -127,10 +133,10 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             conexion.cerrarConexion();
         }
     }
-    
-    public String obtenerListaMantenimientoColmena() {        
-        try {            
-            mdao.obtenerListaPorColmena(listaMantenimientos, mantenimiento);            
+
+    public String obtenerListaMantenimientoColmena() {
+        try {
+            mdao.obtenerListaPorColmena(listaMantenimientos, mantenimiento);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -139,9 +145,10 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             mdao.cerrarConexion();
         }
     }
-    public String obtenerListaMantenimientoColmenaFecha() {        
-        try {            
-            mdao.obtenerListaPorColmenaFecha(lista, mantenimiento);      
+
+    public String obtenerListaMantenimientoColmenaFecha() {
+        try {
+            mdao.obtenerListaPorColmenaFecha(lista, mantenimiento);
             json = gson.toJson(lista);
             return SUCCESS;
         } catch (SQLException e) {

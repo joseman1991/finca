@@ -42,9 +42,9 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
     protected void abrirConexion() throws SQLException {
         String url;
         String usuario = ("root");
-        String clave = ("mariadb");
+        String clave = ("mysql");
         String BaseDeDatos = ("apicola");
-        String puerto = ("3307");
+        String puerto = ("3306");
         String servidor = ("localhost");
         try {
             Class.forName("com.mysql.jdbc.Driver");

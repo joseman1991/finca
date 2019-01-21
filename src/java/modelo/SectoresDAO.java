@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author 
+ * @author
  */
 public class SectoresDAO extends ConexionMySQL<Sectores> {
 
@@ -22,11 +22,11 @@ public class SectoresDAO extends ConexionMySQL<Sectores> {
 
     public int insertarSector(Sectores sector) throws SQLException {
         abrirConexion();
-        sentencia = conexion.prepareStatement("insert into sector(nombre,idprovincia,rcto,direccion,email,observacion,responsable)"
+        sentencia = conexion.prepareStatement("insert into sector(nombre,idparroquia,rcto,direccion,email,observacion,responsable)"
                 + " values(?,?,?,?,?,?,?)");
         int i = 1;
         sentencia.setString(i++, sector.getNombre());
-        sentencia.setString(i++, sector.getIdprovincia());
+        sentencia.setString(i++, sector.getIdparroquia());
         sentencia.setString(i++, sector.getRcto());
         sentencia.setString(i++, sector.getDireccion());
         sentencia.setString(i++, sector.getEmail());
@@ -39,11 +39,11 @@ public class SectoresDAO extends ConexionMySQL<Sectores> {
 
     public int actualizarSector(Sectores sector) throws SQLException {
         abrirConexion();
-        sentencia = conexion.prepareStatement("update sector set nombre=?,idprovincia=?,rcto=?,direccion=?,email=?,observacion=?,responsable=?"
+        sentencia = conexion.prepareStatement("update sector set nombre=?,idparroquia=?,rcto=?,direccion=?,email=?,observacion=?,responsable=?"
                 + " where idsector=?");
         int i = 1;
         sentencia.setString(i++, sector.getNombre());
-        sentencia.setString(i++, sector.getIdprovincia());
+        sentencia.setString(i++, sector.getIdparroquia());
         sentencia.setString(i++, sector.getRcto());
         sentencia.setString(i++, sector.getDireccion());
         sentencia.setString(i++, sector.getEmail());
@@ -66,8 +66,7 @@ public class SectoresDAO extends ConexionMySQL<Sectores> {
             int i = 1;
             s.setIdsector(resultado.getInt(i++));
             s.setNombre(resultado.getString(i++));
-            s.setProvincia(new ProvinciasDAO(null).obtenerProvincia(resultado.getString(i++)));
-            s.setIdprovincia(s.getProvincia().getIdprovincia());
+            s.setIdparroquia(resultado.getString(i++));
             s.setRcto(resultado.getString(i++));
             s.setDireccion(resultado.getString(i++));
             s.setEmail(resultado.getString(i++));
@@ -80,17 +79,14 @@ public class SectoresDAO extends ConexionMySQL<Sectores> {
 
     public void obtenerSectors() throws SQLException {
         abrirConexion();
-
         sentencia = conexion.prepareStatement("select * from sector");
-
         resultado = sentencia.executeQuery();
         while (resultado.next()) {
             Sectores s = new Sectores();
             int i = 1;
             s.setIdsector(resultado.getInt(i++));
             s.setNombre(resultado.getString(i++));
-            s.setProvincia(new ProvinciasDAO(null).obtenerProvincia(resultado.getString(i++)));
-            s.setIdprovincia(s.getProvincia().getIdprovincia());
+            s.setIdparroquia(resultado.getString(i++));
             s.setRcto(resultado.getString(i++));
             s.setDireccion(resultado.getString(i++));
             s.setEmail(resultado.getString(i++));

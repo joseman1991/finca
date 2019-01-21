@@ -16,4 +16,31 @@
             <result name="error">error.jsp</result>
         </action>        
     </package>
+    
+    
+      <package name="dinamico2" extends="json-default" >
+        <interceptors>
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="json">
+                    <param name="enableSMD">true</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="defaultStack" />
+        
+        <action name="obtenerCantones" class="controladorSectores.SectoresAction" method="obtenerCantones">
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>   
+        </action>
+        
+        <action name="obtenerParroquias" class="controladorSectores.SectoresAction" method="obtenerParroquias">
+            <result name="success" type="json"></result>
+            <result name="error" type="json"></result>   
+        </action>
+        
+        
+        
+        
+    </package>
+    
 </struts>

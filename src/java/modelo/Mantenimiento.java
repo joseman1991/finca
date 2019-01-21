@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Mantenimiento implements Serializable {
 
     private int idmantenimiento;
-    private String tipo;
+    private int idtipo;
     private Date fecha;
     private Date fecha2;
     private String fech;
@@ -26,6 +26,7 @@ public class Mantenimiento implements Serializable {
     private int alimentacion;
     private Colmenas colmena;
     private Usuarios obrero;
+    private Tipo tipo;
 
     public int getIdmantenimiento() {
         return idmantenimiento;
@@ -36,12 +37,15 @@ public class Mantenimiento implements Serializable {
         this.idmantenimiento = idmantenimiento;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getIdtipo() {
+        return idtipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setIdtipo(int idtipo) throws SQLException {
+        tipo= new Tipo();
+        tipo.setIdtipo(idtipo);
+        tipo= new TipoDAO().obtenerRegistro(tipo);
+        this.idtipo = idtipo;
     }
 
     public Date getFecha() {

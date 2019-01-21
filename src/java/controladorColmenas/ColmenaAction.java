@@ -20,6 +20,8 @@ import modelo.Reinas;
 import modelo.ReinasDAO;
 import modelo.Sectores;
 import modelo.SectoresDAO;
+import modelo.Tipo;
+import modelo.TipoDAO;
 
 /**
  *
@@ -39,6 +41,9 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
     private final List<Reinas> listaReinas;
+    
+    private final TipoDAO tdao;
+    private final List<Tipo> listaTipos;
 
     public ColmenaAction() {
         this.listaOrigen = new ArrayList<>();
@@ -51,6 +56,7 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
         colmena = new Colmenas();
         rdao = new ReinasDAO();
         listaReinas = new ArrayList<>();
+         listaTipos = new ArrayList<>(); tdao = new TipoDAO();
     }
 
     public String insertarColmena() {
@@ -137,7 +143,7 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
             sdao.obtenerSectors();
             odao.obtnerListas();
             rdao.obtenerLista(listaReinas);
-
+            tdao.obtenerLista(listaTipos);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -162,6 +168,10 @@ public class ColmenaAction extends ActionSupport implements ModelDriven<Colmenas
 
     public Colmenas getColmena() {
         return colmena;
+    }
+
+    public List<Tipo> getListaTipos() {
+        return listaTipos;
     }
 
     public void setColmena(Colmenas colmena) {
