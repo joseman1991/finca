@@ -31,12 +31,20 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
     }
 
     public void obtenerLista(Usuarios u) throws SQLException {
-        abrirConexion();
         listaUsuarios.clear();
         campos = "idusuario,email,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
         camposCondicion = "";
         condicion = "";
         super.obtenerLista(listaUsuarios);
+        cerrarConexion();
+    }
+
+    public void obtenerListaAdmin(List<Usuarios> lista, Usuarios u) throws SQLException {
+        lista.clear();
+        campos = "idusuario,email,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
+        camposCondicion = "idusuario";
+        condicion = "where idusuario<>? and idperfil=1";
+        super.obtenerLista(lista, u);
         cerrarConexion();
     }
 
@@ -69,9 +77,13 @@ public class UsuarioDAO extends ConexionMySQL<Usuarios> {
     }
 
     @Override
-    public Usuarios obtenerRegistro(Usuarios dato) throws SQLException {
-
-        return super.obtenerRegistro(dato); //To change body of generated methods, choose Tools | Templates.
+    public Usuarios obtenerRegistro(Usuarios user) throws SQLException {
+        campos = "email,clave,nombre,apellido,idperfil,nombre2,apellido2,cedula,direccion,telefono,idestado";
+        camposCondicion = "idusuario";
+        condicion = "where idusuario=?";
+        user = super.obtenerRegistro(user);
+        cerrarConexion();
+        return user;
     }
 
     public Usuarios obtenerUsusario(Usuarios user) throws SQLException {
