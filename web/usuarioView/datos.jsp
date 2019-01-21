@@ -23,10 +23,10 @@
 
             <div class="col-md-8">
                 <div class="container">
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Actualizar Datos de Usuario</h3></div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -65,7 +65,7 @@
 
 
                                     <div class="form-group">
-                                        <label for="email" class="control-label col-sm-4">Correo</label> 
+                                        <label for="email" class="control-label col-sm-4">Correo *</label> 
                                         <div class="col-sm-5">
                                             <input type="email" class="form-control required" name="email" maxlength="35" value="<s:property value="usuario.email"/>" required="" id="correo" autocomplete="off"/>
                                             <label class="error" style="display: none" id="userError"><strong>Correo ya se encuentra registrado</strong></label>
@@ -73,59 +73,59 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="clave" class="control-label col-sm-4">Contraseña</label>
+                                        <label for="clave" class="control-label col-sm-4">Contraseña *</label>
                                         <div class="col-sm-5">
                                             <input type="password" class="form-control required" name="pclave" minlength="5" maxlength="16" value="<s:property value="usuario.clave"/>" required="" id="pclave"/>
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
-                                        <label for="clave" class="control-label col-sm-4">Repite la Contraseña</label>
+                                        <label for="clave" class="control-label col-sm-4">Repite la Contraseña *</label>
                                         <div class="col-sm-5">
                                             <input type="password" class="form-control required" name="clave"  maxlength="16" value="<s:property value="usuario.clave"/>"required=""/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="nombre" class="control-label col-sm-4">Primer Nombre</label>
+                                        <label for="nombre" class="control-label col-sm-4">Primer Nombre *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="nombre" maxlength="35" value="<s:property value="usuario.nombre"/>"required=""/>
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
-                                        <label for="nombre" class="control-label col-sm-4">Segundo Nombre</label>
+                                        <label for="nombre" class="control-label col-sm-4">Segundo Nombre *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="nombre2" maxlength="35" value="<s:property value="usuario.nombre2"/>"required=""/>
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Apellido paterno</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Apellido paterno *</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="apellido" maxlength="35" value="<s:property value="usuario.apellido"/>" required=""/> 
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Apellido materno</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Apellido materno *</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="apellido2" maxlength="35" value="<s:property value="usuario.apellido2"/>" required=""/> 
                                         </div>                                       
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Dirección</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Dirección *</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="direccion" maxlength="35" value="<s:property value="usuario.direccion"/>" required=""/> 
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Teléfono</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Teléfono *</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="telefono" maxlength="35" value="<s:property value="usuario.telefono"/>" required=""/> 
                                         </div>                                       
                                     </div>
                                     <div class="form-group">
-                                        <label for="apellido" class="control-label col-sm-4">Cédula</label>   
+                                        <label for="apellido" class="control-label col-sm-4">Cédula *</label>   
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="cedula" maxlength="35" value="<s:property value="usuario.cedula"/>" required=""/> 
                                         </div>                                       
@@ -133,6 +133,7 @@
 
                                     <div class=" form-group col-sm-4 pull-right" >
                                         <input class="btn btn-info" type="button" value="Actualizar" id="boton"/> <br>
+                                        <small>(*) Campos Obligatiorios</small>
                                     </div>
 
                                     <input type="hidden" name="idusuario" value="<s:property value="idusuario"/>" id="idusuario"/>

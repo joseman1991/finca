@@ -30,6 +30,8 @@ public class CosechaAction extends Action<Cosecha> {
     private final Gson gson;
     private final String ruta;
     private String archivo;
+    private String style, estado;
+    
 
     public CosechaAction() {
         objeto = new Cosecha();
@@ -82,6 +84,7 @@ public class CosechaAction extends Action<Cosecha> {
             c.cerrarConexion();
         }
     }
+
     public String obtenerReporteC() {
         CosechaDAO c = new CosechaDAO();
         try {
@@ -112,7 +115,7 @@ public class CosechaAction extends Action<Cosecha> {
         CosechaDAO c = new CosechaDAO();
         try {
             c.obtenerListaPorColmenaFecha(lista, cos);
-             json = gson.toJson(lista);
+            json = gson.toJson(lista);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -145,6 +148,8 @@ public class CosechaAction extends Action<Cosecha> {
             conexion = new CosechaDAO();
             int res = conexion.insertarRegistro(objeto);
             if (res > 0) {
+                style = "alert-success";
+                estado = "ÉXITO";
                 mensaje = "Cosecha realizada con éxito";
             }
         } catch (SQLException e) {
@@ -160,9 +165,11 @@ public class CosechaAction extends Action<Cosecha> {
         try {
             cdao2.obtenerListaColmenas();
             CosechaDAO c = new CosechaDAO();
-
             int res = c.actualizarRegistro(objeto);
             if (res > 0) {
+                cos=c.obtenerRegistro(objeto);
+                 style = "alert-success";
+                estado = "ÉXITO";
                 mensaje = "Cosecha actualizada con éxito";
                 return SUCCESS;
             } else {
@@ -203,5 +210,24 @@ public class CosechaAction extends Action<Cosecha> {
     public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+    
 
 }

@@ -28,7 +28,7 @@
 
             <div class="col-md-8 col-lg-8">
                 <div class="container col-md-12">
-                    <div class="col-md-12 col-lg-12">
+                    <div class="col-md-9 col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Lista de sectores</h3></div>
                             <div class="panel-body">

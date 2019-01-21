@@ -33,7 +33,7 @@
                 <div class="container col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Listado de mantenimiento de la colmena <s:property value="mantenimiento.colmena.descripcion"/></h3></div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
 
                             <div class="row">
                                 <form class="form-inline col-md-12" action="imprimirc" method="post" target="_blank">

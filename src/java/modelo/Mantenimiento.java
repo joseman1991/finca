@@ -122,4 +122,15 @@ public class Mantenimiento implements Serializable {
         this.fech2 = fech2;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+    
+    
+    
+
 }

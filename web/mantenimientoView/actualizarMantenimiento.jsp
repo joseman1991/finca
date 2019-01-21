@@ -29,7 +29,13 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Registrar nuevo mantenimiento</h3></div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
+                            <s:if test="mensaje!=null">
+                                <div class="alert <s:property value="style"/> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                </div>
+                            </s:if>
                             <form class="form-horizontal" action="mantenimientactualizado" method="post">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="Colmena">Colmena</label>
@@ -40,14 +46,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="tipo">Tipo</label>   
+                                    <label class="control-label col-sm-4" for="idtipo">Tipo *</label> 
                                     <div class="col-sm-5">
-                                        <input class="form-control" type="text" value="<s:property value="mantenimiento.tipo"/>" name="tipo" max="45" required=""/>       
+                                        <select class="form-control" name="idtipo">
+                                            <s:iterator value="listaTipos">   
+                                                <s:if test="idtipo==mantenimiento.idtipo">
+                                                    <option value="<s:property value="idtipo"/>" selected><s:property value="descricion"/></option>
+                                                </s:if>
+                                                <s:else>
+                                                    <option value="<s:property value="idtipo"/>"><s:property value="descricion"/></option>
+                                                </s:else>
+
+                                            </s:iterator>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="fecha">Fecha</label>   
+                                    <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
                                     <div class="col-sm-5">
                                         <input class="form-control" type="text" value="<s:date name="mantenimiento.fecha" format="yyyy-MM-dd"/>" name="fecha" max="45" required="" readonly="" id="datepicker"/> 
 
@@ -70,7 +86,7 @@
                                 </div>
 
                                 <div class="form-group" id="divAli" style="display: none">
-                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion </label>
+                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion *</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" type="number" name="alimentacion"  value="<s:property value="mantenimiento.alimentacion"/>" min="0" required="" id="alim"/> 
                                     </div>
@@ -78,7 +94,7 @@
 
                                 <div class="form-group col-sm-4 pull-right"  >
                                     <input type="submit" class=" btn btn-info " value="Actualizar Mantenimiento"/> <br>
-                                    <span class="text-success"><b><s:property value="mensaje"/></b></span>
+                                    <small>(*) Campos Obligatiorios</small>
                                 </div>      
 
                             </form> 

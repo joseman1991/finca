@@ -26,7 +26,7 @@
 
 
 
-                    <div class="col-md-12">
+                    <div class="col-md-9 col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo sector</h3></div>
                             <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
@@ -40,14 +40,14 @@
                                 <form class="form-horizontal" action="registrarsector" method="post" id="sector">
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4"  for="nombre">Nombre Sector</label>   
+                                        <label class="control-label col-sm-4"  for="nombre">Nombre Sector *</label>   
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="nombre" maxlength="45" required=""/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia" >Provincia</label>
+                                        <label class="control-label col-sm-4" for="idprovincia" >Provincia *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idprovincia" id="provincia">
                                                 <s:iterator value="listaProvincias">
@@ -56,9 +56,9 @@
                                             </select>
                                         </div>                     
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idcanton">Cantón</label>
+                                        <label class="control-label col-sm-4" for="idcanton">Cantón *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idcanton" id="canton">
                                                 <s:iterator value="listaCantones" >
@@ -67,9 +67,9 @@
                                             </select>
                                         </div>                     
                                     </div>
-                                    
+
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idparroquia">Parroquia</label>
+                                        <label class="control-label col-sm-4" for="idparroquia">Parroquia *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idparroquia" id="parroquia">
                                                 <s:iterator value="listaParroquias">
@@ -80,7 +80,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="rcto">Recinto</label> 
+                                        <label class="control-label col-sm-4" for="rcto">Recinto *</label> 
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="rcto" maxlength="45" required=""/> 
                                         </div>
@@ -88,7 +88,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="direccion">Dirección</label>   
+                                        <label class="control-label col-sm-4" for="direccion">Dirección *</label>   
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="direccion" maxlength="45" required=""/> 
                                         </div>
@@ -96,7 +96,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="email">Correo Electrónico</label>   
+                                        <label class="control-label col-sm-4" for="email">Correo Electrónico *</label>   
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="email" name="email" maxlength="50" required=""/>    
                                         </div>            
@@ -104,7 +104,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="observacion">Observación</label>   
+                                        <label class="control-label col-sm-4" for="observacion">Observación *</label>   
                                         <div class="col-sm-5">
                                             <textarea class="form-control required" name="observacion" cols="1" rows="10"></textarea> 
                                         </div>
@@ -112,14 +112,15 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="responsable">Responsable</label>   
+                                        <label class="control-label col-sm-4" for="responsable">Responsable *</label>   
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="responsable" maxlength="50" required=""/> 
                                         </div>
                                     </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                        <input type="submit" class=" btn btn-info " value="Registrar sector" id="btn-sector"/> <br>                                         
+                                        <input type="submit" class=" btn btn-info " value="Registrar sector" id="btn-sector"/> <br>  
+                                        <small>(*) Campos Obligatiorios</small>
                                     </div>
                                 </form>
                             </div>

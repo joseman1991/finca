@@ -24,10 +24,10 @@
             <div class="col-md-8">
                 <div class="container">
 
-                    <div class="col-md-12">
+                    <div class="col-md-9 col-lg-12" >
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo sector</h3></div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -46,21 +46,51 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="idprovincia">Provincia</label>
                                         <div class="col-sm-5">
-
                                             <select class="form-control" name="idprovincia">
-
                                                 <s:iterator value="listaProvincias">                                                    
-                                                    <s:if test="idprovincia.equals(sector.idprovincia)">                                                       
+                                                    <s:if test="idprovincia.equals(sector.parroquia.canton.idprovincia)">                                                       
                                                         <option value="<s:property value="idprovincia"/>" selected><s:property value="nombreprovincia"/></option>                                                         
                                                     </s:if>
                                                     <s:else>                                                        
                                                         <option value="<s:property value="idprovincia"/>"><s:property value="nombreprovincia"/></option>
                                                     </s:else>
+                                                </s:iterator>
+                                            </select>
+                                        </div> 
 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="idcanton">Cantón</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" name="idcanton" id="canton">
+                                                <s:iterator value="listaCantones" >
+                                                    <s:if test="idcanton.equals(sector.parroquia.canton.idcanton)">  
+                                                        <option value="<s:property value="idcanton"/>" selected><s:property value="nombrecanton"/></option>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <option value="<s:property value="idcanton"/>"><s:property value="nombrecanton"/></option>
+                                                    </s:else>
                                                 </s:iterator>
                                             </select>
                                         </div>                     
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="idparroquia">Parroquia</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" name="idparroquia" id="parroquia">
+                                                <s:iterator value="listaParroquias">
+                                                    <s:if test="idparroquia.equals(sector.parroquia.idparroquia)"> 
+                                                        <option value="<s:property value="idparroquia"/>" selected><s:property value="descripcion"/></option>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <option value="<s:property value="idparroquia"/>"><s:property value="descripcion"/></option>
+                                                    </s:else>
+                                                </s:iterator>
+                                            </select>
+                                        </div>   
+                                    </div>   
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="rcto">Recinto</label> 
@@ -103,7 +133,7 @@
 
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="submit" class=" btn btn-info " value="Actualizar sector" id="btn-sector"/> <br>
-                                          
+                                        <small>(*) Campos Obligatiorios</small>
                                     </div>
                                 </form>
                             </div>

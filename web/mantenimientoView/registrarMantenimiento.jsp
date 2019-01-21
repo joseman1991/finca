@@ -29,7 +29,7 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Registrar nuevo mantenimiento</h3></div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                             <form class="form-horizontal" action="mantenimientogistrado" method="post">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="Colmena">Colmena</label>
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="idtipo">Tipo</label> 
+                                    <label class="control-label col-sm-4" for="idtipo">Tipo *</label> 
                                     <div class="col-sm-5">
                                         <select class="form-control" name="idtipo">
                                             <s:iterator value="listaTipos">                          
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="fecha">Fecha</label>   
+                                    <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
                                     <div class="col-sm-5">
                                         <input class="form-control" type="text" value="<s:date name="new java.util.Date()" format="yyyy-MM-dd"/>" name="fecha" max="45" required="" readonly="" id="datepicker"/> 
 
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="form-group" id="divAli" style="display: none">
-                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion </label>
+                                    <label class="control-label col-sm-4" for="alimentacion"> Valor de Alimentacion *</label>
                                     <div class="col-sm-5"> 
                                         <input class="form-control checkbox-inline" type="number" name="alimentacion" value="0" min="0" required="" id="alim"/> 
                                     </div>
@@ -84,7 +84,7 @@
 
                                 <div class="form-group col-sm-4 pull-right"  >
                                     <input type="submit" class=" btn btn-info " value="Registrar Mantenimiento"/> <br>
-                                    <span><s:property value="mensaje"/></span>
+                                   <small>(*) Campos Obligatiorios</small>
                                 </div>      
 
                             </form> 

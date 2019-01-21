@@ -34,7 +34,9 @@ public class MantenimientoAction extends Action<Mantenimiento> {
     private final List<Mantenimiento> listaMantenimientos;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
+    private final List<Tipo> listaTipos;
     
+    private final TipoDAO tdao;
 
     private final Gson gson;
     private final String ruta;
@@ -43,7 +45,9 @@ public class MantenimientoAction extends Action<Mantenimiento> {
 
     public MantenimientoAction() {
         listaMantenimientos = new ArrayList<>();
+        listaTipos = new ArrayList<>();
        
+        tdao= new TipoDAO();
         mdao = new MantenimientoDAO(listaMantenimientos);
         mantenimiento = new Mantenimiento();
         listaColmenas = new ArrayList<>();
@@ -105,12 +109,17 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             conexion.cerrarConexion();
         }
     }
+    
+    private String style, estado;
 
     public String actualizarMantenimiento() {
         try {
+            
             mdao.actualizarRegistro(mantenimiento);
             mantenimiento = mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
             mensaje = "Mantenimiento correctamente actualizado";
+             style = "alert-success";
+                estado = "ÉXITO";
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -134,6 +143,24 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         }
     }
 
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
+    
     public String obtenerListaMantenimientoColmena() {
         try {
             mdao.obtenerListaPorColmena(listaMantenimientos, mantenimiento);
@@ -162,6 +189,7 @@ public class MantenimientoAction extends Action<Mantenimiento> {
     public String obtenerMantenimiento() {
         try {
             mantenimiento = mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
+            tdao.obtenerLista(listaTipos);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -193,5 +221,11 @@ public class MantenimientoAction extends Action<Mantenimiento> {
     public String getJson() {
         return json;
     }
+
+    public List<Tipo> getListaTipos() {
+        return listaTipos;
+    }
+    
+    
 
 }

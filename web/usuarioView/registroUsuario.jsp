@@ -23,10 +23,10 @@
 
             <div class="col-md-8 col-sm-8">
                 <div class="container col-md-12">
-                    <div class="col-md-12">
+                    <div class="col-md-9 col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo usuario</h3></div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                                <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -35,7 +35,7 @@
                                 </s:if>                                
                                 <form action="registrar" class="form-horizontal" method="post" id="formulario">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idperfil">Perfil</label>
+                                        <label class="control-label col-sm-4" for="idperfil">Perfil *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idperfil">
                                                 <s:iterator value="listaPerfiles">
@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="email">Correo</label>
+                                        <label class="control-label col-sm-4" for="email">Correo *</label>
                                         <div class="col-sm-5">
                                             <input type="email" class="form-control required" name="email"  maxlength="35" placeholder="correo electronico" id="email" autocomplete="off"/>
                                             <label class="error" style="display: none" id="userError"><strong>Correo ya se encuentra registrado</strong></label>
@@ -57,71 +57,67 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="clave">Contraseña</label>  
+                                        <label class="control-label col-sm-4" for="clave">Contraseña *</label>  
                                         <div class="col-sm-5">
                                             <input type="password" class="form-control required" minlength="5" name="pclave" maxlength="16" placeholder="contraseña" id="pclave"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="clave">Repite Contraseña</label>  
+                                        <label class="control-label col-sm-4" for="clave">Repite Contraseña *</label>  
                                         <div class="col-sm-5">
                                             <input type="password" class="form-control required" name="clave" maxlength="16" placeholder="escrbe la contraseña de nuevo" id="clave"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nombre">Primer Nombre</label>
+                                        <label class="control-label col-sm-4" for="nombre">Primer Nombre *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="nombre" maxlength="35" placeholder="Primer nombre"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nombre2">Segundo Nombre</label>
+                                        <label class="control-label col-sm-4" for="nombre2">Segundo Nombre *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="nombre2" maxlength="35" placeholder="Segundo nombre"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="apellido">Primer Apellido</label>
+                                        <label class="control-label col-sm-4" for="apellido">Primer Apellido *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="apellido" maxlength="35" placeholder="Primer apellido"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="apellido2">Segundo Apellido</label>
+                                        <label class="control-label col-sm-4" for="apellido2">Segundo Apellido *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="apellido2" maxlength="35" placeholder="Segundo apellido"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="telefono">Teléfono</label>
+                                        <label class="control-label col-sm-4" for="telefono">Teléfono *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="telefono" maxlength="10" placeholder="Teléfono"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="cedula">Cédula</label>
+                                        <label class="control-label col-sm-4" for="cedula">Cédula *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="cedula" maxlength="10" placeholder="Cédula" id="cedula"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="direccion">Dirección</label>
+                                        <label class="control-label col-sm-4" for="direccion">Dirección *</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control required" name="direccion" maxlength="100" placeholder="Direccion"/>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="button" class=" btn btn-info " value="Registrar" id="boton"/> <br>
-                                     
+                                        <small>(*) Campos Obligatiorios</small>
                                     </div>
-
                                 </form>
-
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 

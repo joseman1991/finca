@@ -28,8 +28,14 @@
                 <div class="container col-md-12">
 
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="text-warning">Registrar nueva cosecha</h3></div>
+                        <div class="panel-heading"><h3 class="text-warning">Registrar nueva cosecha *</h3></div>
                         <div class="panel-body">
+                            <s:if test="mensaje!=null">
+                                <div class="alert <s:property value="style"/> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                </div>
+                            </s:if>  
                             <form action="cosechado" class="form-horizontal" method="post">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="Colmena">Colmena</label>
@@ -40,7 +46,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="fecha">Fecha</label>   
+                                    <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
                                     <div class="col-sm-5">
                                         <input class="form-control" type="text" value="<s:date name="new java.util.Date()" format="yyyy-MM-dd"/>" name="fecha" max="45" required="" readonly="" id="datepicker"/> 
                                     </div>
@@ -51,7 +57,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="idobrero">Obrero </label>
+                                    <label class="control-label col-sm-4" for="idobrero">Obrero</label>
                                     <div class="col-sm-5">
                                         <input  class="form-control" type="text"  value="<s:property value="#user.fullname"/>" min="1" required="" readonly=""/>   
                                         <input  class="form-control" type="hidden" name="idobrero" value="<s:property value="#user.idusuario"/>" min="1" required=""/>   
@@ -62,7 +68,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="marcos">Marcos </label>
+                                    <label class="control-label col-sm-4" for="marcos">Marcos *</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" type="number" name="marcos" value="1" min="1" required=""/> 
                                     </div>
@@ -72,7 +78,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="pesovacio">Peso vacío </label>
+                                    <label class="control-label col-sm-4" for="pesovacio">Peso vacío *</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" type="number" name="pesovacio" value="1" min="1" required=""/> 
                                     </div>
@@ -82,7 +88,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="pesolleno">Peso Lleno </label>
+                                    <label class="control-label col-sm-4" for="pesolleno">Peso Lleno *</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" type="number" name="pesolleno" value="1" min="1" required=""/> 
                                     </div>
@@ -92,8 +98,8 @@
 
 
                                 <div class="form-group col-sm-4 pull-right"  >
-                                    <input type="submit" class=" btn btn-info " value="Registrar cosecha"/> <br>
-                                    <span><s:property value="mensaje"/></span>
+                                    <input type="submit" class=" btn btn-info " value="Registrar cosecha"/> <br>      
+                                    <small>(*) Campos Obligatiorios</small>
                                 </div>      
                             </form> 
                         </div>

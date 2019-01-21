@@ -90,8 +90,7 @@
                                     <th>Marcos</th>
                                     <th>Peso vacío</th>
                                     <th>Peso lleno</th>
-                                    <th>Fecha</th>
-                                    <th>Tipo alza</th>
+                                    <th>Fecha</th>                                  
                                     <th>Acciones</th>
                                     </thead>
                                     <tbody id="tbody">
@@ -102,8 +101,7 @@
                                                 <td><s:property value="marcos"/></td>                   
                                                 <td><s:property value="pesovacio"/></td>                   
                                                 <td><s:property value="pesolleno"/></td>                   
-                                                <td><s:date name="fecha" format="EE,dd-MMM-yyyy"/></td>                   
-                                                <td><s:property value="tipoalza"/></td>                   
+                                                <td><s:date name="fecha" format="EE,dd-MMM-yyyy"/></td>                                                                
                                                 <td>
                                                     <form action="editCosecha" method="post">
                                                         <input type="hidden" value="<s:property value="idcosecha"/>" name="idcosecha"/>

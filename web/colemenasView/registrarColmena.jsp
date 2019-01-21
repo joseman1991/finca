@@ -43,7 +43,7 @@
                                 <form action="colmenaregistrada" class="form-horizontal"  method="post" id="colmena">
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idarea">Sector</label> 
+                                        <label class="control-label col-sm-4" for="idarea">Sector *</label> 
                                         <div class="col-sm-5">
                                             <select class="form-control"  name="idarea">
                                                 <s:iterator value="listaSectores">
@@ -54,28 +54,28 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="descripcion">Descripción</label>
+                                        <label class="control-label col-sm-4" for="descripcion">Descripción *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="descripcion" maxlength="50" required=""/> 
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nmarcos">Numero de Marcos</label>
+                                        <label class="control-label col-sm-4" for="nmarcos">Numero de Marcos *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="nmarcos" value="1" required=""/> 
                                         </div>
                                     </div>                                     
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas Melaria</label>
+                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas Melaria *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="nalza" value="1"   required=""/>       
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia">Origen de Colmena</label>      
+                                        <label class="control-label col-sm-4" for="idprovincia">Origen de Colmena *</label>      
 
                                         <div class="col-sm-5">
                                             <select  class="form-control" name="idorigen" id="origen">
@@ -90,7 +90,7 @@
 
 
                                     <div class="form-group" id="divprecio">
-                                        <label class="control-label col-sm-4" for="precio">Precio</label>
+                                        <label class="control-label col-sm-4" for="precio">Precio *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="number" name="precio" value="1.00" min="0.00" required="" id="precio"/> 
                                         </div>
@@ -100,7 +100,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fecha">Fecha</label>   
+                                        <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>"   required="" id="datepicker" readonly=""/> 
                                         </div>
@@ -111,7 +111,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idreina">Raza de Reina</label>
+                                        <label class="control-label col-sm-4" for="idreina">Raza de Reina *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idreina">
                                                 <s:iterator value="listaReinas">
@@ -126,7 +126,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="npisos">Numero de Pisos</label>
+                                        <label class="control-label col-sm-4" for="npisos">Numero de Pisos *</label>
                                         <div class="col-sm-5">
                                             <input class="form-control required"  type="text" name="npisos" value="1"  required=""/>   
                                         </div>
@@ -136,7 +136,7 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fechareina">Fecha de Reina</label>   
+                                        <label class="control-label col-sm-4" for="fechareina">Fecha de Reina *</label>   
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="fechareina" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd" />"   required="" id="datepicker2" readonly=""/>   
                                         </div>
@@ -144,7 +144,7 @@
 
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="submit" class=" btn btn-info " value="Registrar Colmena" id="btn-colmena"/> <br>
-                                       
+                                          <small>(*) Campos Obligatiorios</small>
                                     </div>                                
 
                                 </form> 

@@ -33,7 +33,7 @@
                 <div class="container col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Listado de mantenimiento</h3></div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
 
                             <div class="row">
                                 <form class="form-inline col-md-12" action="imprimirm" method="post" target="_blank">
@@ -83,7 +83,7 @@
                                         <s:iterator value="listaMantenimientos">
                                             <tr>
                                                 <td><s:property value="idmantenimiento"/></td>
-                                                <td><s:property value="tipo"/></td>
+                                                <td><s:property value="tipo.descricion"/></td>
                                                 <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
                                                 <td><s:property value="obrero.fullname"/></td>                 
                                                 <td><s:property value="colmena.descripcion"/></td>                   

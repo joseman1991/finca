@@ -96,6 +96,12 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
                 style = "alert-success";
                 estado = "ÉXITO";
                 pdao.obtnerListas();
+                c = new Cantones();
+                c.setIdprovincia(sector.getParroquia().getCanton().getIdprovincia());
+                cdao.obtenerLista(listaCantones, c);
+                p = new Parroquia();
+                p.setIdcanton(sector.getParroquia().getIdcanton());
+                parroquiasDAO.obtenerLista(listaParroquias, p);
                 return SUCCESS;
             } else {
                 mensaje = "Ha ocurrido un error";
@@ -163,11 +169,11 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
     public String obtenerParroquias() {
         try {
             Usuarios u = (Usuarios) session.getAttribute("usuario");
-            if (u != null) {               
+            if (u != null) {
                 parroquiasDAO.obtenerLista(listaParroquias, p);
             } else {
                 response.sendRedirect("login");
-            } 
+            }
 
             return SUCCESS;
         } catch (SQLException | IOException e) {
@@ -215,6 +221,12 @@ public class SectoresAction extends ActionSupport implements ModelDriven<Sectore
         try {
             sector = sdao.obtenerSector(sector.getIdsector());
             pdao.obtnerListas();
+            c = new Cantones();
+            c.setIdprovincia(sector.getParroquia().getCanton().getIdprovincia());
+            cdao.obtenerLista(listaCantones, c);
+            p = new Parroquia();
+            p.setIdcanton(sector.getParroquia().getIdcanton());
+            parroquiasDAO.obtenerLista(listaParroquias, p);
             return SUCCESS;
         } catch (SQLException e) {
             mensaje = e.getMessage();
