@@ -9,12 +9,18 @@ import com.google.gson.Gson;
 import controlador.Action;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.mail.MessagingException;
 import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.Cosecha;
 import modelo.CosechaDAO;
+import modelo.EnviarMensaje;
+import modelo.UsuarioDAO;
+import modelo.Usuarios;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -23,6 +29,8 @@ import net.sf.jasperreports.engine.JRException;
  */
 public class CosechaAction extends Action<Cosecha> {
 
+    private final UsuarioDAO uDAO;
+    private final List<Usuarios> listaUsuarios;
     private final ColmenasDAO cdao2;
     private final List<Colmenas> listaColmenas;
     private Cosecha cos;
@@ -31,7 +39,8 @@ public class CosechaAction extends Action<Cosecha> {
     private final String ruta;
     private String archivo;
     private String style, estado;
-    
+
+    private final EnviarMensaje em;
 
     public CosechaAction() {
         objeto = new Cosecha();
@@ -41,6 +50,9 @@ public class CosechaAction extends Action<Cosecha> {
         gson = new Gson();
         this.ruta = session.getServletContext().getRealPath("/reportes");
         archivo = "";
+        em = new EnviarMensaje();
+        listaUsuarios = new ArrayList<>();
+        uDAO = new UsuarioDAO(listaUsuarios);
     }
 
     public String obtenerColmenas() {
@@ -76,8 +88,18 @@ public class CosechaAction extends Action<Cosecha> {
         CosechaDAO c = new CosechaDAO();
         try {
             archivo = c.generarReporte(ruta, objeto) + ".pdf";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMailAdjunto(u.getEmail(), "Reporte de cosechas generado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " tu reporte de cosechas ha sido genereado con éxito", ruta + "/" + archivo);
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMailAdjunto(get.getEmail(), "Reporte de cosechas generado " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha generado un reporte de las cosechas \nNota: "
+                        + "Se adjunta el archivo generado", ruta + "/" + archivo);
+            }
             return SUCCESS;
-        } catch (FileNotFoundException | SQLException | JRException e) {
+        } catch (FileNotFoundException | SQLException | JRException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -89,8 +111,18 @@ public class CosechaAction extends Action<Cosecha> {
         CosechaDAO c = new CosechaDAO();
         try {
             archivo = c.generarReporteC(ruta, objeto) + ".pdf";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMailAdjunto(u.getEmail(), "Reporte de cosechas generado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " tu reporte de cosechas ha sido genereado con éxito", ruta + "/" + archivo);
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMailAdjunto(get.getEmail(), "Reporte de cosechas generado " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha generado un reporte de las cosechas \nNota: "
+                        + "Se adjunta el archivo generado", ruta + "/" + archivo);
+            }
             return SUCCESS;
-        } catch (FileNotFoundException | SQLException | JRException e) {
+        } catch (FileNotFoundException | SQLException | JRException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -142,17 +174,35 @@ public class CosechaAction extends Action<Cosecha> {
         /*SQL*/
     }
 
+    private String fechaActual() {
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd-MMMM-yyyy hh:mm:ss");
+        return format.format(new Date());
+    }
+
     public String insertar() {
         try {
             cdao2.obtenerListaColmenas();
             conexion = new CosechaDAO();
             int res = conexion.insertarRegistro(objeto);
             if (res > 0) {
+
+                Usuarios u = (Usuarios) session.getAttribute("usuario");
+                em.enviarConGMail(u.getEmail(), "Cosecha realizada " + fechaActual(), "Hola, usuario" + u.getFullname()
+                        + " la cosecha ha sido registrada correctamente");
+                uDAO.obtenerListaAdmin(listaUsuarios, u);
+                for (int i = 0; i < listaUsuarios.size(); i++) {
+                    Usuarios get = listaUsuarios.get(i);
+                    em.enviarConGMail(get.getEmail(), "Colmena cosechada " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                            + ", te informamos que el usuario " + u.getFullname() + " ha cosechado la colmena " + objeto.getColmena().getDescripcion()
+                            + " del sector " + objeto.getColmena().getSector().getDireccion() + " del recinto " + objeto.getColmena().getSector().getRcto()
+                            + " de la parroquia " + objeto.getColmena().getSector().getParroquia().getDescripcion() + ", cantón " + objeto.getColmena().getSector().getParroquia().getCanton().getNombrecanton()
+                            + ", provincia de " + objeto.getColmena().getSector().getParroquia().getCanton().getProvincia().getNombreprovincia());
+                }
                 style = "alert-success";
                 estado = "ÉXITO";
                 mensaje = "Cosecha realizada con éxito";
             }
-        } catch (SQLException e) {
+        } catch (SQLException | MessagingException e) {
             mensaje = e.getMessage();
         } finally {
             cdao2.cerrarConexion();
@@ -167,8 +217,20 @@ public class CosechaAction extends Action<Cosecha> {
             CosechaDAO c = new CosechaDAO();
             int res = c.actualizarRegistro(objeto);
             if (res > 0) {
-                cos=c.obtenerRegistro(objeto);
-                 style = "alert-success";
+                cos = c.obtenerRegistro(objeto);
+                Usuarios u = (Usuarios) session.getAttribute("usuario");
+                em.enviarConGMail(u.getEmail(), "Cosecha Actualizada " + fechaActual(), "hola usuario" + u.getFullname()
+                        + " la cosecha" + objeto.getIdcosecha() + " ha sido actualizada correctamente");
+                uDAO.obtenerListaAdmin(listaUsuarios, u);
+                for (int i = 0; i < listaUsuarios.size(); i++) {
+                    Usuarios get = listaUsuarios.get(i);
+                    em.enviarConGMail(get.getEmail(), "Cosecha Actualizada " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                            + ", te informamos que el usuario " + u.getFullname() + " ha actualizado la cosecha de la colmena " + objeto.getColmena().getDescripcion()
+                            + " del sector " + objeto.getColmena().getSector().getDireccion() + " del recinto " + objeto.getColmena().getSector().getRcto()
+                            + " de la parroquia " + objeto.getColmena().getSector().getParroquia().getDescripcion() + ", cantón " + objeto.getColmena().getSector().getParroquia().getCanton().getNombrecanton()
+                            + ", provincia de " + objeto.getColmena().getSector().getParroquia().getCanton().getProvincia().getNombreprovincia());
+                }
+                style = "alert-success";
                 estado = "ÉXITO";
                 mensaje = "Cosecha actualizada con éxito";
                 return SUCCESS;
@@ -177,14 +239,13 @@ public class CosechaAction extends Action<Cosecha> {
                 return ERROR;
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
             cdao2.cerrarConexion();
 //            conexion.cerrarConexion();
         }
-
     }
 
     public List<Colmenas> getListaColmenas() {
@@ -226,8 +287,5 @@ public class CosechaAction extends Action<Cosecha> {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-    
 
 }

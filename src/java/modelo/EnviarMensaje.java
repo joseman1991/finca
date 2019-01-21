@@ -55,8 +55,8 @@ public class EnviarMensaje {
     public void enviarConGMailAdjunto(String destinatario, String asunto, String cuerpo, String ruta) throws AddressException, MessagingException {
 
         // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
-        String remitente = "beautycenterspabby@gmail.com";  //Para la dirección nomcuenta@gmail.com
-        String clave = "spa1234567@";  //Para la dirección nomcuenta@gmail.com
+        String remitente = "apicannan@gmail.com";  //Para la dirección nomcuenta@gmail.com
+        String clave = "apicola123";  //Para la dirección nomcuenta@gmail.com
 
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
@@ -75,7 +75,7 @@ public class EnviarMensaje {
         BodyPart adjunto = new MimeBodyPart();
         FileDataSource archivo = new FileDataSource(ruta);
         adjunto.setDataHandler(new DataHandler(archivo));
-        adjunto.setFileName("Factura" + archivo.getFile().getName());
+        adjunto.setFileName("Reporte" + archivo.getFile().getName());
 
         MimeMultipart multiParte = new MimeMultipart();
         multiParte.addBodyPart(texto);

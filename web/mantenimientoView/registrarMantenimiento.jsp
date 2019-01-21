@@ -30,6 +30,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Registrar nuevo mantenimiento</h3></div>
                         <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
+                             <s:if test="mensaje!=null">
+                                <div class="alert <s:property value="style"/> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>¡<s:property value="estado"/>!</strong> <s:property value="mensaje"/>.
+                                </div>
+                            </s:if>
                             <form class="form-horizontal" action="mantenimientogistrado" method="post">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="Colmena">Colmena</label>

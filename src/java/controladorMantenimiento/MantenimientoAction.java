@@ -11,15 +11,21 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import controlador.Action;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.mail.MessagingException;
 import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.ConexionMySQL;
+import modelo.EnviarMensaje;
 import modelo.Mantenimiento;
 import modelo.MantenimientoDAO;
 import modelo.Tipo;
 import modelo.TipoDAO;
+import modelo.UsuarioDAO;
+import modelo.Usuarios;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -29,13 +35,14 @@ import net.sf.jasperreports.engine.JRException;
 public class MantenimientoAction extends Action<Mantenimiento> {
 
     private final MantenimientoDAO mdao;
-    
+    private final UsuarioDAO uDAO;
+    private final List<Usuarios> listaUsuarios;
     private Mantenimiento mantenimiento;
     private final List<Mantenimiento> listaMantenimientos;
     private final ColmenasDAO cdao;
     private final List<Colmenas> listaColmenas;
     private final List<Tipo> listaTipos;
-    
+    private final EnviarMensaje em;
     private final TipoDAO tdao;
 
     private final Gson gson;
@@ -46,25 +53,41 @@ public class MantenimientoAction extends Action<Mantenimiento> {
     public MantenimientoAction() {
         listaMantenimientos = new ArrayList<>();
         listaTipos = new ArrayList<>();
-       
-        tdao= new TipoDAO();
+        tdao = new TipoDAO();
         mdao = new MantenimientoDAO(listaMantenimientos);
         mantenimiento = new Mantenimiento();
         listaColmenas = new ArrayList<>();
         cdao = new ColmenasDAO(listaColmenas);
-        
         gson = new Gson();
         this.ruta = session.getServletContext().getRealPath("/reportes");
         archivo = "";
+        em = new EnviarMensaje();
+        listaUsuarios = new ArrayList<>();
+        uDAO = new UsuarioDAO(listaUsuarios);
     }
 
     public String insertarMantenimiento() {
         try {
             mdao.insertarMantenimiento(mantenimiento);
+            tdao.obtenerLista(listaTipos);
             cdao.obtenerListaColmenas();
             mensaje = "Mantenimiento correctamente registrado";
+            style = "alert-success";
+            estado = "ÉXITO";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMail(u.getEmail(), "Mantenimiento realizado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " el mantenimiento ha sido registrada correctamente");
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMail(get.getEmail(), "Mantenimiento a colmena " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha dado mantenimiento a la colmena " + mantenimiento.getColmena().getDescripcion()
+                        + " del sector " + mantenimiento.getColmena().getSector().getDireccion() + " del recinto " + mantenimiento.getColmena().getSector().getRcto()
+                        + " de la parroquia " + mantenimiento.getColmena().getSector().getParroquia().getDescripcion() + ", cantón " + mantenimiento.getColmena().getSector().getParroquia().getCanton().getNombrecanton()
+                        + ", provincia de " + mantenimiento.getColmena().getSector().getParroquia().getCanton().getProvincia().getNombreprovincia());
+            }
             return SUCCESS;
-        } catch (SQLException e) {
+        } catch (SQLException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -73,14 +96,31 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         }
     }
 
+    private String fechaActual() {
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd-MMMM-yyyy hh:mm:ss");
+        return format.format(new Date());
+    }
+
     public String obtenerReporte() {
         MantenimientoDAO c = new MantenimientoDAO();
         try {
             archivo = c.generarReporte(ruta, mantenimiento) + ".pdf";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMailAdjunto(u.getEmail(), "Reporte de mantenimiento generado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " tu reporte de mantenimiento ha sido genereado con éxito", ruta + "/" + archivo);
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMailAdjunto(get.getEmail(), "Reporte de mantenimiento generado" + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha generado un reporte de los mantenimientos \nNota "
+                        + "Se adjunta el archivo generado", ruta + "/" + archivo );
+            }
             return SUCCESS;
-        } catch (FileNotFoundException | SQLException | JRException e) {
+        } catch (FileNotFoundException | SQLException | JRException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
+        }finally{
+            c.cerrarConexion();
         }
     }
 
@@ -88,10 +128,22 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         MantenimientoDAO c = new MantenimientoDAO();
         try {
             archivo = c.generarReporteM(ruta, mantenimiento) + ".pdf";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMailAdjunto(u.getEmail(), "Reporte de mantenimiento generado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " tu reporte de mantenimiento ha sido genereado con éxito", ruta + "/" + archivo);
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMailAdjunto(get.getEmail(), "Reporte de mantenimiento generado" + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha generado un reporte de los mantenimiento \nNota: "
+                        + "Se adjunta el archivo generado", ruta + "/" + archivo);
+            }
             return SUCCESS;
-        } catch (FileNotFoundException | SQLException | JRException e) {
+        } catch (FileNotFoundException | SQLException | JRException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
+        }finally{
+            c.cerrarConexion();
         }
     }
 
@@ -109,19 +161,30 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             conexion.cerrarConexion();
         }
     }
-    
+
     private String style, estado;
 
     public String actualizarMantenimiento() {
         try {
-            
             mdao.actualizarRegistro(mantenimiento);
             mantenimiento = mdao.obtenerMantenimiento(mantenimiento.getIdmantenimiento());
             mensaje = "Mantenimiento correctamente actualizado";
-             style = "alert-success";
-                estado = "ÉXITO";
+            style = "alert-success";
+            estado = "ÉXITO";
+            Usuarios u = (Usuarios) session.getAttribute("usuario");
+            em.enviarConGMail(u.getEmail(), "Mantenimiento Actualizado " + fechaActual(), "Hola, usuario" + u.getFullname()
+                    + " el mantenimiento " + mantenimiento.getIdmantenimiento() + " ha sido actualizada correctamente");
+            uDAO.obtenerListaAdmin(listaUsuarios, u);
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                Usuarios get = listaUsuarios.get(i);
+                em.enviarConGMail(get.getEmail(), "Mantenimiento Actualizado " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
+                        + ", te informamos que el usuario " + u.getFullname() + " ha actualizado el mantenimiento de la colmena " + mantenimiento.getColmena().getDescripcion()
+                        + " del sector " + mantenimiento.getColmena().getSector().getDireccion() + " del recinto " + mantenimiento.getColmena().getSector().getRcto()
+                        + " de la parroquia " + mantenimiento.getColmena().getSector().getParroquia().getDescripcion() + ", cantón " + mantenimiento.getColmena().getSector().getParroquia().getCanton().getNombrecanton()
+                        + ", provincia de " + mantenimiento.getColmena().getSector().getParroquia().getCanton().getProvincia().getNombreprovincia());
+            }
             return SUCCESS;
-        } catch (SQLException e) {
+        } catch (SQLException | MessagingException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -159,8 +222,6 @@ public class MantenimientoAction extends Action<Mantenimiento> {
         this.estado = estado;
     }
 
-    
-    
     public String obtenerListaMantenimientoColmena() {
         try {
             mdao.obtenerListaPorColmena(listaMantenimientos, mantenimiento);
@@ -225,7 +286,5 @@ public class MantenimientoAction extends Action<Mantenimiento> {
     public List<Tipo> getListaTipos() {
         return listaTipos;
     }
-    
-    
 
 }
