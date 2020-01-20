@@ -39,26 +39,26 @@
                         <div class="carousel-inner">
 
                             <div class="item active">
-                                <img src="image/img1.jpg" alt="abejas" style="width:100%;">
+                                <img src="image/hacienda-header.jpg" alt="abejas" style="width:100%;">
                                 <div class="carousel-caption">
-                                    <h3 class="text-black">Polinización</h3>
-                                    <p class="text-black">El mejor polen, la mejor miel</p>
+                                    <h3 class="text-black">Hacienda</h3>
+                                    <p class="text-black">Mejores Productos</p>
                                 </div>
                             </div>
 
                             <div class="item">
-                                <img src="image/img2.jpg" alt="miel" style="width:100%;">
+                                <img src="image/cattle-demo-banner-01.jpg" alt="miel" style="width:100%;">
                                 <div class="carousel-caption">
-                                    <h3 class="text-black">Miel</h3>
-                                    <p class="text-black">Dulce y Nutritiva</p>
+                                    <h3 class="text-black">Ganadería</h3>
+                                    <p class="text-black">Mejores animales del mercado</p>
                                 </div>
                             </div>
 
                             <div class="item">
-                                <img src="image/img3.jpg" alt="New York" style="width:100%;">
+                                <img src="image/5.6._aaheader.png" alt="New York" style="width:100%;">
                                 <div class="carousel-caption">
-                                    <h3 class="text-black">Miel pura</h3>
-                                    <p class="text-black">Directo del panal a su mesa</p>
+                                    <h3 class="text-black">Agricultura</h3>
+                                    <p class="text-black">El mejor producto de nuestra tierra</p>
                                 </div>
                             </div>
 
@@ -80,18 +80,18 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Todos los Derechos Reservados 2018</p>
+            <p>Todos los Derechos Reservados 2020</p>
         </footer>
         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>

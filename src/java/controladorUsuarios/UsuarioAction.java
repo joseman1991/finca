@@ -12,9 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
-import modelo.EnviarMensaje;
 import modelo.Perfiles;
 import modelo.PerfilesDAO;
 import modelo.UsuarioDAO;
@@ -37,7 +35,6 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
     private final List<Usuarios> listaUsuarios;
     private final List<Perfiles> listaPerfiles;
     private final PerfilesDAO pdao;
-    private final EnviarMensaje em;
 
     public UsuarioAction() {
         usuario = new Usuarios();
@@ -46,7 +43,6 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
         listaPerfiles = new ArrayList<>();
         uDAO = new UsuarioDAO(listaUsuarios);
         pdao = new PerfilesDAO();
-        em = new EnviarMensaje();
     }
 
     @Override
@@ -67,13 +63,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             if (result > 0) {
                 Usuarios user = (Usuarios) session.getAttribute("usuario");
                 uDAO.obtenerListaAdmin(listaUsuarios, usuario);
-                em.enviarConGMail(usuario.getEmail(), "Bienvenido al Sistema " + fechaActual(), "Hola, Usuario de Apícola Cannán: " + usuario.getFullname()
-                        + " ya puedes usar tu cuenta de nuestro sistemas tu perfil es: " + usuario.getPerfil().getDescripcion());
-                for (int i = 0; i < listaUsuarios.size(); i++) {
-                    Usuarios get = listaUsuarios.get(i);
-                    em.enviarConGMail(get.getEmail(), "Registro de nuevo usuario " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
-                            + ", te informamos que el usuario " + user.getFullname() + " ha registrado un nuevo usuario al sistema denominado" + usuario.getFullname());
-                }
+                
                 style = "alert-success";
                 estado = "ÉXITO";
                 mensaje = "Usuario registrado";
@@ -82,7 +72,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 mensaje = "Ha ocurrido un error inesperado";
                 return ERROR;
             }
-        } catch (SQLException | MessagingException e) {
+        } catch (SQLException e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -104,13 +94,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                     }
                     Usuarios user = (Usuarios) session.getAttribute("usuario");
                     uDAO.obtenerListaAdmin(listaUsuarios, usuario);
-                    em.enviarConGMail(usuario.getEmail(), "Actualizacion de datos " + fechaActual(), "Hola, Usuario de Apícola Cannán: " + usuario.getFullname()
-                            + " tus datos han sido hactualizados: " + usuario.getFullname());
-                    for (int i = 0; i < listaUsuarios.size(); i++) {
-                        Usuarios get = listaUsuarios.get(i);
-                        em.enviarConGMail(get.getEmail(), "Actualizacion de datos de usuario " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
-                                + ", te informamos que el usuario " + user.getFullname() + " ha actualizado los datos de un usuario del sistema denominado " + usuario.getFullname());
-                    }
+                    
                     pdao.obtenerLista(listaPerfiles);
                     mensaje = "Usuario actualizado";
                     style = "alert-success";
@@ -124,7 +108,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 mensaje = "Ha ocurrido un error inesperado";
                 return ERROR;
             }
-        } catch (SQLException | MessagingException e) {
+        } catch (SQLException  e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -153,20 +137,15 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 }
                 Usuarios user = (Usuarios) session.getAttribute("usuario");
                 uDAO.obtenerListaAdmin(listaUsuarios, usuario);
-                em.enviarConGMail(usuario.getEmail(), "Usuario " + status + "o " + fechaActual(), "Hola, Usuario de Apícola Cannán: " + usuario.getFullname()
-                        + " tu cuenta ha sido " + status + "a por " + user.getFullname() + "");
-                for (int i = 0; i < listaUsuarios.size(); i++) {
-                    Usuarios get = listaUsuarios.get(i);
-                    em.enviarConGMail(get.getEmail(), "Usuario "+status+ "o " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
-                            + ", te informamos que el usuario " + usuario.getFullname() + " ha sido " + status + "o por " + user.getFullname());
-                }
+                
+                
                 estado = "ÉXITO"; 
                 return SUCCESS;
             } else {
                 mensaje = "Ha ocurrido un error inesperado";
                 return ERROR;
             }
-        } catch (SQLException | MessagingException e) {
+        } catch (SQLException  e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {
@@ -180,13 +159,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
             if (usuario != null) {
                 if (usuario.getIdestado() == 1) {
                     uDAO.obtenerListaAdmin(listaUsuarios, usuario);
-                    em.enviarConGMail(usuario.getEmail(), "Inicio de sesión " + fechaActual(), "Hola, Usuario de Apícola Cannán: " + usuario.getFullname()
-                            + " has iniciado correctamente sesión al sistema");
-                    for (int i = 0; i < listaUsuarios.size(); i++) {
-                        Usuarios get = listaUsuarios.get(i);
-                        em.enviarConGMail(get.getEmail(), "Inicio de sesión " + fechaActual(), "Hola, estimado administrador de Apícola Cannán: " + get.getFullname()
-                                + ", te informamos que el usuario " + usuario.getFullname() + " ha iniciado sesión al sistema");
-                    }
+                    
                     session.setAttribute("usuario", usuario);
                     return SUCCESS;
                 } else {
@@ -201,7 +174,7 @@ public class UsuarioAction extends ActionSupport implements ModelDriven<Usuarios
                 estado = "ERROR";
                 return ERROR;
             }
-        } catch (SQLException | MessagingException e) {
+        } catch (SQLException  e) {
             mensaje = e.getMessage();
             return ERROR;
         } finally {

@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="container col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="text-warning">Listado de mantenimiento</h3></div>
+                        <div class="panel-heading"><h3 class="text-warning">Reporte de cosechas</h3></div>
                         <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
 
                             <div class="row">
@@ -105,14 +105,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 sidenav">
+              <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>

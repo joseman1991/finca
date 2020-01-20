@@ -39,10 +39,10 @@
         <title> </title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-warning">
+        <nav class="navbar navbar-dark bg-info">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <s:a cssClass="navbar-brand text-warning" href="inicio">APÍCOLA CANAÁN</s:a>
+                    <s:a cssClass="navbar-brand text-black" href="inicio">HACIENDA EL RECUERDO</s:a>
                     </div>
 
                     <ul class="nav navbar-nav " role="menu" aria-labelledby="dLabel">

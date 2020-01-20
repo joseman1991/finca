@@ -28,7 +28,7 @@
 
                     <div class="col-md-9 col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo sector</h3></div>
+                            <div class="panel-heading"><h3 class="  text-warning">Registro de nuevo ganado</h3></div>
                             <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
@@ -40,34 +40,33 @@
                                 <form class="form-horizontal" action="registrarsector" method="post" id="sector">
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4"  for="nombre">Nombre Sector *</label>   
+                                        <label class="control-label col-sm-4"  for="nombre">Nombre *</label>   
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="nombre" maxlength="45" required=""/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia" >Provincia *</label>
+                                        <label class="control-label col-sm-4" for="idprovincia" >Tipo *</label>
                                         <div class="col-sm-5">
+                                            
                                             <select class="form-control" name="idprovincia" id="provincia">
-                                                <s:iterator value="listaProvincias">
-                                                    <option value="<s:property value="idprovincia"/>"><s:property value="nombreprovincia"/></option>
-                                                </s:iterator>
-                                            </select>
+                                                <option>Vacuno</option>
+                                                                                           </select>
                                         </div>                     
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idcanton">Cantón *</label>
+                                        <label class="control-label col-sm-4" for="idcanton">Raza *</label>
                                         <div class="col-sm-5">
                                             <select class="form-control" name="idcanton" id="canton">
-                                                <s:iterator value="listaCantones" >
-                                                    <option value="<s:property value="idcanton"/>"><s:property value="nombrecanton"/></option>
-                                                </s:iterator>
+                                                <option>Alemana</option>
+ 
                                             </select>
                                         </div>                     
                                     </div>
 
+                                    <%--
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="idparroquia">Parroquia *</label>
                                         <div class="col-sm-5">
@@ -78,29 +77,16 @@
                                             </select>
                                         </div>                     
                                     </div>
-
+--%>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="rcto">Recinto *</label> 
+                                        <label class="control-label col-sm-4" for="rcto">Edad *</label> 
                                         <div class="col-sm-5">
                                             <input class="form-control required" type="text" name="rcto" maxlength="45" required=""/> 
                                         </div>
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="direccion">Dirección *</label>   
-                                        <div class="col-sm-5">
-                                            <input class="form-control required" type="text" name="direccion" maxlength="45" required=""/> 
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="email">Correo Electrónico *</label>   
-                                        <div class="col-sm-5">
-                                            <input class="form-control required" type="email" name="email" maxlength="50" required=""/>    
-                                        </div>            
-                                    </div>
+                                    
 
 
                                     <div class="form-group">
@@ -119,7 +105,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                        <input type="submit" class=" btn btn-info " value="Registrar sector" id="btn-sector"/> <br>  
+                                        <input type="submit" class=" btn btn-info " value="Registrar ganado" id="btn-sector"/> <br>  
                                         <small>(*) Campos Obligatiorios</small>
                                     </div>
                                 </form>
@@ -133,18 +119,18 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Todos los Derechos Reservados 2018</p>
+            <p>Todos los Derechos Reservados 2020</p>
         </footer>
 
 

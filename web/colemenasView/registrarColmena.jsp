@@ -32,7 +32,7 @@
                     </s:if>
                     <s:else>
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="  text-warning">Registrar Nueva colmena</h3></div>
+                            <div class="panel-heading"><h3 class="  text-warning">Registrar nueva cosecha</h3></div>
                             <div class="panel-body">
                                 <s:if test="mensaje!=null">
                                     <div class="alert <s:property value="style"/> alert-dismissible">
@@ -43,7 +43,7 @@
                                 <form action="colmenaregistrada" class="form-horizontal"  method="post" id="colmena">
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idarea">Sector *</label> 
+                                        <label class="control-label col-sm-4" for="idarea">Zona *</label> 
                                         <div class="col-sm-5">
                                             <select class="form-control"  name="idarea">
                                                 <s:iterator value="listaSectores">
@@ -61,21 +61,21 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nmarcos">Numero de Marcos *</label>
+                                        <label class="control-label col-sm-4" for="nmarcos">Numero de Hectareas *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="nmarcos" value="1" required=""/> 
                                         </div>
                                     </div>                                     
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nalza">Numero de Alzas Melaria *</label>
+                                        <label class="control-label col-sm-4" for="nalza">Estimado en quintales *</label>
                                         <div class="col-sm-5">
                                             <input  class="form-control required" type="text" name="nalza" value="1"   required=""/>       
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia">Origen de Colmena *</label>      
+                                        <label class="control-label col-sm-4" for="idprovincia">Ciclo de Cosecha *</label>      
 
                                         <div class="col-sm-5">
                                             <select  class="form-control" name="idorigen" id="origen">
@@ -89,13 +89,7 @@
 
 
 
-                                    <div class="form-group" id="divprecio">
-                                        <label class="control-label col-sm-4" for="precio">Precio *</label>
-                                        <div class="col-sm-5">
-                                            <input  class="form-control required" type="number" name="precio" value="1.00" min="0.00" required="" id="precio"/> 
-                                        </div>
-                                    </div>
-
+                                 
 
 
 
@@ -110,40 +104,21 @@
 
 
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idreina">Raza de Reina *</label>
-                                        <div class="col-sm-5">
-                                            <select class="form-control" name="idreina">
-                                                <s:iterator value="listaReinas">
-                                                    <option value="<s:property value="idreina"/>"><s:property value="descripcion"/></option>
-                                                </s:iterator>
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
 
 
 
 
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="npisos">Numero de Pisos *</label>
-                                        <div class="col-sm-5">
-                                            <input class="form-control required"  type="text" name="npisos" value="1"  required=""/>   
-                                        </div>
-                                    </div>
+                                   
 
 
 
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fechareina">Fecha de Reina *</label>   
-                                        <div class="col-sm-5">
-                                            <input  class="form-control required" type="text" name="fechareina" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd" />"   required="" id="datepicker2" readonly=""/>   
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group col-sm-4 pull-right"  >
-                                        <input type="submit" class=" btn btn-info " value="Registrar Colmena" id="btn-colmena"/> <br>
+                                        <input type="submit" class=" btn btn-info " value="Registrar cosecha" id="btn-colmena"/> <br>
                                           <small>(*) Campos Obligatiorios</small>
                                     </div>                                
 
@@ -154,20 +129,20 @@
                     </s:else>
                 </div>
             </div>
-            <div class="col-sm-2 sidenav">
+              <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Derechos Reservados 2018</p>
+            <p>Derechos Reservados 2020</p>
         </footer>
 
 
