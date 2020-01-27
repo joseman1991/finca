@@ -70,7 +70,7 @@
             <result name="error">error.jsp</result>
         </action>
         
-        <action name="sectores" class="controladorSectores.SectoresAction" method="obtenerSectores">
+        <action name="sectores" class="controladorSectores.GanadoAction" method="obtenerGanado">
             <result name="success">sectoresView/actualizar.jsp</result>
             <result name="error">error.jsp</result>
         </action>
@@ -86,7 +86,7 @@
             <result name="error">error.jsp</result>
         </action>
         
-        <action name="listacolmenas" class="controladorColmenas.ColmenaAction" method="obtenerColmenas">
+        <action name="listacolmenas" class="controladorCosecha.CosechasAction" method="obtenerCosechas">
             <result name="success">colemenasView/actualizar.jsp</result>
             <result name="error">error.jsp</result>
         </action>
@@ -102,7 +102,7 @@
             <result name="error">error.jsp</result>
         </action>    
         
-        <action name="listademantenimiento" class="controladorMantenimiento.MantenimientoAction" method="obtenerListaMantenimiento">
+        <action name="listademantenimiento" class="controladorCosecha.CosechasAction" method="obtenerCosechas">
             <result name="success">mantenimientoView/actualizar.jsp</result>
             <result name="error">error.jsp</result>
         </action>     
@@ -125,7 +125,7 @@
         </action> 
         
                   
-        <action name="listadecosechas" class="controladorCosecha.CosechaAction" method="obtenerLista">
+        <action name="listadecosechas" class="controladorSectores.GanadoAction" method="obtenerGanado">
             <result name="success">cosechaView/actualizar.jsp</result>
             <result name="error">error.jsp</result>
         </action> 

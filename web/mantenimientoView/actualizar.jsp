@@ -70,32 +70,39 @@
 
                             <div class="table-responsive">
                                 <table class="table table-hover table-responsive table-bordered">
-                                    <thead>
-                                    <th>Codigo</th>
-                                    <th>Tipo</th>
-                                    <th>Fecha</th>
-                                    <th>Obrero</th>
-                                    <th>Colmena</th>
-                                    <th>Aliementacion</th>             
-                                    <th>Acciones</th>
+                                   <thead>
+                                    <th>Cod.</th>
+                                    <th>Producto</th>    
+                                    <th>Descripción</th>
+                                    <th>Quintales</th>
+                                    <th>Hectareas</th>
+                                    <th>Ciclo</th>
+                                    <th>Fecha</th>                                  
+                                    <th>Acciones</th>                                  
                                     </thead>
-                                    <tbody id="tbody">
-                                        <s:iterator value="listaMantenimientos">
+                                    <tbody>
+                                        <s:iterator value="listCosechas">
                                             <tr>
-                                                <td><s:property value="idmantenimiento"/></td>
-                                                <td><s:property value="tipo.descricion"/></td>
-                                                <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
-                                                <td><s:property value="obrero.fullname"/></td>                 
-                                                <td><s:property value="colmena.descripcion"/></td>                   
-                                                <td><s:property value="alimentacion"/></td> 
+                                                <td><s:property value="idcosecha"/></td>
+                                                <td><s:property value="producto.nombre"/></td>
+                                                <td><s:property value="descripcion"/></td>
+                                                <td><s:property value="quintales"/></td>                                                 
+                                                <td><s:property value="hectareas"/></td>
+                                                <td><s:property value="ciclo"/></td>                                                 
+                                                <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>                                               
+                                                
                                                 <td>
-                                                    <form action="actualizamantenimiento" method="post">
-                                                        <input type="hidden" value="<s:property value="idmantenimiento"/>" name="idmantenimiento"/>
-                                                        <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar mantenimiento" type="submit">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </button>
-                                                    </form>  
+                                                    <div class=" row ">
+                                                        <div class="col-xs-1">
+                                                            <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
+                                                                <span class="glyphicon glyphicon-edit"></span>
+                                                            </s:a>
+                                                        </div> 
+                                                       
+                                                        
+                                                    </div>                                                    
                                                 </td>
+                                                
                                             </tr>
                                         </s:iterator>
                                     </tbody>

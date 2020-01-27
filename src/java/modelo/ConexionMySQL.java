@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
 
@@ -43,7 +41,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         String url;
         String usuario = ("root");
         String clave = ("mysql");
-        String BaseDeDatos = ("apicola");
+        String BaseDeDatos = ("finca");
         String puerto = ("3306");
         String servidor = ("localhost");
         try {

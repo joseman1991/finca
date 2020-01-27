@@ -37,29 +37,21 @@
                                     <thead>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
-                                    <th>Provincia</th>
-                                    <th>Canton</th>
-                                    <th>Parroquia</th>
-                                    <th>Recinto</th>
-                                    <th>Dirección</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Observación</th>
-                                    <th>Responsable</th>
+                                    <th>Tipo</th>
+                                    <th>Raza</th>
+                                    <th>Edad</th>                                  
+                                    <th>Observación</th>                                  
                                     <th>Acciones</th>
                                     </thead>
                                     <tbody>
-                                        <s:iterator value="listaSectores">
+                                        <s:iterator value="listGanados">
                                             <tr>
-                                                <td><s:property value="idsector"/></td>
+                                                <td><s:property value="idganado"/></td>
                                                 <td><s:property value="nombre"/></td>
-                                                <td><s:property value="parroquia.canton.provincia.nombreprovincia"/></td>
-                                                <td><s:property value="parroquia.canton.nombrecanton"/></td>
-                                                <td><s:property value="parroquia.descripcion"/></td>
-                                                <td><s:property value="rcto"/></td>
-                                                <td><s:property value="direccion"/></td>
-                                                <td><s:property value="email"/></td>
-                                                <td><s:property value="observacion"/></td>
-                                                <td><s:property value="responsable"/></td>
+                                                <td><s:property value="tipo"/></td>
+                                                <td><s:property value="raza"/></td>
+                                                <td><s:property value="edad"/></td>
+                                                <td><s:property value="observacion"/></td>                                                
                                                 <s:url action="actualizarsector" var="actualizarsector">
                                                     <s:param name="idsector"><s:property value="idsector"/></s:param>
                                                 </s:url>
@@ -81,14 +73,14 @@
                 </div>
             </div>
 
-            <div class="col-sm-2 sidenav">
+             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>

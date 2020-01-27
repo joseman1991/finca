@@ -24,17 +24,18 @@
                 </s:if>
 
                 <li>
-                    <a href="#sectores" data-toggle="collapse" aria-expanded="false">Agricultura  <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
+                    <a href="#sectores" data-toggle="collapse" aria-expanded="false">Ganadería <span class="glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
                     <ul class="nav collapse" id="sectores">
-                        <li><s:a href="%{agregarsector}">Agregar nuevo cosecha  </s:a></li>                       
-                        <li><s:a href="%{sectores}">Listado de cosechas</s:a></li>
+                        <li><s:a href="%{agregarsector}">Agregar nuevo ganado </s:a></li>                       
+                        <li><s:a href="%{sectores}">Lista de ganados</s:a></li>
                         </ul>
                     </li>
+                    
                     <li>
-                        <a href="#colmenas" data-toggle="collapse" aria-expanded="false">Ganadería  <span class="glyphicon glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
+                        <a href="#colmenas" data-toggle="collapse" aria-expanded="false">Agricultura <span class="glyphicon glyphicon glyphicon glyphicon-menu-down pull-right"></span></a>
                         <ul class="nav collapse" id="colmenas">
-                            <li><s:a href="%{agregarcolmena}">Agregar nueva ganado </s:a></li>
-                        <li><s:a href="%{listacolmenas}">Lista de ganados</s:a></li>
+                            <li><s:a href="%{agregarcolmena}">Agregar cosecha </s:a></li>
+                        <li><s:a href="%{listacolmenas}">Lista de cosechas</s:a></li>
                         </ul>
                     </li>
                     <li>

@@ -72,7 +72,7 @@ public class CosechaAction extends Action<Cosecha> {
 
     public String obtenerLista() {
         try {
-            cdao2.obtenerListaColmenas();
+//            cdao2.obtenerListaColmenas();
             conexion = new CosechaDAO();
             conexion.obtenerLista(lista);
             return SUCCESS;

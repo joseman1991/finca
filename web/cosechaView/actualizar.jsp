@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="container col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="text-warning">Lista de cosechas</h3></div>
+                        <div class="panel-heading"><h3 class="text-warning">Lista general de ganado</h3></div>
                         <div class="panel-body">
                             <div class="row">
                                 <form class="form-inline col-md-12" action="imprimir" method="post" target="_blank">
@@ -68,33 +68,32 @@
                             </div><hr>
                             <div class="table-responsive">
                                 <table class="table table-hover table-responsive table-bordered">
-                                    <thead>
+                                       <thead>
                                     <th>Codigo</th>
-                                    <th>Colmena</th>
-                                    <th>Obrero</th>
-                                    <th>Marcos</th>
-                                    <th>Peso vacío</th>
-                                    <th>Peso lleno</th>
-                                    <th>Fecha</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Raza</th>
+                                    <th>Edad</th>                                  
+                                    <th>Observación</th>                                  
                                     <th>Acciones</th>
                                     </thead>
-                                    <tbody id="tbody">
-                                        <s:iterator value="lista">
+                                    <tbody>
+                                        <s:iterator value="listGanados">
                                             <tr>
-                                                <td><s:property value="idcosecha"/></td>
-                                                <td><s:property value="colmena.descripcion"/></td>
-                                                <td><s:property value="obrero.fullname"/></td>
-                                                <td><s:property value="marcos"/></td>                   
-                                                <td><s:property value="pesovacio"/></td>                   
-                                                <td><s:property value="pesolleno"/></td>                   
-                                                <td><s:date name="fecha" format="EE,dd-MMM-yyyy"/></td>                   
-                                                <td>
-                                                    <form action="editCosecha" method="post">
-                                                        <input type="hidden" value="<s:property value="idcosecha"/>" name="idcosecha"/>
-                                                        <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar sector" type="submit">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </button>
-                                                    </form>    
+                                                <td><s:property value="idganado"/></td>
+                                                <td><s:property value="nombre"/></td>
+                                                <td><s:property value="tipo"/></td>
+                                                <td><s:property value="raza"/></td>
+                                                <td><s:property value="edad"/></td>
+                                                <td><s:property value="observacion"/></td>                                                
+                                                <s:url action="actualizarsector" var="actualizarsector">
+                                                    <s:param name="idsector"><s:property value="idsector"/></s:param>
+                                                </s:url>
+                                                <td>                                                    
+                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar sector" href="%{actualizarsector}"> 
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </s:a>
+
                                                 </td>
                                             </tr>
                                         </s:iterator>
@@ -107,14 +106,14 @@
 
                 </div>
             </div>
-            <div class="col-sm-2 sidenav">
+             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>

@@ -11,6 +11,11 @@
             <result name="error">error.jsp</result>
         </action>  
               
+        <action name="registrarganado" class="controladorSectores.GanadoAction"  method="insertarGanado">
+            <result name="success">sectoresView/insertarSector.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>  
+              
         <action name="sectoractualizado" class="controladorSectores.SectoresAction"  method="actualizarSector">
             <result name="success">sectoresView/actualiza.jsp</result>
             <result name="error">error.jsp</result>

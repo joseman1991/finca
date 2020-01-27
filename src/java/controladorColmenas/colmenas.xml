@@ -6,7 +6,7 @@
  
 <struts>
     <package name="controladorColmenas" namespace="/" extends="struts-default">
-        <action name="colmenaregistrada" class="controladorColmenas.ColmenaAction" method="insertarColmena">
+        <action name="colmenaregistrada" class="controladorCosecha.CosechasAction" method="insertarCosecha">
             <result name="success">colemenasView/registrarColmena.jsp</result>
             <result name="error">error.jsp</result>
         </action>

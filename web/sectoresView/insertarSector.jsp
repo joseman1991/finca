@@ -37,7 +37,7 @@
                                     </div>
                                 </s:if>
 
-                                <form class="form-horizontal" action="registrarsector" method="post" id="sector">
+                                <form class="form-horizontal" action="registrarganado" method="post" id="sector">
 
                                     <div class="form-group">
                                         <label class="control-label col-sm-4"  for="nombre">Nombre *</label>   
@@ -47,19 +47,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia" >Tipo *</label>
+                                        <label class="control-label col-sm-4" for="tipo" >Tipo *</label>
                                         <div class="col-sm-5">
                                             
-                                            <select class="form-control" name="idprovincia" id="provincia">
+                                            <select class="form-control" name="tipo" id="provincia">
                                                 <option>Vacuno</option>
                                                                                            </select>
                                         </div>                     
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idcanton">Raza *</label>
+                                        <label class="control-label col-sm-4" for="raza">Raza *</label>
                                         <div class="col-sm-5">
-                                            <select class="form-control" name="idcanton" id="canton">
+                                            <select class="form-control" name="raza" id="canton">
                                                 <option>Alemana</option>
  
                                             </select>
@@ -97,12 +97,7 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="responsable">Responsable *</label>   
-                                        <div class="col-sm-5">
-                                            <input class="form-control required" type="text" name="responsable" maxlength="50" required=""/> 
-                                        </div>
-                                    </div>
+                                  
 
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="submit" class=" btn btn-info " value="Registrar ganado" id="btn-sector"/> <br>  

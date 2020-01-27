@@ -27,10 +27,7 @@
 
             <div class="col-md-8">
                 <div class="container col-md-12">
-                    <s:if test="listaSectores.size()<1">
-                        <% response.sendRedirect("sector");%>
-                    </s:if>
-                    <s:else>
+                    
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="  text-warning">Registrar nueva cosecha</h3></div>
                             <div class="panel-body">
@@ -43,11 +40,11 @@
                                 <form action="colmenaregistrada" class="form-horizontal"  method="post" id="colmena">
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idarea">Zona *</label> 
+                                        <label class="control-label col-sm-4" for="idarea">Producto *</label> 
                                         <div class="col-sm-5">
-                                            <select class="form-control"  name="idarea">
-                                                <s:iterator value="listaSectores">
-                                                    <option value="<s:property value="idsector"/>"><s:property value="nombre"/></option>
+                                            <select class="form-control"  name="idproducto">
+                                                <s:iterator value="listaProductos">
+                                                    <option value="<s:property value="idproducto"/>"><s:property value="nombre"/></option>
                                                 </s:iterator>
                                             </select>
                                         </div>
@@ -61,27 +58,26 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nmarcos">Numero de Hectareas *</label>
+                                        <label class="control-label col-sm-4" for="hectareas">Numero de Hectareas *</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control required" type="text" name="nmarcos" value="1" required=""/> 
+                                            <input  class="form-control required" type="text" name="hectareas" value="1" required=""/> 
                                         </div>
                                     </div>                                     
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="nalza">Estimado en quintales *</label>
+                                        <label class="control-label col-sm-4" for="quintales">Quintales *</label>
                                         <div class="col-sm-5">
-                                            <input  class="form-control required" type="text" name="nalza" value="1"   required=""/>       
+                                            <input  class="form-control required" type="text" name="quintales" value="1"   required=""/>       
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="idprovincia">Ciclo de Cosecha *</label>      
+                                        <label class="control-label col-sm-4" for="ciclo">Ciclo de Cosecha *</label>      
 
                                         <div class="col-sm-5">
-                                            <select  class="form-control" name="idorigen" id="origen">
-                                                <s:iterator value="listaOrigen">
-                                                    <option value="<s:property value="idorigen"/>"><s:property value="descripcion"/></option>
-                                                </s:iterator>
+                                            <select  class="form-control" name="ciclo" id="origen">                                               
+                                                    <option>CICLO CORTO</option>
+                                                    <option>CICLO LARGO</option>                                              
                                             </select>
                                         </div>
                                     </div>
@@ -96,7 +92,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
                                         <div class="col-sm-5">
-                                            <input  class="form-control required" type="text" name="fecha" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>"   required="" id="datepicker" readonly=""/> 
+                                            <input  class="form-control required" type="text" name="fech" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>"   required="" id="datepicker" readonly=""/> 
                                         </div>
                                     </div>
 
@@ -126,7 +122,7 @@
                             </div>
                         </div>
 
-                    </s:else>
+                   
                 </div>
             </div>
               <div class="col-sm-2 sidenav">

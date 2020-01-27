@@ -1,8 +1,8 @@
-drop database if exists apicola;
+drop database if exists finca;
 
-create database apicola; 
+create database finca; 
 
-use apicola;
+use finca;
 
 
 
@@ -80,120 +80,81 @@ CREATE TABLE parroquia
 );
 -- ----------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS sector (
-  idsector INT NOT NULL AUTO_INCREMENT primary key,
-  nombre VARCHAR(45) NOT NULL,
-  idparroquia VARCHAR(6) NOT NULL,
-  rcto VARCHAR(45) NOT NULL,
-  direccion VARCHAR(45) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  observacion LONGTEXT NOT NULL,
-  responsable VARCHAR(50) NOT NULL,
-  constraint fk_provincia_sector foreign key (idparroquia) references parroquia(idparroquia) on update cascade on delete restrict
-  );
-
-
--- ----------------------------------------------------------------
-
-create table origen(
- idorigen int primary key,
- descripcion varchar(10)
+create table categorias(
+ idcategoria int not null primary key auto_increment,
+ descripcion character varying (50)
 );
 
-
- insert into origen values(1,'COMPRA');
- insert into origen values (2,'CAPTURA');
- insert into origen values (3,'DIVISIÓN');
- 
- -- ----------------------------------------------------------------
- 
- 
- create table reinas(
-  idreina int not null auto_increment not null primary key,
-  descripcion varchar(50) not null 
- ); 
- 
- -- ----------------------------------------------------------------
- insert into reinas values(default,'Abeja Buckfas');
- insert into reinas values(default,'Abeja Italiana');
- insert into reinas values(default,'Abeja Carniola');
- insert into reinas values(default,'Abeja Caucásica');
- insert into reinas values(default,'Abeja Griega del Norte');
- -- ----------------------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS colmena (
-  idcolmena INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  descripcion varchar(50) not null,
-  idarea INT NOT NULL,
-  nmarcos INT NOT NULL,  
-  nalza INT NOT NULL,
-  idorigen int NOT NULL,
-  precio float not null,
-  npisos int not null,
-  fecha DATE NOT NULL,
-  idreina INT NOT NULL,
-  fechareina DATE NOT NULL, 
-  CONSTRAINT fk_colmena_sector
-    FOREIGN KEY (idarea)
-    REFERENCES sector (idsector)
-    ON DELETE RESTRICT
-    ON UPDATE CASCADE,
-    constraint fk_colmena_origen 
-    foreign key (idorigen) 
-	 references origen(idorigen) on update cascade on delete restrict,
-     foreign key (idreina) 
-	 references reinas(idreina) on update cascade on delete restrict    
-   );
+insert into categorias values(default,'AGRICULTURA');
+insert into categorias values(default,'GANADERÍA');
 
 -- ----------------------------------------------------------------
 
- create table tipo(
-  idtipo int not null primary key,
-  descricion varchar(20)
+CREATE TABLE PRODUCTOS(
+ idproducto int not null primary key auto_increment,
+ nombre varchar(50) not null,
+ idcategoria int not null,
+ constraint fk_categoria_p foreign key (idcategoria) references categorias(idcategoria) on update cascade on delete restrict
+);
+ 
+ -- ----------------------------------------------------------------
+ 
+ insert into productos values(default,'MAIZ',1);
+ insert into productos values(default,'ARROZ',1);
+ insert into productos values(default,'SOJA',1);
+ 
+ insert into productos values(default,'CARNE',2);
+ insert into productos values(default,'LECHE',2);
+ insert into productos values(default,'QUESO',2);
+ insert into productos values(default,'HUEVOS',2);
+ -- ----------------------------------------------------------------
+ 
+ -- ----------------------------------------------------------------
+
+ create table ganado(
+  idganado int not null primary key auto_increment,
+  nombre varchar(50),
+  tipo varchar(50),
+  raza varchar(50),
+  edad int not null,
+  observacion varchar(500)
  );
 
-insert into tipo values(1,'Preventivo');
-insert into tipo values(2,'Correctivo');
+
 -- ----------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS mantenimiento (
-  idmantenimiento INT NOT NULL AUTO_INCREMENT,
-  idtipo int NOT NULL,
-  fecha DATE NOT NULL,
-  idobrero INT NOT NULL,
-  idcolmena INT NOT NULL,
-  alimentacion TINYINT NOT NULL,
-  PRIMARY KEY (idmantenimiento),  
-  CONSTRAINT fk_mantenimiento_colmena
-    FOREIGN KEY (idcolmena)
-    REFERENCES colmena (idcolmena)
-    ON DELETE restrict
-    ON UPDATE cascade,
-    CONSTRAINT fk_mantenimiento_tipo
-    FOREIGN KEY (idtipo)
-    REFERENCES tipo (idtipo)
-    ON DELETE restrict
-    ON UPDATE cascade
+
+
+-- ----------------------------------------------------------------
+
+
+-- ----------------------------------------------------------------
+CREATE TABLE cosechas (
+  idcosecha INT NOT NULL AUTO_INCREMENT primary key,
+  idproducto INT NOT NULL,
+  quintales float NOT NULL,
+  hectareas float NOT NULL,
+  descripcion varchar(50),
+  ciclo varchar(50),
+  fecha date
+);
+
+------------------------------------------------------------------
+
+CREATE TABLE ventas (
+  idventa INT NOT NULL AUTO_INCREMENT primary key,  
+  total float NOT NULL,
+  fecha date
+);
+
+create table detalleventa(
+  iddetalleventa INT NOT NULL AUTO_INCREMENT primary key,
+  idventa INT NOT NULL,
+  idproducto INT NOT NULL,
+  cantidad float NOT NULL
 );
 
 -- ----------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS cosecha (
-  idcosecha INT NOT NULL AUTO_INCREMENT,
-  idcolmena INT NOT NULL,
-  idobrero INT NOT NULL,
-  marcos INT NOT NULL,
-  pesovacio float NOT NULL,
-  pesolleno float NOT NULL,
-  fecha DATE NOT NULL,  
-  PRIMARY KEY (idcosecha),  
-  CONSTRAINT fk_cosecha_colmena
-    FOREIGN KEY (idcolmena)
-    REFERENCES colmena (idcolmena)
-    ON DELETE restrict
-    ON UPDATE cascade
-);
--- ----------------------------------------------------------------
-  
+/*
 insert into provincias values('01','AZUAY');
 insert into provincias values('02','BOLIVAR');
 insert into provincias values('03','CAÑAR');
@@ -1851,4 +1812,7 @@ INSERT INTO parroquia VALUES('240352','JOSÉ LUIS TAMAYO (MUEY)','2403');
 INSERT INTO parroquia VALUES('900151','LAS GOLONDRINAS','9001');
 INSERT INTO parroquia VALUES('900351','MANGA DEL CURA','9003');
 INSERT INTO parroquia VALUES('900451','EL PIEDRERO','9004');
+
+*/
+
 

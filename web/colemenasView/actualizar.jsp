@@ -29,6 +29,9 @@
             <div class="col-md-8 col-lg-8">
                 <div class="container col-md-9 col-lg-12">
 
+
+
+
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="text-warning">Lista de colmenas</h3></div>
                         <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
@@ -36,39 +39,25 @@
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                     <th>Cod.</th>
-                                    <th>Sector</th>
-                                    <th> Marcos</th>
-                                     
+                                    <th>Producto</th>    
                                     <th>Descripción</th>
-                                    <th>Alza</th>
-                                    <th>Origen</th>
-                                    <th>Pisos</th>
-                                    <th>Precio</th>
-                                    <th>Fecha</th>
-                                    <th>Raza Reina</th>
-                                    <th>Fecha de reina</th>
-                                    <th>Acciones</th>
-                                    <th>Reportes</th>
+                                    <th>Quintales</th>
+                                    <th>Hectareas</th>
+                                    <th>Ciclo</th>
+                                    <th>Fecha</th>                                  
+                                    <th>Acciones</th>                                  
                                     </thead>
                                     <tbody>
-                                        <s:iterator value="listaColmenas">
+                                        <s:iterator value="listCosechas">
                                             <tr>
-                                                <td><s:property value="idcolmena"/></td>
-                                                <td><s:property value="sector.nombre"/></td>
-                                                <td><s:property value="nmarcos"/></td>
-                                                 
+                                                <td><s:property value="idcosecha"/></td>
+                                                <td><s:property value="producto.nombre"/></td>
                                                 <td><s:property value="descripcion"/></td>
-                                                <td><s:property value="nalza"/></td>
-                                                <td><s:property value="origen.descripcion"/></td>
-                                                <td><s:property value="npisos"/></td>                                                
-                                                <td><s:property value="precio"/></td>
-                                                <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>
-                                                <td><s:property value="reinas.descripcion"/></td>
-                                                <td><s:date name="fechareina" format="dd/MMM/yyyy"/></td>
-
-                                                <s:url action="actualizarcolmena" var="actualizarcolmena">
-                                                    <s:param name="idcolmena"><s:property value="idcolmena"/></s:param>
-                                                </s:url>
+                                                <td><s:property value="quintales"/></td>                                                 
+                                                <td><s:property value="hectareas"/></td>
+                                                <td><s:property value="ciclo"/></td>                                                 
+                                                <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>                                               
+                                                
                                                 <td>
                                                     <div class=" row ">
                                                         <div class="col-xs-1">
@@ -76,42 +65,11 @@
                                                                 <span class="glyphicon glyphicon-edit"></span>
                                                             </s:a>
                                                         </div> 
-                                                        <div class="col-xs-1  ">
-                                                            <form action="cosechar" method="post">
-                                                                <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                                <button class="btn btn-success btn-xs" type="submit" data-toggle="tooltip" title="Cosechar Colmena"> 
-                                                                    <span class="glyphicon glyphicon-ok"></span>
-                                                                </button> 
-                                                            </form>
-                                                        </div> 
-                                                        <div class="col-xs-1 ">
-                                                            <form action="agregarmantenimiento" method="post">
-                                                                <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                                <button class="btn btn-default btn-xs" type="submit" data-toggle="tooltip" title="Mantenimiento de Colmena"> 
-                                                                    <span class="glyphicon glyphicon-cog"></span>
-                                                                </button>
-                                                            </form>
-                                                        </div>  
+                                                       
+                                                        
                                                     </div>                                                    
                                                 </td>
-                                                <th>
-                                                    <div class="col-xs-1 ">
-                                                        <form action="reportecosechas" method="post">
-                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-info btn-xs" type="submit" data-toggle="tooltip" title="Lista  de Cosechas"> 
-                                                                <span class="glyphicon glyphicon glyphicon-list-alt"></span>
-                                                            </button>
-                                                        </form>
-                                                    </div> 
-                                                    <div class="col-xs-1 ">
-                                                        <form action="reportemantenimiento" method="post">
-                                                            <input type="hidden" name="idcolmena" value="<s:property value="idcolmena"/>"/>
-                                                            <button class="btn btn-primary btn-xs" type="submit" data-toggle="tooltip" title="Lista  de mantenimiento"> 
-                                                                <span class="glyphicon glyphicon glyphicon-asterisk"></span>
-                                                            </button>
-                                                        </form>
-                                                    </div> 
-                                                </th>
+                                                
                                             </tr>
                                         </s:iterator>
                                     </tbody>
@@ -126,12 +84,12 @@
 
             <div class="col-sm-2 sidenav">
                 <div class="well">
-                    <p>Miel 100% pura</p>
-                    <img src="image/med1.jpg" class="img-thumbnail" />
+                    <p>Agricultura</p>
+                    <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />
                 </div>
                 <div class="well">   
-                    <p>Jalea Real</p>
-                    <img src="image/miel.jpg" class="img-thumbnail" />                   
+                    <p>Ganado</p>
+                    <img src="image/ganado-vacuno-acaba-atmosfera-1.jpg" class="img-thumbnail" />                   
                 </div>
             </div>
         </div>
