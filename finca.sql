@@ -138,7 +138,7 @@ CREATE TABLE cosechas (
   fecha date
 );
 
-------------------------------------------------------------------
+-- ----------------------------------------------------------------
 
 CREATE TABLE ventas (
   idventa INT NOT NULL AUTO_INCREMENT primary key,  
