@@ -75,9 +75,9 @@
                                     <th>Raza</th>
                                     <th>Edad</th>                                  
                                     <th>Observación</th>                                  
-                                    <th>Acciones</th>
+                                    <th>Fecha</th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tbody">
                                         <s:iterator value="listGanados">
                                             <tr>
                                                 <td><s:property value="idganado"/></td>
@@ -86,13 +86,9 @@
                                                 <td><s:property value="raza"/></td>
                                                 <td><s:property value="edad"/></td>
                                                 <td><s:property value="observacion"/></td>                                                
-                                                <s:url action="actualizarsector" var="actualizarsector">
-                                                    <s:param name="idsector"><s:property value="idsector"/></s:param>
-                                                </s:url>
+                                               
                                                 <td>                                                    
-                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar sector" href="%{actualizarsector}"> 
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                                    </s:a>
+                                                    <s:property value="fecha"/>
 
                                                 </td>
                                             </tr>

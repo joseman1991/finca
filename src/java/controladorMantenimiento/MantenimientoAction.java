@@ -19,7 +19,11 @@ import javax.mail.MessagingException;
 import modelo.Colmenas;
 import modelo.ColmenasDAO;
 import modelo.ConexionMySQL;
+import modelo.Cosechas;
+import modelo.CosechasDAO;
 import modelo.EnviarMensaje;
+import modelo.Ganado;
+import modelo.GanadoDAO;
 import modelo.Mantenimiento;
 import modelo.MantenimientoDAO;
 import modelo.Tipo;
@@ -233,6 +237,61 @@ public class MantenimientoAction extends Action<Mantenimiento> {
             mdao.cerrarConexion();
         }
     }
+    
+    private final List<Cosechas> listaCosechas=new ArrayList<>();
+    private final CosechasDAO cdao1=new CosechasDAO();
+    private Cosechas cosecha=new Cosechas();
+    
+    public String obtnerCosechas(){
+        try {
+           cdao1.obtenerLista(listaCosechas, cosecha);
+            json = gson.toJson(listaCosechas);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            cdao1.cerrarConexion();
+        }
+        
+    }
+    private final List<Ganado> listaGanados=new ArrayList<>();
+    private final GanadoDAO gdao1=new GanadoDAO();
+    private Ganado ganado=new Ganado();
+    
+    public String obtnerGanado(){
+        try {
+           gdao1.obtenerLista(listaGanados, ganado);
+            json = gson.toJson(listaGanados);
+            return SUCCESS;
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            return ERROR;
+        } finally {
+            gdao1.cerrarConexion();
+        }
+        
+    }
+
+    public Ganado getGanado() {
+        return ganado;
+    }
+
+    public void setGanado(Ganado ganado) {
+        this.ganado = ganado;
+    }
+    
+    
+
+    public Cosechas getCosecha() {
+        return cosecha;
+    }
+
+    public void setCosecha(Cosechas cosecha) {
+        this.cosecha = cosecha;
+    }
+    
+    
 
     public String obtenerListaMantenimientoColmenaFecha() {
         try {

@@ -93,7 +93,6 @@
                                     <th>Fecha</th>
                                     <th>Obrero</th>
                                     <th>Aliementacion</th>             
-                                    <th>Acciones</th>
                                     </thead>
                                     <tbody id="tbody">
                                         <s:iterator value="listaMantenimientos">
@@ -103,14 +102,7 @@
                                                 <td><s:date name="fecha" format="EE, dd/MMM/yyyy"/></td>
                                                 <td><s:property value="obrero.fullname"/></td>                 
                                                 <td><s:property value="alimentacion"/></td> 
-                                                <td>
-                                                    <form action="actualizamantenimiento" method="post">
-                                                        <input type="hidden" value="<s:property value="idmantenimiento"/>" name="idmantenimiento"/>
-                                                        <button class="btn btn-warning btn-xs " data-toggle="tooltip" title="Editar mantenimiento" type="submit">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </button>
-                                                    </form>  
-                                                </td>
+                                               
                                             </tr>
                                         </s:iterator>
                                     </tbody>

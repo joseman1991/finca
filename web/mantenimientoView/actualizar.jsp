@@ -78,9 +78,8 @@
                                     <th>Hectareas</th>
                                     <th>Ciclo</th>
                                     <th>Fecha</th>                                  
-                                    <th>Acciones</th>                                  
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tbody">
                                         <s:iterator value="listCosechas">
                                             <tr>
                                                 <td><s:property value="idcosecha"/></td>
@@ -91,17 +90,7 @@
                                                 <td><s:property value="ciclo"/></td>                                                 
                                                 <td><s:date name="fecha" format="dd/MMM/yyyy"/></td>                                               
                                                 
-                                                <td>
-                                                    <div class=" row ">
-                                                        <div class="col-xs-1">
-                                                            <s:a cssClass="btn btn-warning btn-xs" data-toggle="tooltip" title="Editar colmena" href="%{actualizarcolmena}"> 
-                                                                <span class="glyphicon glyphicon-edit"></span>
-                                                            </s:a>
-                                                        </div> 
-                                                       
-                                                        
-                                                    </div>                                                    
-                                                </td>
+                                                 
                                                 
                                             </tr>
                                         </s:iterator>
@@ -125,7 +114,7 @@
         </div>
 
         <footer class="container-fluid text-center">
-            <p>Todos los Derechos Reservados 2018</p>
+            <p>Todos los Derechos Reservados 2020</p>
         </footer>
 
 

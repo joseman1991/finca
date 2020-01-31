@@ -17,8 +17,10 @@ public class Cosechas {
     private String descripcion;
     private String ciclo;
     private String fech;
+    private String fech2;
 
     private Date fecha;
+    private Date fecha2;
 
     private Productos producto;
 
@@ -95,4 +97,25 @@ public class Cosechas {
         fecha = Date.valueOf(this.fech);
     }
 
+    public String getFech2() {
+        return fech2;
+    }
+
+    public void setFech2(String fech2) {
+        this.fech2 = fech2;
+         fecha2 = Date.valueOf(this.fech2);
+    }
+
+    public Date getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(Date fecha2) {
+        this.fecha2 = fecha2;
+    }
+
+    
+    
+    
+    
 }

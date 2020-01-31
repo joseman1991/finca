@@ -10,7 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+         <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="js/gijgo.min.js"></script>
+        <link href="css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <title>Agregar nuevo sector</title>
     </head>
     <body>
@@ -97,7 +101,12 @@
                                     </div>
 
 
-                                  
+                                   <div class="form-group">
+                                        <label class="control-label col-sm-4" for="fecha">Fecha *</label>   
+                                        <div class="col-sm-5">
+                                            <input  class="form-control required" type="text" name="fech" value="<s:date name=" new java.util.Date()" format="yyyy-MM-dd"/>"   required="" id="datepicker" readonly=""/> 
+                                        </div>
+                                    </div>
 
                                     <div class="form-group col-sm-4 pull-right"  >
                                         <input type="submit" class=" btn btn-info " value="Registrar ganado" id="btn-sector"/> <br>  
@@ -130,11 +139,23 @@
 
 
 
-        <script src="assets/jQuery/jquery-3.3.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+       
         <script type="text/javascript" src="js/jquery.validate.min.js" ></script>    
         <script type="text/javascript" src="js/messages_es.js" ></script>   
         <script type="text/javascript" src="sectoresView/js/validar.js"></script> 
+        
+         <script type="text/javascript">
+            $('#datepicker').datepicker({
+                uiLibrary: 'bootstrap',
+                format: 'yyyy-mm-dd'
+            });
+
+            $('#datepicker2').datepicker({
+                uiLibrary: 'bootstrap',
+                format: 'yyyy-mm-dd'
+            });
+
+        </script>
     </body>
 </html>
 

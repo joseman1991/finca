@@ -20,6 +20,7 @@ $(document).ready(function () {
 
      
     buscar1.click(function () {
+        alert('hola');
         tbody.html('');
 
         var cos = {
@@ -30,90 +31,21 @@ $(document).ready(function () {
             }
         };
 
-        $.ajax({
-            url: "obtenerlistaMantenimientoC",
-            data: JSON.stringify(cos),
-            dataType: 'json',
-            contentType: 'application/json',
-            type: 'POST',
-            async: true,
-            success: function (res) {
-                var dato = JSON.parse(res.json);
-
-                $.each(dato, function (key, value) {
-                    var fila = $((document).createElement('tr'));
-                    tbody.append(fila);
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.idmantenimiento));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.tipo));
-                    celda.append(valorCela);
-                    fila.append(celda);
+      // campos = "idganado,nombre, tipo, raza, edad,observacion,fecha";
 
 
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.fecha));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.obrero.nombre + " " + value.obrero.apellido));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-                   
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.alimentacion));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-
-
-                    var celda = $((document).createElement('td'));
-                    var formulario = $((document).createElement('form'));
-                    formulario.attr("action", "actualizamantenimiento");
-                    formulario.attr("methoh", "post");
-
-                    var id = $((document).createElement('input'));
-                    id.attr("type", "hidden");
-                    id.attr("value", value.idmantenimiento);
-                    id.attr("name", "idmantenimiento");
-
-                    formulario.append(id);
-                    var boton = $((document).createElement('button'));
-
-                    var icon = $((document).createElement('span'));
-                    icon.addClass("glyphicon glyphicon-edit");
-                    boton.attr("data-toggle", "tooltip");
-                    boton.attr("title", "Editar cosecha");
-                    boton.attr("type", "submit");
-                    boton.append(icon);
-                    boton.addClass("btn btn-warning btn-xs");
-
-                    formulario.append(boton);
-
-                    celda.append(formulario);
-                    fila.append(celda);
-                });
-            }
-        });
+       
     });
 
     buscar.click(function () {
         tbody.html('');
-
         var cos = {
-            'mantenimiento': {
+            'cosecha': {
                 fech: datepicker.val(),
                 fech2: datepicker2.val()
             }
         };
-
-        $.ajax({
+ $.ajax({
             url: "obtenerlistaMantenimiento",
             data: JSON.stringify(cos),
             dataType: 'json',
@@ -121,72 +53,53 @@ $(document).ready(function () {
             type: 'POST',
             async: true,
             success: function (res) {
-                var dato = JSON.parse(res.json);
-
+                var dato = JSON.parse(res.json);    
                 $.each(dato, function (key, value) {
                     var fila = $((document).createElement('tr'));
                     tbody.append(fila);
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.idmantenimiento));
+                    var valorCela = $((document).createTextNode(value.idcosecha));
                     celda.append(valorCela);
                     fila.append(celda);
 
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.tipo));
+                    var valorCela = $((document).createTextNode(value.producto.nombre));
                     celda.append(valorCela);
                     fila.append(celda);
 
 
                     var celda = $((document).createElement('td'));
+                    var valorCela = $((document).createTextNode(value.descripcion));
+                    celda.append(valorCela);
+                    fila.append(celda);
+
+                    var celda = $((document).createElement('td'));
+                    var valorCela = $((document).createTextNode(value.quintales));
+                    celda.append(valorCela);
+                    fila.append(celda);
+
+                    
+
+                    var celda = $((document).createElement('td'));
+                    var valorCela = $((document).createTextNode(value.hectareas));
+                    celda.append(valorCela);
+                    fila.append(celda);
+
+                    var celda = $((document).createElement('td'));
+                    var valorCela = $((document).createTextNode(value.ciclo));
+                    celda.append(valorCela);
+                    fila.append(celda);
+
+
+
+                     var celda = $((document).createElement('td'));
                     var valorCela = $((document).createTextNode(value.fecha));
                     celda.append(valorCela);
-                    fila.append(celda);
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.obrero.nombre + " " + value.obrero.apellido));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.colmena.descripcion));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.alimentacion));
-                    celda.append(valorCela);
-                    fila.append(celda);
-
-
-
-                    var celda = $((document).createElement('td'));
-                    var formulario = $((document).createElement('form'));
-                    formulario.attr("action", "actualizamantenimiento");
-                    formulario.attr("methoh", "post");
-
-                    var id = $((document).createElement('input'));
-                    id.attr("type", "hidden");
-                    id.attr("value", value.idmantenimiento);
-                    id.attr("name", "idmantenimiento");
-
-                    formulario.append(id);
-                    var boton = $((document).createElement('button'));
-
-                    var icon = $((document).createElement('span'));
-                    icon.addClass("glyphicon glyphicon-edit");
-                    boton.attr("data-toggle", "tooltip");
-                    boton.attr("title", "Editar cosecha");
-                    boton.attr("type", "submit");
-                    boton.append(icon);
-                    boton.addClass("btn btn-warning btn-xs");
-
-                    formulario.append(boton);
-
-                    celda.append(formulario);
                     fila.append(celda);
                 });
             }
         });
+       
     });
 
 

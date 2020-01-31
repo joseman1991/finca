@@ -117,7 +117,8 @@ CREATE TABLE PRODUCTOS(
   tipo varchar(50),
   raza varchar(50),
   edad int not null,
-  observacion varchar(500)
+  observacion varchar(500),
+  fecha DATE NOT NULL
  );
 
 
@@ -137,6 +138,92 @@ CREATE TABLE cosechas (
   ciclo varchar(50),
   fecha date
 );
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2017-01-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(3,1560.0,22.0,'COSECHA','CICLO CORTO','2017-01-31');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(2,1500.0,20.0,'COSECHA','CICLO CORTO','2017-02-1');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2017-02-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2017-03-14');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(2,1560.0,22.0,'COSECHA','CICLO CORTO','2017-04-12');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2017-05-30');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2017-06-19');
+
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2018-01-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(2,1560.0,22.0,'COSECHA','CICLO CORTO','2018-01-31');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2018-02-1');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(3,1560.0,22.0,'COSECHA','CICLO CORTO','2018-02-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2018-03-14');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2018-04-12');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(2,1500.0,20.0,'COSECHA','CICLO CORTO','2018-05-30');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2018-06-19');
+
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2019-01-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2019-01-31');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(2,1500.0,20.0,'COSECHA','CICLO CORTO','2019-02-1');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2019-02-15');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(3,1500.0,20.0,'COSECHA','CICLO CORTO','2019-03-14');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1560.0,22.0,'COSECHA','CICLO CORTO','2019-04-12');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+values(1,1500.0,20.0,'COSECHA','CICLO CORTO','2019-05-30');
+
+insert into Cosechas(idproducto,quintales,hectareas,descripcion,ciclo,fecha) 
+VALUES(3,1560.0,22.0,'COSECHA','CICLO CORTO','2019-06-19');
+
+
+SELECT * FROM cosechas;
+
+SELECT p.nombre , YEAR(fecha) AS anio, SUM(quintales) FROM cosechas c INNER JOIN productos p
+ON p.idproducto=c.idproducto 
+WHERE fecha BETWEEN '2017-01-01' AND  '2017-12-31'
+GROUP BY p.nombre;
+
+SELECT p.nombre , YEAR(fecha) AS anio, SUM(quintales) FROM cosechas c INNER JOIN productos p
+ON p.idproducto=c.idproducto
+GROUP BY p.nombre,anio;
 
 -- ----------------------------------------------------------------
 

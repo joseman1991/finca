@@ -107,14 +107,14 @@ $(document).ready(function () {
         tbody.html('');
 
         var cos = {
-            'cos': {
+            'ganado': {
                 fech: datepicker.val(),
-                fech1: datepicker2.val()
+                fech2: datepicker2.val()
             }
         };
 
-        $.ajax({
-            url: "obtenerlistaCosecha",
+       $.ajax({
+            url: "obtenerlistaMantenimientoC",
             data: JSON.stringify(cos),
             dataType: 'json',
             contentType: 'application/json',
@@ -122,36 +122,39 @@ $(document).ready(function () {
             async: true,
             success: function (res) {
                 var dato = JSON.parse(res.json);
+
                 $.each(dato, function (key, value) {
                     var fila = $((document).createElement('tr'));
                     tbody.append(fila);
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.idcosecha));
+                    var valorCela = $((document).createTextNode(value.idganado));
                     celda.append(valorCela);
                     fila.append(celda);
 
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.colmena.descripcion));
+                    var valorCela = $((document).createTextNode(value.nombre));
                     celda.append(valorCela);
                     fila.append(celda);
 
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.obrero.nombre + " " + value.obrero.apellido));
+                    var valorCela = $((document).createTextNode(value.tipo));
                     celda.append(valorCela);
                     fila.append(celda);
 
+                   
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.marcos));
+                    var valorCela = $((document).createTextNode(value.raza));
                     celda.append(valorCela);
                     fila.append(celda);
 
-                    var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.pesovacio));
+                     var celda = $((document).createElement('td'));
+                    var valorCela = $((document).createTextNode(value.edad));
                     celda.append(valorCela);
                     fila.append(celda);
-
+                    
+                    
                     var celda = $((document).createElement('td'));
-                    var valorCela = $((document).createTextNode(value.pesolleno));
+                    var valorCela = $((document).createTextNode(value.observacion));
                     celda.append(valorCela);
                     fila.append(celda);
 
@@ -160,36 +163,10 @@ $(document).ready(function () {
                     celda.append(valorCela);
                     fila.append(celda);
 
-                    
 
-                    var celda = $((document).createElement('td'));
-                    var formulario = $((document).createElement('form'));
-                    formulario.attr("action", "editCosecha");
-                    formulario.attr("methoh", "post");
 
-                    var id = $((document).createElement('input'));
-                    id.attr("type", "hidden");
-                    id.attr("value", value.idcosecha);
-                    id.attr("name", "idcosecha");
-
-                    formulario.append(id);
-                    var boton = $((document).createElement('button'));
-
-                    var icon = $((document).createElement('span'));
-                    icon.addClass("glyphicon glyphicon-edit");
-                    boton.attr("data-toggle", "tooltip");
-                    boton.attr("title", "Editar cosecha");
-                    boton.attr("type", "submit");
-                    boton.append(icon);
-                    boton.addClass("btn btn-warning btn-xs");
-
-                    formulario.append(boton);
-
-                    celda.append(formulario);
-                    fila.append(celda);
-
+                     
                 });
-
             }
         });
     });

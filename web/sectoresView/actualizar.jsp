@@ -33,47 +33,42 @@
                             <div class="panel-heading"><h3 class="  text-warning">Lista de sectores</h3></div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                      <table class="table table-hover table-responsive">
-                                    <thead>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo</th>
-                                    <th>Raza</th>
-                                    <th>Edad</th>                                  
-                                    <th>Observación</th>                                  
-                                    <th>Acciones</th>
-                                    </thead>
-                                    <tbody>
-                                        <s:iterator value="listGanados">
-                                            <tr>
-                                                <td><s:property value="idganado"/></td>
-                                                <td><s:property value="nombre"/></td>
-                                                <td><s:property value="tipo"/></td>
-                                                <td><s:property value="raza"/></td>
-                                                <td><s:property value="edad"/></td>
-                                                <td><s:property value="observacion"/></td>                                                
-                                                <s:url action="actualizarsector" var="actualizarsector">
-                                                    <s:param name="idsector"><s:property value="idsector"/></s:param>
-                                                </s:url>
-                                                <td>                                                    
-                                                    <s:a cssClass="btn btn-warning" data-toggle="tooltip" title="Editar sector" href="%{actualizarsector}"> 
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                                    </s:a>
-
-                                                </td>
-                                            </tr>
-                                        </s:iterator>
-                                    </tbody>
-                                </table>
+                                    <table class="table table-hover table-responsive">
+                                        <thead>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Raza</th>
+                                        <th>Edad</th>                                  
+                                        <th>Observación</th>                                  
+                                        <th>Fecha</th>
+                                        </thead>
+                                        <tbody>
+                                            <s:iterator value="listGanados">
+                                                <tr>
+                                                    <td><s:property value="idganado"/></td>
+                                                    <td><s:property value="nombre"/></td>
+                                                    <td><s:property value="tipo"/></td>
+                                                    <td><s:property value="raza"/></td>
+                                                    <td><s:property value="edad"/></td>
+                                                    <td><s:property value="observacion"/></td>                                                
+                                                    <s:url action="actualizarsector" var="actualizarsector">
+                                                        <s:param name="idsector"><s:property value="idsector"/></s:param>
+                                                    </s:url>
+                                                    <td><s:property value="fecha"/></td>
+                                                </tr>
+                                            </s:iterator>
+                                        </tbody>
+                                    </table>
                                 </div>
-                              
+
                             </div>                    
                         </div>                    
                     </div>                    
                 </div>
             </div>
 
-             <div class="col-sm-2 sidenav">
+            <div class="col-sm-2 sidenav">
                 <div class="well">
                     <p>Agricultura</p>
                     <img src="image/granero-aerogenerador_18591-54816.jpg" class="img-thumbnail" />

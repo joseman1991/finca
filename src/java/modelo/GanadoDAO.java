@@ -22,7 +22,7 @@ public class GanadoDAO extends ConexionMySQL<Ganado> {
 
     @Override
     public int insertarRegistro(Ganado registro) throws SQLException {
-        campos = "nombre, tipo, raza, edad,observacion";
+        campos = "nombre, tipo, raza, edad,observacion,fecha";
         int res = super.insertarRegistro(registro);
         cerrarConexion();
         return res;
@@ -31,13 +31,20 @@ public class GanadoDAO extends ConexionMySQL<Ganado> {
 
     @Override
     public void obtenerLista(List<Ganado> lista) throws SQLException {
-        campos = "idganado,nombre, tipo, raza, edad,observacion";
-        camposCondicion="";
-        condicion="";
-        super.obtenerLista(lista); 
+        campos = "idganado,nombre, tipo, raza, edad,observacion,fecha";
+        camposCondicion = "";
+        condicion = "";
+        super.obtenerLista(lista);
         cerrarConexion();
     }
-    
-    
+
+    @Override
+    public void obtenerLista(List<Ganado> lista, Ganado dato) throws SQLException {
+        campos = "idganado,nombre, tipo, raza, edad,observacion,fecha";
+        condicion = "where fecha between ? and ?";
+        camposCondicion = "fecha,fecha2";
+        super.obtenerLista(lista, dato);
+        cerrarConexion();
+    }
 
 }

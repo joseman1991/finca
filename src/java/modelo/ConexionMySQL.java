@@ -40,9 +40,9 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
     protected void abrirConexion() throws SQLException {
         String url;
         String usuario = ("root");
-        String clave = ("mysql");
+        String clave = ("mariadb");
         String BaseDeDatos = ("finca");
-        String puerto = ("3306");
+        String puerto = ("3307");
         String servidor = ("localhost");
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -85,6 +85,7 @@ public class ConexionMySQL<T extends Object> implements ModelDAO<T> {
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException | SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(sentencia);
         return sentencia.executeUpdate();
     }
 

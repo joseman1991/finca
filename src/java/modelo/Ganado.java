@@ -5,7 +5,7 @@
  */
 package modelo;
 
-
+import java.sql.Date;
 
 public class Ganado {
 
@@ -15,6 +15,11 @@ public class Ganado {
     private String raza;
     private int edad;
     private String observacion;
+    private String fech;
+    private String fech2;
+
+    private Date fecha;
+    private Date fecha2;
 
     public int getIdganado() {
         return idganado;
@@ -63,7 +68,41 @@ public class Ganado {
     public void setObservacion(String observacion) {
         this.observacion = observacion;
     }
-      
-    
+
+    public String getFech() {
+        return fech;
+    }
+
+    public void setFech(String fech) {
+        this.fech = fech;
+        fecha = Date.valueOf(this.fech);
+
+    }
+
+    public String getFech2() {
+        return fech2;
+    }
+
+    public void setFech2(String fech2) {
+        this.fech2 = fech2;
+        fecha2 = Date.valueOf(this.fech2);
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = Date.valueOf(fecha);
+    }
+
+    public Date getFecha2() {
+        return fecha2;
+
+    }
+
+    public void setFecha2(Date fecha2) {
+        this.fecha2 = fecha2;
+    }
 
 }

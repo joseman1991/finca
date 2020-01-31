@@ -16,7 +16,7 @@
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap.min.js"></script>
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
-        <title>Lista de Colmenas</title>
+        <title>Lista de cosechas</title>
     </head>
     <body>
 
@@ -33,7 +33,7 @@
 
 
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="text-warning">Lista de colmenas</h3></div>
+                        <div class="panel-heading"><h3 class="text-warning">Lista de cosechas</h3></div>
                         <div class="panel-body" style="min-height: 600px; max-height: 600px;overflow-y: scroll;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
